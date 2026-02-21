@@ -12,8 +12,9 @@ export default function SchedulePage() {
       date: "1st Saturday of Every Month",
       title: "Worship at The Gardens",
       location: "The Gardens, Kingman, AZ",
+      time: "11:30 AM",
       description:
-        "Join us the first Saturday of every month as we lead worship at The Gardens in Kingman, Arizona. Come be part of a beautiful time of praise and fellowship.",
+        "Join us the first Saturday of every month at 11:30 AM as we lead worship at The Gardens in Kingman, Arizona. Come be part of a beautiful time of praise and fellowship.",
     },
   ];
 
@@ -138,6 +139,19 @@ export default function SchedulePage() {
                   >
                     {event.date}
                   </p>
+                  {event.time && (
+                    <p
+                      style={{
+                        fontFamily: "'Quicksand', sans-serif",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        color: "var(--color-cream-muted)",
+                        marginTop: "6px",
+                      }}
+                    >
+                      {event.time}
+                    </p>
+                  )}
                 </div>
                 <div style={{ flex: 1 }}>
                   <h3
