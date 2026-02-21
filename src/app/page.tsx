@@ -202,6 +202,7 @@ export default function Home() {
                 borderRadius: "8px",
               }}
             >
+              <source src="/video/ministry-clip.mp4" type="video/mp4" />
               <source src="/video/ministry-clip.mov" type="video/quicktime" />
               Your browser does not support the video tag.
             </video>
