@@ -353,7 +353,7 @@ export default function SupportPage() {
               }}
             >
               <Image
-                src="/images/5M5A7520.jpeg"
+                src="/images/support-photo.jpeg"
                 alt="Wylie and Dawna leading worship"
                 width={500}
                 height={375}
