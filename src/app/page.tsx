@@ -262,11 +262,11 @@ export default function Home() {
             >
               Wylie and Dawna Stevens are a husband and wife singing duet known
               for their heartfelt Christian gospel music that beautifully
-              intertwines traditional hymns with original compositions. With a
-              shared passion for faith and mission, the couple is dedicated to
-              spreading the uplifting message of Jesus Christ&apos;s soon return
-              and encouraging the church to remain steadfast and strong in their
-              beliefs.
+              intertwines traditional hymns, scripture songs, and praise and
+              worship music. With a shared passion for faith and mission, the
+              couple is dedicated to spreading the uplifting message of the
+              awesome love of God, Jesus Christ&apos;s soon return and
+              encouraging the church to remain steadfast and faithful.
             </p>
             <p
               style={{
@@ -276,12 +276,13 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie&apos;s journey in music began over forty-five years ago,
-              rooted in his desire to share the gospel through song. Eight years
-              ago, Dawna joined him, and together they formed this dynamic duo,
-              blending their voices to create a powerful ministry. Through
-              soulful harmonies and heartfelt lyrics, they remind listeners to
-              watch and pray as they eagerly await Christ&apos;s glorious return.
+              Wylie&apos;s journey in music began over 48 years ago, as a tender
+              four-year old singing next to his father in a bluegrass band.
+              Six years ago, Dawna joined him, and together they formed this
+              dynamic duo, blending their voices to create a powerful ministry.
+              Through soulful harmonies and heartfelt lyrics, they remind
+              listeners to watch and pray as they eagerly await Christ&apos;s
+              glorious return.
             </p>
             <p
               style={{

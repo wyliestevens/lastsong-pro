@@ -29,12 +29,7 @@ const tracks = [
     artist: "Wylie & Dawna",
     src: "/audio/Via_Dolorosa_Wylie_Dawna.m4a",
   },
-  {
-    title: "In The Sanctuary",
-    artist: "Wylie & Dawna",
-    src: "/audio/In_The_Sanctuary_Wylie_Dawna_MASTER.m4a",
-  },
-  {
+{
     title: "I Bowed on My Knees",
     artist: "Wylie Stevens",
     src: "/audio/I_Bowed_on_My_Knees_Wylie_MASTER_3.m4a",

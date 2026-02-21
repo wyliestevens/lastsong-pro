@@ -130,9 +130,13 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Last Song is the music ministry of Wylie and Dawna. Together, they
-              share a deep passion for worship and a calling to bring the
-              presence of God into every gathering through song.
+              Wylie and Dawna Stevens are a husband and wife singing duet known
+              for their heartfelt Christian gospel music that beautifully
+              intertwines traditional hymns, scripture songs, and praise and
+              worship music. With a shared passion for faith and mission, the
+              couple is dedicated to spreading the uplifting message of the
+              awesome love of God, Jesus Christ&apos;s soon return and
+              encouraging the church to remain steadfast and faithful.
             </p>
             <p
               style={{
@@ -142,10 +146,19 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              With Wylie on guitar and both voices lifted in harmony, Last Song
-              brings a warm and intimate worship experience to churches, events,
-              and special gatherings. Their music is rooted in faith, delivered
-              with sincerity, and focused on drawing hearts closer to God.
+              Wylie&apos;s journey in music began over 48 years ago, as a tender
+              four-year old singing next to his father in a bluegrass band made
+              up of friends who played together every Friday night. At age
+              sixteen he committed to serving as a music minister first in the
+              church he grew up in, and later at many other churches in northeast
+              Texas and southern Arkansas. In his desire to share the gospel
+              through song, he became lead singer in the gospel quartet, Southern
+              Grace in 2001, where they toured the four-state area of Texas,
+              Arkansas, Oklahoma, and Louisiana. Six years ago, Dawna joined him,
+              and together they formed this dynamic duo, blending their voices to
+              create a powerful ministry. Through soulful harmonies and heartfelt
+              lyrics, they remind listeners to watch and pray as they eagerly
+              await Christ&apos;s glorious return.
             </p>
             <p
               style={{
@@ -155,9 +168,23 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Whether leading congregational worship or performing special music,
-              Wylie and Dawna bring the same heart and dedication to every
-              opportunity to serve through song.
+              In addition to their music, Wylie and Dawna are committed to
+              mentoring young musicians and fostering a spirit of faith within
+              their local community. Through engaging workshops and outreach,
+              they inspire others to use their gifts for God&apos;s glory.
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "24px",
+              }}
+            >
+              With their hearts full of faith and their voices lifted in praise,
+              Wylie and Dawna Stevens invite you to join them in celebrating the
+              timeless truths of the gospel, ever reminding that the best is yet
+              to come for those who believe.
             </p>
 
             <div
