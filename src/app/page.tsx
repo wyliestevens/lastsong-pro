@@ -148,6 +148,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section
+        className="section-spacing"
+        style={{
+          background: "var(--color-bg-warm)",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+          <p
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "var(--color-amber)",
+              marginBottom: "16px",
+            }}
+          >
+            Watch
+          </p>
+          <h2
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 400,
+              color: "var(--color-cream)",
+              lineHeight: 1.2,
+              marginBottom: "32px",
+            }}
+          >
+            See Us in Worship
+          </h2>
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "8px",
+              overflow: "hidden",
+              aspectRatio: "16/9",
+              background: "#000",
+            }}
+          >
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                borderRadius: "8px",
+              }}
+            >
+              <source src="/video/ministry-clip.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* The Faithful Harmonies Duo */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div
