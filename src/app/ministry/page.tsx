@@ -74,7 +74,7 @@ export default function MinistryPage() {
               {
                 title: "Church Worship",
                 description:
-                  "We lead worship and provide special music for church services. Whether a Sunday morning service, revival, or special event, we bring heartfelt worship to your congregation.",
+                  "We lead worship and provide special music for church services, revivals, and special events. We bring heartfelt worship to your congregation.",
                 icon: "🎵",
               },
               {

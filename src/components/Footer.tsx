@@ -94,15 +94,35 @@ export default function Footer() {
           >
             Connect
           </h4>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "0.9rem",
-              lineHeight: 1.7,
-            }}
-          >
-            Email: contact@lastsong.pro
-          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "0.9rem",
+                lineHeight: 1.7,
+              }}
+            >
+              Phone: (903) 556-3650
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "0.9rem",
+                lineHeight: 1.7,
+              }}
+            >
+              Email: dbstevens04@hotmail.com
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "0.9rem",
+                lineHeight: 1.7,
+              }}
+            >
+              Kingman, AZ
+            </p>
+          </div>
         </div>
       </div>
 

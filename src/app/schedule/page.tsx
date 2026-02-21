@@ -8,11 +8,11 @@ export const metadata = {
 export default function SchedulePage() {
   const upcomingEvents = [
     {
-      date: "Coming Soon",
-      title: "Schedule Updates",
-      location: "Check back for upcoming events",
+      date: "1st Saturday of Every Month",
+      title: "Worship at The Gardens",
+      location: "The Gardens, Kingman, AZ",
       description:
-        "We are currently booking events for the upcoming season. Contact us if you would like Last Song to minister at your church or event.",
+        "Join us the first Saturday of every month as we lead worship at The Gardens in Kingman, Arizona. Come be part of a beautiful time of praise and fellowship.",
     },
   ];
 
@@ -169,7 +169,7 @@ export default function SchedulePage() {
               marginBottom: "24px",
             }}
           >
-            Invite Us to Your Church
+            Invite Us to Your Church or Event
           </h2>
           <p
             style={{
@@ -182,7 +182,7 @@ export default function SchedulePage() {
             We would love to bring our music ministry to your church, revival,
             retreat, or special event. Reach out to us and let&apos;s connect.
           </p>
-          <a href="mailto:contact@lastsong.pro" className="btn-primary">
+          <a href="mailto:dbstevens04@hotmail.com" className="btn-primary">
             Contact Us
           </a>
         </div>
