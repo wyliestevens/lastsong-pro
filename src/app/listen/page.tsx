@@ -29,7 +29,7 @@ const tracks = [
     artist: "Wylie & Dawna",
     src: "/audio/Via_Dolorosa_Wylie_Dawna.m4a",
   },
-{
+  {
     title: "I Bowed on My Knees",
     artist: "Wylie Stevens",
     src: "/audio/I_Bowed_on_My_Knees_Wylie_MASTER_3.m4a",
@@ -103,60 +103,86 @@ export default function ListenPage() {
   };
 
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div>
       <audio ref={audioRef} preload="metadata" />
 
-      {/* Hero */}
+      {/* Hero with Background Image */}
       <section
         style={{
+          position: "relative",
+          paddingTop: "160px",
+          paddingBottom: "80px",
           textAlign: "center",
-          padding: "60px 24px 40px",
-          maxWidth: "800px",
-          margin: "0 auto",
+          overflow: "hidden",
         }}
       >
-        <p
-          style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "0.8rem",
-            fontWeight: 600,
-            letterSpacing: "3px",
-            textTransform: "uppercase",
-            color: "var(--color-amber)",
-            marginBottom: "16px",
-          }}
-        >
-          Our Music
-        </p>
-        <h1
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(2.5rem, 5vw, 4rem)",
-            fontWeight: 300,
-            color: "var(--color-cream)",
-            lineHeight: 1.2,
-            marginBottom: "24px",
-          }}
-        >
-          Listen Now
-        </h1>
+        <Image
+          src="/images/guitar_treeImage.jpeg"
+          alt=""
+          fill
+          style={{ objectFit: "cover", objectPosition: "center" }}
+          priority
+        />
         <div
           style={{
-            width: "60px",
-            height: "1px",
-            background: "var(--color-amber)",
-            margin: "0 auto 24px",
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to bottom, rgba(15,13,10,0.6) 0%, rgba(15,13,10,0.85) 60%, rgba(15,13,10,1) 100%)",
           }}
         />
-        <p
+        <div
           style={{
-            color: "var(--color-cream-muted)",
-            fontSize: "1rem",
-            lineHeight: 1.8,
+            position: "relative",
+            zIndex: 2,
+            maxWidth: "800px",
+            margin: "0 auto",
+            padding: "0 24px",
           }}
         >
-          Recordings from our worship sessions and ministry events.
-        </p>
+          <p
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "var(--color-amber)",
+              marginBottom: "16px",
+            }}
+          >
+            Our Music
+          </p>
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontWeight: 300,
+              color: "var(--color-cream)",
+              lineHeight: 1.2,
+              marginBottom: "24px",
+            }}
+          >
+            Listen Now
+          </h1>
+          <div
+            style={{
+              width: "60px",
+              height: "1px",
+              background: "var(--color-amber)",
+              margin: "0 auto 24px",
+            }}
+          />
+          <p
+            style={{
+              color: "var(--color-cream-muted)",
+              fontSize: "1rem",
+              lineHeight: 1.8,
+            }}
+          >
+            Recordings from our worship sessions and ministry events.
+          </p>
+        </div>
       </section>
 
       {/* Now Playing */}
