@@ -286,8 +286,10 @@ export default function AboutPage() {
             {[
               "/images/IMG_0986.jpeg",
               "/images/5M5A7470_new.jpeg",
+              "/images/1000000279.jpeg",
               "/images/7790520840868875662.jpeg",
               "/images/IMG_1046.jpeg",
+              "/images/1000000248.jpeg",
             ].map((src, i) => (
               <div
                 key={i}
