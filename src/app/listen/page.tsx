@@ -545,8 +545,8 @@ export default function ListenPage() {
             }}
           >
             <Image
-              src="/images/5M5A7508.jpeg"
-              alt="Worship moment"
+              src="/images/5M5A7532.jpeg"
+              alt="Wylie and Dawna singing together"
               fill
               style={{ objectFit: "cover" }}
             />
@@ -560,8 +560,8 @@ export default function ListenPage() {
             }}
           >
             <Image
-              src="/images/5M5A7495.jpeg"
-              alt="Leading worship"
+              src="/images/IMG_0986.jpeg"
+              alt="Wylie and Dawna at the Grand Canyon"
               fill
               style={{ objectFit: "cover" }}
             />

@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Ministry | Last Song",
-  description: "Learn about our worship ministry and how we serve.",
+  title: "Ministry",
+  description: "Last Song Ministry serves through church worship, special events, and community outreach. Wylie and Dawna Stevens bring heartfelt gospel music to congregations and gatherings.",
 };
 
 export default function MinistryPage() {
@@ -171,7 +171,7 @@ export default function MinistryPage() {
               className="image-shine"
             >
               <Image
-                src="/images/5M5A7520.jpeg"
+                src="/images/7790520840868875662.jpeg"
                 alt="Leading worship"
                 width={600}
                 height={400}

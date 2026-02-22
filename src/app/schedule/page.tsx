@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Schedule | Last Song",
-  description: "See where Last Song will be ministering next.",
+  title: "Schedule",
+  description: "See where Last Song Ministry will be performing next. Worship at The Gardens in Kingman, AZ every first Saturday at 11:30 AM. Book Wylie and Dawna Stevens for your church or event.",
 };
 
 export default function SchedulePage() {

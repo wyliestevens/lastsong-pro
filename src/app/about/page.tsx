@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "About Us | Last Song",
-  description: "Learn about the Last Song music ministry.",
+  title: "About Us",
+  description: "Learn about Wylie and Dawna Stevens, the husband and wife worship duo behind Last Song Ministry. 48 years of music, sharing the Gospel through song in Kingman, AZ.",
 };
 
 export default function AboutPage() {
@@ -156,13 +156,13 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Wylie and Dawna Stevens are a husband and wife singing duet known
-              for their heartfelt Christian gospel music that beautifully
-              intertwines traditional hymns, scripture songs, and praise and
-              worship music. With a shared passion for faith and mission, the
-              couple is dedicated to spreading the uplifting message of the
-              awesome love of God, Jesus Christ&apos;s soon return and
-              encouraging the church to remain steadfast and faithful.
+              Wylie and Dawna Stevens are a husband-and-wife singing duo known
+              for their heartfelt Christian music that beautifully intertwines
+              traditional hymns, scripture songs, and praise and worship. With a
+              shared passion for faith and mission, the couple is dedicated to
+              spreading the uplifting message of God&apos;s awesome love, Jesus
+              Christ&apos;s soon return, and encouraging the church to remain
+              steadfast and faithful.
             </p>
             <p
               style={{
@@ -172,19 +172,15 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Wylie&apos;s journey in music began over 48 years ago, as a tender
-              four-year old singing next to his father in a bluegrass band made
+              Wylie&apos;s journey in music began 48 years ago, as a tender
+              four-year-old singing next to his father in a bluegrass band made
               up of friends who played together every Friday night. At age
-              sixteen he committed to serving as a music minister first in the
-              church he grew up in, and later at many other churches in northeast
-              Texas and southern Arkansas. In his desire to share the gospel
-              through song, he became lead singer in the gospel quartet, Southern
-              Grace in 2001, where they toured the four-state area of Texas,
-              Arkansas, Oklahoma, and Louisiana. Six years ago, Dawna joined him,
-              and together they formed this dynamic duo, blending their voices to
-              create a powerful ministry. Through soulful harmonies and heartfelt
-              lyrics, they remind listeners to watch and pray as they eagerly
-              await Christ&apos;s glorious return.
+              sixteen, he committed to serving as a music minister, first at the
+              church he grew up in and later at several other churches in
+              northeast Texas and southern Arkansas. In his desire to share the
+              gospel through song, he became lead singer of the gospel quartet
+              Southern Grace in 2001, which toured the four-state area of Texas,
+              Arkansas, Oklahoma, and Louisiana.
             </p>
             <p
               style={{
@@ -194,10 +190,15 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              In addition to their music, Wylie and Dawna are committed to
-              mentoring young musicians and fostering a spirit of faith within
-              their local community. Through engaging workshops and outreach,
-              they inspire others to use their gifts for God&apos;s glory.
+              Although Dawna&apos;s singing experience was little more than a
+              &ldquo;hairbrush microphone&rdquo; singing with popular songs as a
+              young girl and church choirs, after several years of Wylie trying
+              to convince her to sing with him, she finally joined him eight
+              years ago, and together they formed the dynamic duo,
+              &ldquo;Last Song&rdquo;, blending their voices with guitar to
+              create a powerful music ministry. Through soulful harmonies and
+              heartfelt lyrics, they remind listeners to watch and pray and to
+              be ready for Christ&apos;s glorious return.
             </p>
             <p
               style={{
@@ -207,10 +208,30 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              With their hearts full of faith and their voices lifted in praise,
-              Wylie and Dawna Stevens invite you to join them in celebrating the
-              timeless truths of the gospel, ever reminding that the best is yet
-              to come for those who believe.
+              Last Song serves their community by singing monthly at The Gardens
+              Rehab and Care Center in Kingman, AZ, sharing light and love with
+              the residents. In addition to their music, Wylie and Dawna are
+              committed to spreading the good news, sharing the gospel through
+              literature and friendship evangelism. In their ministry
+              &ldquo;Wherever You Go&rdquo;, they hand out books, magazines,
+              &amp; DVDs as they go about daily errands and when traveling,
+              seeking the lost and downtrodden to tell them the good news of
+              Jesus, encouraging and praying with them. They also lead individual
+              and group Bible studies, in person and via Zoom, because, as Hosea
+              warns, &ldquo;my people are destroyed for lack of
+              knowledge.&rdquo; Hosea 4:6
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "24px",
+              }}
+            >
+              With hearts full of faith and voices lifted in praise, Last Song
+              invites you to join them in celebrating the timeless truths of the
+              gospel, ever reminding the faithful that the best is yet to come.
             </p>
 
             <div
@@ -263,10 +284,10 @@ export default function AboutPage() {
             }}
           >
             {[
-              "/images/5M5A7520.jpeg",
-              "/images/5M5A7470.jpeg",
-              "/images/5M5A7495.jpeg",
-              "/images/IMG_1750.jpeg",
+              "/images/IMG_0986.jpeg",
+              "/images/5M5A7470_new.jpeg",
+              "/images/7790520840868875662.jpeg",
+              "/images/IMG_1046.jpeg",
             ].map((src, i) => (
               <div
                 key={i}

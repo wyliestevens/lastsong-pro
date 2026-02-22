@@ -17,10 +17,10 @@ export default function Home() {
         }}
       >
         <Image
-          src="/images/guitar_treeImage.jpeg"
-          alt="Guitar shaped trees at sunset"
+          src="/images/5M5A7470_new.jpeg"
+          alt="Wylie and Dawna Stevens of Last Song Ministry posing with guitar"
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -202,8 +202,8 @@ export default function Home() {
                 borderRadius: "8px",
               }}
             >
-              <source src="/video/ministry-clip.mp4" type="video/mp4" />
-              <source src="/video/ministry-clip.mov" type="video/quicktime" />
+              <source src="/video/worship-clip.mp4" type="video/mp4" />
+              <source src="/video/iPhone001_12201709_C006.mov" type="video/quicktime" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -247,7 +247,7 @@ export default function Home() {
                 marginBottom: "28px",
               }}
             >
-              The Faithful Harmonies Duo:
+              Called to Worship Together:
               <br />
               <span style={{ color: "var(--color-amber)" }}>
                 Wylie &amp; Dawna Stevens
@@ -261,13 +261,13 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie and Dawna Stevens are a husband and wife singing duet known
-              for their heartfelt Christian gospel music that beautifully
-              intertwines traditional hymns, scripture songs, and praise and
-              worship music. With a shared passion for faith and mission, the
-              couple is dedicated to spreading the uplifting message of the
-              awesome love of God, Jesus Christ&apos;s soon return and
-              encouraging the church to remain steadfast and faithful.
+              Wylie and Dawna Stevens are a husband-and-wife singing duo known
+              for their heartfelt Christian music that beautifully intertwines
+              traditional hymns, scripture songs, and praise and worship. With a
+              shared passion for faith and mission, the couple is dedicated to
+              spreading the uplifting message of God&apos;s awesome love, Jesus
+              Christ&apos;s soon return, and encouraging the church to remain
+              steadfast and faithful.
             </p>
             <p
               style={{
@@ -277,13 +277,13 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie&apos;s journey in music began over 48 years ago, as a tender
-              four-year old singing next to his father in a bluegrass band.
-              Six years ago, Dawna joined him, and together they formed this
-              dynamic duo, blending their voices to create a powerful ministry.
-              Through soulful harmonies and heartfelt lyrics, they remind
-              listeners to watch and pray as they eagerly await Christ&apos;s
-              glorious return.
+              Wylie&apos;s journey in music began 48 years ago, as a tender
+              four-year-old singing next to his father in a bluegrass band.
+              Eight years ago, Dawna joined him, and together they formed
+              &ldquo;Last Song&rdquo;, blending their voices with guitar to
+              create a powerful music ministry. Through soulful harmonies and
+              heartfelt lyrics, they remind listeners to watch and pray and to
+              be ready for Christ&apos;s glorious return.
             </p>
             <p
               style={{
@@ -293,10 +293,9 @@ export default function Home() {
                 marginBottom: "32px",
               }}
             >
-              With their hearts full of faith and their voices lifted in praise,
-              Wylie and Dawna Stevens invite you to join them in celebrating the
-              timeless truths of the gospel, ever reminding that the best is yet
-              to come for those who believe.
+              With hearts full of faith and voices lifted in praise, Last Song
+              invites you to join them in celebrating the timeless truths of the
+              gospel, ever reminding the faithful that the best is yet to come.
             </p>
             <Link href="/about" className="btn-outline">
               Learn More
@@ -311,10 +310,10 @@ export default function Home() {
             className="image-shine"
           >
             <Image
-              src="/images/5M5A7470.jpeg"
-              alt="Wylie and Dawna Stevens - Last Song ministry"
+              src="/images/IMG_5781.jpeg"
+              alt="Wylie and Dawna Stevens singing worship music with microphones"
               width={600}
-              height={450}
+              height={960}
               style={{
                 width: "100%",
                 height: "auto",
@@ -422,10 +421,10 @@ export default function Home() {
             }}
           >
             {[
-              "/images/5M5A7503.jpeg",
-              "/images/5M5A7495.jpeg",
-              "/images/5M5A7508.jpeg",
-            ].map((src, i) => (
+              { src: "/images/1000000052.jpeg", alt: "Wylie and Dawna Stevens leading worship with guitar at a church service" },
+              { src: "/images/IMG_1477.jpeg", alt: "Last Song Ministry with the congregation in Elk City, Oklahoma", label: "Elk City, OK" },
+              { src: "/images/5M5A7532.jpeg", alt: "Wylie and Dawna Stevens singing together during a worship service" },
+            ].map((photo, i) => (
               <div
                 key={i}
                 style={{
@@ -437,11 +436,36 @@ export default function Home() {
                 className="image-shine"
               >
                 <Image
-                  src={src}
-                  alt={`Ministry photo ${i + 1}`}
+                  src={photo.src}
+                  alt={photo.alt}
                   fill
                   style={{ objectFit: "cover" }}
                 />
+                {photo.label && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: "12px 16px",
+                      background: "linear-gradient(to top, rgba(15,13,10,0.85), transparent)",
+                      textAlign: "center",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "'Quicksand', sans-serif",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        color: "var(--color-amber)",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {photo.label}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
