@@ -5,11 +5,6 @@ import { useState, useRef, useEffect } from "react";
 
 const tracks = [
   {
-    title: "All My Tears",
-    artist: "Wylie & Dawna",
-    src: "/audio/All_My_Tears_Wylie_Dawna_RP_MASTERED.m4a",
-  },
-  {
     title: "Something About That Name",
     artist: "Wylie & Dawna",
     src: "/audio/Something_about_that_Name_MASTER.m4a",
@@ -33,6 +28,11 @@ const tracks = [
     title: "I Bowed on My Knees",
     artist: "Wylie Stevens",
     src: "/audio/I_Bowed_on_My_Knees_Wylie_MASTER_3.m4a",
+  },
+  {
+    title: "All My Tears",
+    artist: "Wylie & Dawna",
+    src: "/audio/All_My_Tears_Wylie_Dawna_RP_MASTERED.m4a",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function ListenPage() {
           src="/images/guitar_treeImage.jpeg"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -523,50 +523,50 @@ export default function ListenPage() {
         </div>
       </section>
 
-      {/* Photo */}
+      {/* Photos */}
       <section
         className="section-spacing"
         style={{ background: "var(--color-bg-warm)" }}
       >
         <div
           style={{
-            maxWidth: "900px",
+            maxWidth: "1100px",
             margin: "0 auto",
             padding: "0 24px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "16px",
+            gap: "24px",
+            alignItems: "start",
           }}
         >
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "8px",
-              overflow: "hidden",
-              aspectRatio: "4/3",
-            }}
-          >
+          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
             <Image
               src="/images/5M5A7532.jpeg"
               alt="Wylie and Dawna singing together"
-              fill
-              style={{ objectFit: "cover" }}
+              width={2595}
+              height={3390}
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
             />
           </div>
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "8px",
-              overflow: "hidden",
-              aspectRatio: "4/3",
-            }}
-          >
-            <Image
-              src="/images/IMG_0986.jpeg"
-              alt="Wylie and Dawna at the Grand Canyon"
-              fill
-              style={{ objectFit: "cover" }}
-            />
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+              <Image
+                src="/images/IMG_0986.jpeg"
+                alt="Wylie and Dawna at the Grand Canyon"
+                width={4032}
+                height={3024}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+              />
+            </div>
+            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+              <Image
+                src="/images/5M5A7508.jpeg"
+                alt="Wylie and Dawna worship moment"
+                width={600}
+                height={800}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+              />
+            </div>
           </div>
         </div>
       </section>

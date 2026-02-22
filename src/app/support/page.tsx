@@ -27,7 +27,7 @@ export default function SupportPage() {
           src="/images/guitar_treeImage.jpeg"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -464,11 +464,35 @@ export default function SupportPage() {
         </div>
       </section>
 
+      {/* Photo Section */}
+      <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", alignItems: "start" }}>
+          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <Image
+              src="/images/5M5A7503.jpeg"
+              alt="Wylie and Dawna Stevens together"
+              width={600}
+              height={800}
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+            />
+          </div>
+          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <Image
+              src="/images/IMG_1750.jpeg"
+              alt="Wylie and Dawna in ministry"
+              width={600}
+              height={800}
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Why We Are Not a 501(c)(3) */}
       <section
         className="section-spacing"
         style={{
-          background: "var(--color-bg-deep)",
+          background: "var(--color-bg-warm)",
         }}
       >
         <div style={{ maxWidth: "750px", margin: "0 auto", padding: "0 24px" }}>

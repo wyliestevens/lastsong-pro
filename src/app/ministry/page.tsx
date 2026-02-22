@@ -23,7 +23,7 @@ export default function MinistryPage() {
           src="/images/guitar_treeImage.jpeg"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -229,20 +229,20 @@ export default function MinistryPage() {
         </div>
       </section>
 
-      {/* Quote */}
+      {/* Quote + Photo */}
       <section
         className="section-spacing"
         style={{
           background: "var(--color-bg-warm)",
-          textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "700px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
           <div
             style={{
               padding: "48px 32px",
               borderTop: "1px solid var(--color-divider)",
               borderBottom: "1px solid var(--color-divider)",
+              textAlign: "center",
             }}
           >
             <p
@@ -267,6 +267,15 @@ export default function MinistryPage() {
             >
               Psalm 100:1-2 NKJV
             </p>
+          </div>
+          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <Image
+              src="/images/5M5A7470.jpeg"
+              alt="Wylie and Dawna Stevens posing together"
+              width={600}
+              height={800}
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+            />
           </div>
         </div>
       </section>

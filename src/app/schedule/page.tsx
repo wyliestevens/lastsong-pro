@@ -1,22 +1,63 @@
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 
-export const metadata = {
-  title: "Schedule",
-  description: "See where Last Song Ministry will be performing next. Worship at The Gardens in Kingman, AZ every first Saturday at 11:30 AM. Book Wylie and Dawna Stevens for your church or event.",
-};
+import Image from "next/image";
+import { useState } from "react";
+
+function getFirstSaturday(year: number, month: number) {
+  const date = new Date(year, month, 1);
+  const day = date.getDay();
+  const firstSat = day === 6 ? 1 : (6 - day + 1);
+  return firstSat;
+}
+
+function getDaysInMonth(year: number, month: number) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function getStartDay(year: number, month: number) {
+  return new Date(year, month, 1).getDay();
+}
+
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
 
 export default function SchedulePage() {
-  const upcomingEvents = [
-    {
-      date: "1st Saturday of Every Month",
-      title: "Worship at The Gardens",
-      location: "The Gardens, Kingman, AZ",
-      time: "11:30 AM",
-      description:
-        "Join us the first Saturday of every month at 11:30 AM as we lead worship at The Gardens in Kingman, Arizona. Come be part of a beautiful time of praise and fellowship.",
-    },
-  ];
+  const now = new Date();
+  const [calMonth, setCalMonth] = useState(now.getMonth());
+  const [calYear, setCalYear] = useState(now.getFullYear());
+
+  const firstSat = getFirstSaturday(calYear, calMonth);
+  const daysInMonth = getDaysInMonth(calYear, calMonth);
+  const startDay = getStartDay(calYear, calMonth);
+  const today = now.getDate();
+  const isCurrentMonth = calMonth === now.getMonth() && calYear === now.getFullYear();
+
+  const prevMonth = () => {
+    if (calMonth === 0) {
+      setCalMonth(11);
+      setCalYear(calYear - 1);
+    } else {
+      setCalMonth(calMonth - 1);
+    }
+  };
+  const nextMonth = () => {
+    if (calMonth === 11) {
+      setCalMonth(0);
+      setCalYear(calYear + 1);
+    } else {
+      setCalMonth(calMonth + 1);
+    }
+  };
+
+  const days = [];
+  for (let i = 0; i < startDay; i++) {
+    days.push(null);
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    days.push(d);
+  }
 
   return (
     <div>
@@ -34,7 +75,7 @@ export default function SchedulePage() {
           src="/images/guitar_treeImage.jpeg"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -86,25 +127,211 @@ export default function SchedulePage() {
               width: "60px",
               height: "1px",
               background: "var(--color-amber)",
-              margin: "0 auto",
+              margin: "0 auto 32px",
             }}
           />
+          <a
+            href="mailto:dbstevens04@hotmail.com?subject=Booking%20Inquiry%20-%20Last%20Song%20Ministry"
+            style={{
+              display: "inline-block",
+              padding: "16px 40px",
+              background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+              color: "var(--color-bg-deep)",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              borderRadius: "6px",
+              textShadow: "none",
+            }}
+          >
+            Invite Us to Your Church or Event
+          </a>
         </div>
       </section>
 
-      {/* Events */}
+      {/* Calendar + Event */}
       <section className="section-spacing" style={{ paddingTop: "40px" }}>
         <div
           style={{
-            maxWidth: "800px",
+            maxWidth: "1100px",
             margin: "0 auto",
             padding: "0 24px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "start",
           }}
         >
-          {upcomingEvents.map((event, i) => (
+          {/* Calendar */}
+          <div
+            style={{
+              background: "var(--color-bg-card)",
+              borderRadius: "12px",
+              padding: "32px",
+              border: "1px solid rgba(212, 160, 65, 0.2)",
+            }}
+          >
             <div
-              key={i}
-              className="card-hover"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "24px",
+              }}
+            >
+              <button
+                onClick={prevMonth}
+                style={{
+                  background: "rgba(212, 160, 65, 0.1)",
+                  border: "1px solid rgba(212, 160, 65, 0.3)",
+                  borderRadius: "6px",
+                  padding: "8px 16px",
+                  color: "var(--color-amber)",
+                  cursor: "pointer",
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.9rem",
+                  fontWeight: 600,
+                }}
+              >
+                Prev
+              </button>
+              <h3
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.4rem",
+                  fontWeight: 500,
+                  color: "var(--color-cream)",
+                }}
+              >
+                {MONTH_NAMES[calMonth]} {calYear}
+              </h3>
+              <button
+                onClick={nextMonth}
+                style={{
+                  background: "rgba(212, 160, 65, 0.1)",
+                  border: "1px solid rgba(212, 160, 65, 0.3)",
+                  borderRadius: "6px",
+                  padding: "8px 16px",
+                  color: "var(--color-amber)",
+                  cursor: "pointer",
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.9rem",
+                  fontWeight: 600,
+                }}
+              >
+                Next
+              </button>
+            </div>
+
+            {/* Day headers */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(7, 1fr)",
+                gap: "4px",
+                marginBottom: "8px",
+              }}
+            >
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                <div
+                  key={d}
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    letterSpacing: "1px",
+                    color: "var(--color-cream-muted)",
+                    padding: "8px 0",
+                  }}
+                >
+                  {d}
+                </div>
+              ))}
+            </div>
+
+            {/* Days grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(7, 1fr)",
+                gap: "4px",
+              }}
+            >
+              {days.map((day, i) => {
+                const isFirstSat = day === firstSat;
+                const isToday = isCurrentMonth && day === today;
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      textAlign: "center",
+                      padding: "10px 4px",
+                      borderRadius: "6px",
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: "0.9rem",
+                      fontWeight: isFirstSat ? 700 : 400,
+                      color: isFirstSat
+                        ? "var(--color-bg-deep)"
+                        : isToday
+                        ? "var(--color-amber)"
+                        : day
+                        ? "var(--color-cream-muted)"
+                        : "transparent",
+                      background: isFirstSat
+                        ? "linear-gradient(135deg, var(--color-amber), #c4922e)"
+                        : isToday
+                        ? "rgba(212, 160, 65, 0.15)"
+                        : "transparent",
+                      border: isToday && !isFirstSat
+                        ? "1px solid rgba(212, 160, 65, 0.4)"
+                        : "1px solid transparent",
+                    }}
+                  >
+                    {day || ""}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div
+              style={{
+                marginTop: "20px",
+                padding: "12px 16px",
+                background: "rgba(212, 160, 65, 0.08)",
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              }}
+            >
+              <div
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "3px",
+                  background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+                  flexShrink: 0,
+                }}
+              />
+              <p
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.8rem",
+                  color: "var(--color-cream-muted)",
+                }}
+              >
+                Highlighted: Worship at The Gardens (1st Saturday)
+              </p>
+            </div>
+          </div>
+
+          {/* Event Card + Photo */}
+          <div>
+            <div
               style={{
                 background: "var(--color-bg-card)",
                 borderRadius: "8px",
@@ -113,83 +340,73 @@ export default function SchedulePage() {
                 marginBottom: "24px",
               }}
             >
-              <div
+              <p
                 style={{
-                  display: "flex",
-                  gap: "32px",
-                  alignItems: "start",
-                  flexWrap: "wrap",
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                  color: "var(--color-amber)",
+                  marginBottom: "12px",
                 }}
               >
-                <div
-                  style={{
-                    background: "rgba(212, 160, 65, 0.1)",
-                    borderRadius: "8px",
-                    padding: "16px 24px",
-                    textAlign: "center",
-                    minWidth: "120px",
-                    border: "1px solid rgba(212, 160, 65, 0.2)",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "1.1rem",
-                      fontWeight: 600,
-                      color: "var(--color-amber)",
-                    }}
-                  >
-                    {event.date}
-                  </p>
-                  {event.time && (
-                    <p
-                      style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: "0.85rem",
-                        fontWeight: 600,
-                        color: "var(--color-cream-muted)",
-                        marginTop: "6px",
-                      }}
-                    >
-                      {event.time}
-                    </p>
-                  )}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h3
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "1.5rem",
-                      fontWeight: 500,
-                      color: "var(--color-cream)",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {event.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "var(--color-amber)",
-                      fontSize: "0.9rem",
-                      fontWeight: 500,
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {event.location}
-                  </p>
-                  <p
-                    style={{
-                      color: "var(--color-cream-muted)",
-                      fontSize: "0.95rem",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {event.description}
-                  </p>
-                </div>
-              </div>
+                Recurring Event
+              </p>
+              <h3
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.5rem",
+                  fontWeight: 500,
+                  color: "var(--color-cream)",
+                  marginBottom: "8px",
+                }}
+              >
+                Worship at The Gardens
+              </h3>
+              <p
+                style={{
+                  color: "var(--color-amber)",
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                  marginBottom: "4px",
+                }}
+              >
+                The Gardens, Kingman, AZ
+              </p>
+              <p
+                style={{
+                  color: "var(--color-cream-muted)",
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                  marginBottom: "16px",
+                }}
+              >
+                1st Saturday of Every Month at 11:30 AM
+              </p>
+              <p
+                style={{
+                  color: "var(--color-cream-muted)",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                Join us the first Saturday of every month at 11:30 AM as we lead
+                worship at The Gardens in Kingman, Arizona. Come be part of a
+                beautiful time of praise and fellowship.
+              </p>
             </div>
-          ))}
+
+            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+              <Image
+                src="/images/5M5A7520.jpeg"
+                alt="Wylie and Dawna Stevens worship session"
+                width={600}
+                height={800}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -225,8 +442,8 @@ export default function SchedulePage() {
             We would love to bring our music ministry to your church, revival,
             retreat, or special event. Reach out to us and let&apos;s connect.
           </p>
-          <a href="mailto:dbstevens04@hotmail.com" className="btn-primary">
-            Contact Us
+          <a href="mailto:dbstevens04@hotmail.com?subject=Booking%20Inquiry%20-%20Last%20Song%20Ministry" className="btn-primary">
+            Contact Us to Schedule
           </a>
         </div>
       </section>

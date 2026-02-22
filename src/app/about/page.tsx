@@ -22,7 +22,7 @@ export default function AboutPage() {
           src="/images/guitar_treeImage.jpeg"
           alt=""
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
         />
         <div
@@ -103,10 +103,10 @@ export default function AboutPage() {
               }}
             >
               <Image
-                src="/images/IMG_2137.jpeg"
-                alt="Wylie and Dawna"
+                src="/images/IMG_5781.jpeg"
+                alt="Wylie and Dawna singing at microphones"
                 width={600}
-                height={750}
+                height={960}
                 style={{
                   width: "100%",
                   height: "auto",
@@ -123,10 +123,10 @@ export default function AboutPage() {
               }}
             >
               <Image
-                src="/images/IMG_1751.jpeg"
-                alt="Wylie and Dawna together"
+                src="/images/IMG_1046.jpeg"
+                alt="Wylie and Dawna holding ministry literature"
                 width={600}
-                height={450}
+                height={1034}
                 style={{
                   width: "100%",
                   height: "auto",
@@ -286,28 +286,29 @@ export default function AboutPage() {
             }}
           >
             {[
-              "/images/IMG_0986.jpeg",
-              "/images/5M5A7470_new.jpeg",
-              "/images/1000000279.jpeg",
-              "/images/7790520840868875662.jpeg",
-              "/images/IMG_1046.jpeg",
-              "/images/1000000248.jpeg",
-            ].map((src, i) => (
+              { src: "/images/IMG_0986.jpeg", alt: "Wylie and Dawna at the Grand Canyon", w: 4032, h: 3024 },
+              { src: "/images/5M5A7470_new.jpeg", alt: "Wylie and Dawna posing with guitar", w: 1924, h: 3473 },
+              { src: "/images/1000000279.jpeg", alt: "Wylie and Dawna outdoors together", w: 600, h: 800 },
+              { src: "/images/7790520840868875662.jpeg", alt: "Leading worship with cross and flags", w: 1656, h: 1384 },
+              { src: "/images/1000000248.jpeg", alt: "Wylie playing guitar solo", w: 600, h: 880 },
+              { src: "/images/IMG_2137.jpeg", alt: "Wylie and Dawna together", w: 600, h: 750 },
+              { src: "/images/IMG_1751.jpeg", alt: "Wylie and Dawna ministry photo", w: 600, h: 450 },
+              { src: "/images/5M5A7495.jpeg", alt: "Wylie and Dawna worship moment", w: 600, h: 800 },
+            ].map((photo, i) => (
               <div
                 key={i}
                 style={{
-                  position: "relative",
                   borderRadius: "6px",
                   overflow: "hidden",
-                  aspectRatio: "4/3",
                 }}
                 className="image-shine"
               >
                 <Image
-                  src={src}
-                  alt={`Ministry photo ${i + 1}`}
-                  fill
-                  style={{ objectFit: "cover" }}
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.w}
+                  height={photo.h}
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: "6px" }}
                 />
               </div>
             ))}

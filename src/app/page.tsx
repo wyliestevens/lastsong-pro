@@ -323,36 +323,46 @@ export default function Home() {
         className="section-spacing"
         style={{
           background: "var(--color-bg-warm)",
-          textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              fontWeight: 400,
-              color: "var(--color-cream)",
-              lineHeight: 1.2,
-              marginBottom: "24px",
-            }}
-          >
-            Songs of Faith and Hope
-          </h2>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              marginBottom: "40px",
-            }}
-          >
-            Listen to recordings from our worship sessions and ministry events.
-            Each song is offered as praise and testimony to God&apos;s faithfulness.
-          </p>
-          <Link href="/listen" className="btn-primary">
-            Listen Now
-          </Link>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+          <div>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontWeight: 400,
+                color: "var(--color-cream)",
+                lineHeight: 1.2,
+                marginBottom: "24px",
+              }}
+            >
+              Songs of Faith and Hope
+            </h2>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.8,
+                marginBottom: "40px",
+              }}
+            >
+              Listen to recordings from our worship sessions and ministry events.
+              Each song is offered as praise and testimony to God&apos;s faithfulness.
+            </p>
+            <Link href="/listen" className="btn-primary">
+              Listen Now
+            </Link>
+          </div>
+          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <Image
+              src="/images/IMG_1750.jpeg"
+              alt="Wylie and Dawna Stevens in ministry"
+              width={600}
+              height={800}
+              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+            />
+          </div>
         </div>
       </section>
 
@@ -367,9 +377,9 @@ export default function Home() {
             }}
           >
             {[
-              { src: "/images/1000000052.jpeg", alt: "Wylie and Dawna Stevens leading worship with guitar at a church service" },
-              { src: "/images/IMG_1477.jpeg", alt: "Last Song Ministry with the congregation in Elk City, Oklahoma", label: "Elk City, OK" },
-              { src: "/images/5M5A7532.jpeg", alt: "Wylie and Dawna Stevens singing together during a worship service" },
+              { src: "/images/1000000052.jpeg", alt: "Wylie and Dawna Stevens leading worship with guitar at a church service", w: 1431, h: 2592 },
+              { src: "/images/IMG_1477.jpeg", alt: "Special Music at Elk City, Oklahoma Church", label: "Special Music at Elk City, Oklahoma Church", w: 2115, h: 2461 },
+              { src: "/images/5M5A7532.jpeg", alt: "Wylie and Dawna Stevens singing together during a worship service", w: 2595, h: 3390 },
             ].map((photo, i) => (
               <div
                 key={i}
@@ -377,15 +387,15 @@ export default function Home() {
                   position: "relative",
                   borderRadius: "6px",
                   overflow: "hidden",
-                  aspectRatio: "4/3",
                 }}
                 className="image-shine"
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "center top" }}
+                  width={photo.w}
+                  height={photo.h}
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: "6px" }}
                 />
                 {photo.label && (
                   <div
