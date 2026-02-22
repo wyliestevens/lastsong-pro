@@ -17,8 +17,8 @@ export default function Home() {
         }}
       >
         <Image
-          src="/images/5M5A7470_new.jpeg"
-          alt="Wylie and Dawna Stevens of Last Song Ministry posing with guitar"
+          src="/images/guitar_treeImage.jpeg"
+          alt="Guitar silhouette against a golden sunset background"
           fill
           style={{ objectFit: "cover", objectPosition: "center top" }}
           priority
