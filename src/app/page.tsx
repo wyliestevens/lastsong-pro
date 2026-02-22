@@ -163,35 +163,31 @@ export default function Home() {
           }}
         >
           <div>
-            <p
-              style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "var(--color-amber)",
-                marginBottom: "16px",
-              }}
-            >
-              Who We Are
-            </p>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
                 fontWeight: 400,
                 color: "var(--color-cream)",
                 lineHeight: 1.2,
-                marginBottom: "28px",
+                marginBottom: "8px",
+                textAlign: "center",
               }}
             >
               Called to Worship Together:
-              <br />
-              <span style={{ color: "var(--color-amber)" }}>
-                Wylie &amp; Dawna Stevens
-              </span>
             </h2>
+            <p
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
+                fontWeight: 300,
+                color: "var(--color-amber)",
+                textAlign: "center",
+                marginBottom: "28px",
+              }}
+            >
+              Wylie &amp; Dawna Stevens
+            </p>
             <p
               style={{
                 color: "var(--color-cream-muted)",
@@ -282,19 +278,6 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
-          <p
-            style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "16px",
-            }}
-          >
-            Watch
-          </p>
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -344,19 +327,6 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
-          <p
-            style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "16px",
-            }}
-          >
-            Our Music
-          </p>
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -389,31 +359,6 @@ export default function Home() {
       {/* Photo Gallery Strip */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <p
-              style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "var(--color-amber)",
-                marginBottom: "16px",
-              }}
-            >
-              In Ministry
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: 400,
-                color: "var(--color-cream)",
-              }}
-            >
-              Moments of Worship
-            </h2>
-          </div>
           <div
             style={{
               display: "grid",
