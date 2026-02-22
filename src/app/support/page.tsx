@@ -35,7 +35,7 @@ export default function SupportPage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(15,13,10,0.6) 0%, rgba(15,13,10,0.85) 60%, rgba(15,13,10,1) 100%)",
+              "linear-gradient(to bottom, rgba(15,13,10,0.15) 0%, rgba(15,13,10,0.35) 50%, rgba(15,13,10,0.85) 100%)",
           }}
         />
         <div
@@ -56,6 +56,7 @@ export default function SupportPage() {
               textTransform: "uppercase",
               color: "var(--color-amber)",
               marginBottom: "16px",
+              textShadow: "0 2px 8px rgba(0,0,0,0.6)",
             }}
           >
             Give
@@ -68,6 +69,7 @@ export default function SupportPage() {
               color: "var(--color-cream)",
               lineHeight: 1.2,
               marginBottom: "24px",
+              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
             }}
           >
             Support Our Ministry

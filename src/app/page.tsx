@@ -28,7 +28,7 @@ export default function Home() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(15,13,10,0.4) 0%, rgba(15,13,10,0.6) 50%, rgba(15,13,10,0.95) 100%)",
+              "linear-gradient(to bottom, rgba(15,13,10,0.15) 0%, rgba(15,13,10,0.3) 50%, rgba(15,13,10,0.85) 100%)",
           }}
         />
         <div
@@ -40,59 +40,60 @@ export default function Home() {
             maxWidth: "800px",
           }}
         >
-          <p
+          <h1
             className="animate-fade-in-up"
             style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.85rem",
-              fontWeight: 500,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "20px",
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
+              fontWeight: 400,
+              lineHeight: 1.2,
+              color: "var(--color-cream)",
+              marginBottom: "12px",
               opacity: 0,
+              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
             }}
           >
-            A Music Ministry
-          </p>
-          <h1
+            Called to Worship Together:
+          </h1>
+          <p
             className="animate-fade-in-up delay-200"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(3rem, 8vw, 6rem)",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
               fontWeight: 300,
-              lineHeight: 1.1,
-              color: "var(--color-cream)",
-              marginBottom: "24px",
+              color: "var(--color-amber)",
+              marginBottom: "16px",
               opacity: 0,
+              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
             }}
           >
-            Last Song
-          </h1>
+            Wylie &amp; Dawna Stevens
+          </p>
           <div
             className="animate-fade-in-up delay-300"
             style={{
               width: "60px",
               height: "1px",
               background: "var(--color-amber)",
-              margin: "0 auto 24px",
+              margin: "0 auto 20px",
               opacity: 0,
             }}
           />
           <p
             className="animate-fade-in-up delay-400"
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "var(--color-cream-muted)",
-              lineHeight: 1.6,
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "clamp(0.85rem, 2vw, 1rem)",
+              fontWeight: 500,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "var(--color-cream)",
               marginBottom: "40px",
               opacity: 0,
+              textShadow: "0 2px 8px rgba(0,0,0,0.6)",
             }}
           >
-            Sharing faith through music and worship
+            A Music Ministry
           </p>
           <div
             className="animate-fade-in-up delay-500"
@@ -310,10 +311,10 @@ export default function Home() {
             className="image-shine"
           >
             <Image
-              src="/images/IMG_5781.jpeg"
-              alt="Wylie and Dawna Stevens singing worship music with microphones"
+              src="/images/5M5A7470_new.jpeg"
+              alt="Wylie and Dawna Stevens posing together with guitar"
               width={600}
-              height={960}
+              height={1080}
               style={{
                 width: "100%",
                 height: "auto",
@@ -439,7 +440,7 @@ export default function Home() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
                 />
                 {photo.label && (
                   <div
