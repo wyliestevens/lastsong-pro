@@ -162,49 +162,26 @@ export default function MinistryPage() {
               alignItems: "center",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div
+            <div
+              style={{
+                position: "relative",
+                borderRadius: "8px",
+                overflow: "hidden",
+              }}
+              className="image-shine"
+            >
+              <Image
+                src="/images/7790520840868875662.jpeg"
+                alt="Wylie and Dawna Stevens leading worship with cross and flags"
+                width={600}
+                height={400}
                 style={{
-                  position: "relative",
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
                   borderRadius: "8px",
-                  overflow: "hidden",
                 }}
-                className="image-shine"
-              >
-                <Image
-                  src="/images/7790520840868875662.jpeg"
-                  alt="Wylie and Dawna Stevens leading worship with cross and flags"
-                  width={600}
-                  height={400}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    borderRadius: "8px",
-                  }}
-                />
-              </div>
-              <div
-                style={{
-                  position: "relative",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                }}
-                className="image-shine"
-              >
-                <Image
-                  src="/images/1000000248.jpeg"
-                  alt="Wylie Stevens playing guitar during a ministry session"
-                  width={600}
-                  height={880}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    borderRadius: "8px",
-                  }}
-                />
-              </div>
+              />
             </div>
             <div>
               <h2
