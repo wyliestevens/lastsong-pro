@@ -58,10 +58,12 @@ export default function Home() {
           <p
             className="animate-fade-in-up delay-200"
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
-              fontWeight: 600,
-              color: "#e8e0d4",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "clamp(0.8rem, 1.8vw, 1.05rem)",
+              fontWeight: 500,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "#ffffff",
               marginBottom: "16px",
               opacity: 0,
               textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
