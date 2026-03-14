@@ -114,7 +114,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              <span style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--color-cream)" }}>Last Song is the husband-and-wife duet of Wylie and Dawna Stevens,</span> sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Their music reflects a deep love for God&apos;s Word and a desire to encourage believers through songs rich in truth, hope, and worship.
+              <span style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--color-cream)" }}>Last Song is the husband-and-wife duet of Wylie and</span> Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Their music reflects a deep love for God&apos;s Word and a desire to encourage believers through songs rich in truth, hope, and worship.
             </p>
             <p
               style={{
