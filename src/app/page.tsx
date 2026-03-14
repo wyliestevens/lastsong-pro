@@ -8,8 +8,8 @@ export default function Home() {
       <section
         style={{
           position: "relative",
-          height: "100vh",
-          minHeight: "600px",
+          height: "85vh",
+          minHeight: "500px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
