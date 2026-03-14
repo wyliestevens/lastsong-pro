@@ -35,7 +35,7 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "15%",
-            right: "20%",
+            right: "15%",
             zIndex: 2,
             textAlign: "center",
             padding: "0",
@@ -86,9 +86,6 @@ export default function Home() {
           >
             <Link href="/listen" className="btn-primary">
               Listen Now
-            </Link>
-            <Link href="/about" className="btn-outline">
-              Our Story
             </Link>
           </div>
         </div>
