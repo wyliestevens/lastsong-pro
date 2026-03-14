@@ -33,11 +33,13 @@ export default function Home() {
         />
         <div
           style={{
-            position: "relative",
+            position: "absolute",
+            bottom: "40px",
+            left: 0,
+            right: 0,
             zIndex: 2,
             textAlign: "center",
             padding: "0 24px",
-            maxWidth: "800px",
           }}
         >
           <h1
@@ -48,7 +50,7 @@ export default function Home() {
               fontWeight: 700,
               lineHeight: 1.2,
               color: "#ffffff",
-              marginBottom: "12px",
+              marginBottom: "8px",
               opacity: 0,
               textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
@@ -64,24 +66,13 @@ export default function Home() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#ffffff",
-              marginBottom: "16px",
+              marginBottom: "24px",
               opacity: 0,
               textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
             Pointing Hearts to Christ Through Song
           </p>
-          <div
-            className="animate-fade-in-up delay-300"
-            style={{
-              width: "60px",
-              height: "2px",
-              background: "#e8e0d4",
-              margin: "0 auto 20px",
-              opacity: 0,
-            }}
-          />
-          <div style={{ marginBottom: "40px" }} />
           <div
             className="animate-fade-in-up delay-500"
             style={{
