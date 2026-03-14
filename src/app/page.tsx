@@ -35,18 +35,18 @@ export default function Home() {
           style={{
             position: "absolute",
             bottom: "40px",
-            left: 0,
-            right: 0,
+            right: "40px",
             zIndex: 2,
-            textAlign: "center",
-            padding: "0 24px",
+            textAlign: "right",
+            padding: "0",
+            maxWidth: "400px",
           }}
         >
           <h1
             className="animate-fade-in-up"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
               fontWeight: 700,
               lineHeight: 1.2,
               color: "#ffffff",
@@ -61,12 +61,12 @@ export default function Home() {
             className="animate-fade-in-up delay-200"
             style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(0.8rem, 1.8vw, 1.05rem)",
+              fontSize: "clamp(0.7rem, 1.5vw, 0.95rem)",
               fontWeight: 500,
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#ffffff",
-              marginBottom: "24px",
+              marginBottom: "20px",
               opacity: 0,
               textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
@@ -78,7 +78,7 @@ export default function Home() {
             style={{
               display: "flex",
               gap: "16px",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               flexWrap: "wrap",
               opacity: 0,
             }}
