@@ -34,10 +34,10 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            bottom: "40px",
-            right: "40px",
+            top: "15%",
+            right: "10%",
             zIndex: 2,
-            textAlign: "right",
+            textAlign: "center",
             padding: "0",
             maxWidth: "400px",
           }}
@@ -78,7 +78,7 @@ export default function Home() {
             style={{
               display: "flex",
               gap: "16px",
-              justifyContent: "flex-end",
+              justifyContent: "center",
               flexWrap: "wrap",
               opacity: 0,
             }}
