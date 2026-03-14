@@ -139,13 +139,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie and Dawna Stevens are a husband-and-wife singing duo known
-              for their heartfelt Christian music that beautifully intertwines
-              traditional hymns, scripture songs, and praise and worship. With a
-              shared passion for faith and mission, the couple is dedicated to
-              spreading the uplifting message of God&apos;s awesome love, Jesus
-              Christ&apos;s soon return, and encouraging the church to remain
-              steadfast and faithful.
+              Last Song is the husband-and-wife duet of Wylie and Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Their music reflects a deep love for God&apos;s Word and a desire to encourage believers through songs rich in truth, hope, and worship.
             </p>
             <p
               style={{
@@ -155,13 +149,17 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie&apos;s journey in music began 48 years ago, as a tender
-              four-year-old singing next to his father in a bluegrass band.
-              Eight years ago, Dawna joined him, and together they formed
-              &ldquo;Last Song&rdquo;, blending their voices with guitar to
-              create a powerful music ministry. Through soulful harmonies and
-              heartfelt lyrics, they remind listeners to watch and pray and to
-              be ready for Christ&apos;s glorious return.
+              At the heart of Last Song&apos;s ministry is a passion to proclaim the amazing love of God and the saving grace found in Jesus Christ. Through music and testimony, Wylie and Dawna remind listeners of the hope we have in Christ, the promises of Scripture, and the mission the church is called to in this exciting time in history.
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "20px",
+              }}
+            >
+              The name Last Song reflects the realization that we, the church, are truly singing our &ldquo;last songs&rdquo; as we finish the work in anticipation of the soon return of our Lord. Wylie and Dawna seek to use their time and talents to encourage others to join in sharing the Gospel and to hold fast to their faith. Each song&mdash;whether a familiar hymn, scripture set to music, or heartfelt praise and worship&mdash;is chosen with the purpose of pointing hearts back to God.
             </p>
             <p
               style={{
@@ -171,9 +169,7 @@ export default function Home() {
                 marginBottom: "32px",
               }}
             >
-              With hearts full of faith and voices lifted in praise, Last Song
-              invites you to join them in celebrating the timeless truths of the
-              gospel, ever reminding the faithful that the best is yet to come.
+              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music is able to uplift, strengthen, and encourage the body of Christ. More than a performance, each opportunity to share music is viewed as ministry&mdash;serving the Lord, blessing His people, and sharing the message of the Gospel through song.
             </p>
             <Link href="/about" className="btn-outline">
               Learn More
