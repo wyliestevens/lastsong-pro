@@ -397,7 +397,7 @@ export default function SchedulePage() {
               </p>
             </div>
 
-            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <div style={{ borderRadius: "8px" }}>
               <Image
                 src="/images/5M5A7520.jpeg"
                 alt="Wylie and Dawna Stevens worship session"

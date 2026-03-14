@@ -168,9 +168,7 @@ export default function MinistryPage() {
               style={{
                 position: "relative",
                 borderRadius: "8px",
-                overflow: "hidden",
               }}
-              className="image-shine"
             >
               <Image
                 src="/images/7790520840868875662.jpeg"
@@ -268,7 +266,7 @@ export default function MinistryPage() {
               Psalm 100:1-2 NKJV
             </p>
           </div>
-          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+          <div style={{ borderRadius: "8px" }}>
             <Image
               src="/images/5M5A7470.jpeg"
               alt="Wylie and Dawna Stevens posing together"

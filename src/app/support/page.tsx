@@ -350,7 +350,6 @@ export default function SupportPage() {
               style={{
                 marginTop: "24px",
                 borderRadius: "8px",
-                overflow: "hidden",
                 position: "relative",
               }}
             >
@@ -467,7 +466,7 @@ export default function SupportPage() {
       {/* Photo Section */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", alignItems: "start" }}>
-          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+          <div style={{ borderRadius: "8px" }}>
             <Image
               src="/images/5M5A7503.jpeg"
               alt="Wylie and Dawna Stevens together"
@@ -476,7 +475,7 @@ export default function SupportPage() {
               style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
             />
           </div>
-          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+          <div style={{ borderRadius: "8px" }}>
             <Image
               src="/images/IMG_1750.jpeg"
               alt="Wylie and Dawna in ministry"

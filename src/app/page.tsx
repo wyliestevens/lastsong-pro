@@ -35,18 +35,18 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "15%",
-            right: "10%",
+            right: "30%",
             zIndex: 2,
             textAlign: "center",
             padding: "0",
-            maxWidth: "400px",
+            maxWidth: "600px",
           }}
         >
           <h1
             className="animate-fade-in-up"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
               fontWeight: 700,
               lineHeight: 1.2,
               color: "#ffffff",
@@ -61,9 +61,10 @@ export default function Home() {
             className="animate-fade-in-up delay-200"
             style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(0.7rem, 1.5vw, 0.95rem)",
-              fontWeight: 500,
-              letterSpacing: "3px",
+              fontSize: "clamp(1rem, 2.2vw, 1.4rem)",
+              fontWeight: 600,
+              letterSpacing: "4px",
+              whiteSpace: "nowrap",
               textTransform: "uppercase",
               color: "#ffffff",
               marginBottom: "20px",
@@ -185,9 +186,7 @@ export default function Home() {
             style={{
               position: "relative",
               borderRadius: "8px",
-              overflow: "hidden",
             }}
-            className="image-shine"
           >
             <Image
               src="/images/5M5A7470_new.jpeg"
@@ -299,7 +298,7 @@ export default function Home() {
               Listen Now
             </Link>
           </div>
-          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+          <div style={{ borderRadius: "8px" }}>
             <Image
               src="/images/IMG_1750.jpeg"
               alt="Wylie and Dawna Stevens in ministry"
@@ -331,9 +330,7 @@ export default function Home() {
                 style={{
                   position: "relative",
                   borderRadius: "6px",
-                  overflow: "hidden",
                 }}
-                className="image-shine"
               >
                 <Image
                   src={photo.src}

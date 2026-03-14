@@ -98,7 +98,6 @@ export default function AboutPage() {
               style={{
                 position: "relative",
                 borderRadius: "8px",
-                overflow: "hidden",
                 marginBottom: "24px",
               }}
             >
@@ -119,7 +118,6 @@ export default function AboutPage() {
               style={{
                 position: "relative",
                 borderRadius: "8px",
-                overflow: "hidden",
               }}
             >
               <Image
@@ -299,9 +297,7 @@ export default function AboutPage() {
                 key={i}
                 style={{
                   borderRadius: "6px",
-                  overflow: "hidden",
                 }}
-                className="image-shine"
               >
                 <Image
                   src={photo.src}

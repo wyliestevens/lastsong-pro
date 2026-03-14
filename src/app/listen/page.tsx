@@ -539,7 +539,7 @@ export default function ListenPage() {
             alignItems: "start",
           }}
         >
-          <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+          <div style={{ borderRadius: "8px" }}>
             <Image
               src="/images/5M5A7532.jpeg"
               alt="Wylie and Dawna singing together"
@@ -549,7 +549,7 @@ export default function ListenPage() {
             />
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <div style={{ borderRadius: "8px" }}>
               <Image
                 src="/images/IMG_0986.jpeg"
                 alt="Wylie and Dawna at the Grand Canyon"
@@ -558,7 +558,7 @@ export default function ListenPage() {
                 style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
               />
             </div>
-            <div style={{ borderRadius: "8px", overflow: "hidden" }}>
+            <div style={{ borderRadius: "8px" }}>
               <Image
                 src="/images/5M5A7508.jpeg"
                 alt="Wylie and Dawna worship moment"
