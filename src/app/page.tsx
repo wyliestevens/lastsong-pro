@@ -53,13 +53,13 @@ export default function Home() {
               textShadow: "0 2px 12px rgba(0,0,0,0.6)",
             }}
           >
-            Called to Worship Together:
+            Last Song
           </h1>
           <p
             className="animate-fade-in-up delay-200"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontSize: "clamp(1.4rem, 3vw, 2rem)",
               fontWeight: 300,
               color: "var(--color-amber)",
               marginBottom: "16px",
@@ -67,7 +67,7 @@ export default function Home() {
               textShadow: "0 2px 12px rgba(0,0,0,0.6)",
             }}
           >
-            Wylie &amp; Dawna Stevens
+            Pointing Hearts to Christ Through Song
           </p>
           <div
             className="animate-fade-in-up delay-300"
@@ -79,22 +79,7 @@ export default function Home() {
               opacity: 0,
             }}
           />
-          <p
-            className="animate-fade-in-up delay-400"
-            style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(0.85rem, 2vw, 1rem)",
-              fontWeight: 500,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-cream)",
-              marginBottom: "40px",
-              opacity: 0,
-              textShadow: "0 2px 8px rgba(0,0,0,0.6)",
-            }}
-          >
-            A Music Ministry
-          </p>
+          <div style={{ marginBottom: "40px" }} />
           <div
             className="animate-fade-in-up delay-500"
             style={{
@@ -114,39 +99,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="animate-fade-in delay-600"
-          style={{
-            position: "absolute",
-            bottom: "40px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
-            opacity: 0,
-          }}
-        >
-          <span
-            style={{
-              fontSize: "0.7rem",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
-              color: "var(--color-warm-gray)",
-            }}
-          >
-            Scroll
-          </span>
-          <div
-            style={{
-              width: "1px",
-              height: "40px",
-              background: "linear-gradient(to bottom, var(--color-amber), transparent)",
-            }}
-          />
-        </div>
       </section>
 
       {/* Called to Worship Together */}
