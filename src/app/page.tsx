@@ -35,7 +35,7 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "15%",
-            right: "30%",
+            right: "20%",
             zIndex: 2,
             textAlign: "center",
             padding: "0",
