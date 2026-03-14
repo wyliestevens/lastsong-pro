@@ -106,31 +106,6 @@ export default function Home() {
           }}
         >
           <div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
-                fontWeight: 400,
-                color: "var(--color-cream)",
-                lineHeight: 1.2,
-                marginBottom: "8px",
-                textAlign: "center",
-              }}
-            >
-              Called to Worship Together:
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
-                fontWeight: 300,
-                color: "var(--color-amber)",
-                textAlign: "center",
-                marginBottom: "28px",
-              }}
-            >
-              Wylie &amp; Dawna Stevens
-            </p>
             <p
               style={{
                 color: "var(--color-cream-muted)",
