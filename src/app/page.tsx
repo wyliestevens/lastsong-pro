@@ -181,15 +181,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Video Section */}
+      {/* Ministering in Churches */}
       <section
         className="section-spacing"
         style={{
           background: "var(--color-bg-warm)",
-          textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -198,35 +197,46 @@ export default function Home() {
               color: "var(--color-cream)",
               lineHeight: 1.2,
               marginBottom: "32px",
+              textAlign: "center",
             }}
           >
-            See Us in Worship
+            Ministering in Churches and Christian Events
           </h2>
-          <div
+          <p
             style={{
-              position: "relative",
-              borderRadius: "8px",
-              overflow: "hidden",
-              aspectRatio: "16/9",
-              background: "#000",
+              color: "var(--color-cream-muted)",
+              fontSize: "1rem",
+              lineHeight: 1.9,
+              marginBottom: "20px",
             }}
           >
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                borderRadius: "8px",
-              }}
-            >
-              <source src="/video/worship-clip.mp4" type="video/mp4" />
-              <source src="/video/iPhone001_12201709_C006.mov" type="video/quicktime" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+            Last Song enjoys sharing music in churches, outreach events, camp meetings and other Christian gatherings. Our desire is simply to serve the Lord by encouraging believers through songs rooted in the truths of Scripture.
+          </p>
+          <p
+            style={{
+              color: "var(--color-cream-muted)",
+              fontSize: "1rem",
+              lineHeight: 1.9,
+              marginBottom: "20px",
+            }}
+          >
+            If your church or ministry is looking for Christ-centered music that uplifts, encourages, and points hearts toward Jesus please feel free to reach out through our{" "}
+            <Link href="/schedule" style={{ color: "var(--color-amber)", textDecoration: "underline" }}>Contact</Link>{" "}
+            page for more information about scheduling or upcoming opportunities to minister together.
+          </p>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "1.3rem",
+              fontStyle: "italic",
+              color: "var(--color-cream)",
+              lineHeight: 1.6,
+              textAlign: "center",
+              marginTop: "32px",
+            }}
+          >
+            &ldquo;We would be honored to visit your church and share a time of worship and encouragement through music.&rdquo;
+          </p>
         </div>
       </section>
 

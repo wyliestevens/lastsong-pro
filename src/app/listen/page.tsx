@@ -523,6 +523,55 @@ export default function ListenPage() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section
+        className="section-spacing"
+        style={{
+          background: "var(--color-bg-deep)",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+          <h2
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 400,
+              color: "var(--color-cream)",
+              lineHeight: 1.2,
+              marginBottom: "32px",
+            }}
+          >
+            See Us in Worship
+          </h2>
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "8px",
+              overflow: "hidden",
+              aspectRatio: "16/9",
+              background: "#000",
+            }}
+          >
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                borderRadius: "8px",
+              }}
+            >
+              <source src="/video/worship-clip.mp4" type="video/mp4" />
+              <source src="/video/iPhone001_12201709_C006.mov" type="video/quicktime" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* Photos */}
       <section
         className="section-spacing"
