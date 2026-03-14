@@ -44,37 +44,37 @@ export default function Home() {
             className="animate-fade-in-up"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-              fontWeight: 400,
+              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+              fontWeight: 700,
               lineHeight: 1.2,
-              color: "var(--color-cream)",
+              color: "#1a1a1a",
               marginBottom: "12px",
               opacity: 0,
-              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+              textShadow: "0 1px 4px rgba(255,255,255,0.3)",
             }}
           >
-            Last Song
+            Pointing Hearts to Christ Through Song
           </h1>
           <p
             className="animate-fade-in-up delay-200"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.4rem, 3vw, 2rem)",
-              fontWeight: 300,
-              color: "var(--color-amber)",
+              fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
+              fontWeight: 600,
+              color: "#1a1a1a",
               marginBottom: "16px",
               opacity: 0,
-              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+              textShadow: "0 1px 4px rgba(255,255,255,0.3)",
             }}
           >
-            Pointing Hearts to Christ Through Song
+            Last Song
           </p>
           <div
             className="animate-fade-in-up delay-300"
             style={{
               width: "60px",
-              height: "1px",
-              background: "var(--color-amber)",
+              height: "2px",
+              background: "#1a1a1a",
               margin: "0 auto 20px",
               opacity: 0,
             }}
