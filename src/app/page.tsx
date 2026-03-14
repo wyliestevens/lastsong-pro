@@ -47,13 +47,13 @@ export default function Home() {
               fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
               fontWeight: 700,
               lineHeight: 1.2,
-              color: "#1a1a1a",
+              color: "#ffffff",
               marginBottom: "12px",
               opacity: 0,
-              textShadow: "0 1px 4px rgba(255,255,255,0.3)",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
-            Pointing Hearts to Christ Through Song
+            Last Song
           </h1>
           <p
             className="animate-fade-in-up delay-200"
@@ -61,20 +61,20 @@ export default function Home() {
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
               fontWeight: 600,
-              color: "#1a1a1a",
+              color: "#e8e0d4",
               marginBottom: "16px",
               opacity: 0,
-              textShadow: "0 1px 4px rgba(255,255,255,0.3)",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
-            Last Song
+            Pointing Hearts to Christ Through Song
           </p>
           <div
             className="animate-fade-in-up delay-300"
             style={{
               width: "60px",
               height: "2px",
-              background: "#1a1a1a",
+              background: "#e8e0d4",
               margin: "0 auto 20px",
               opacity: 0,
             }}
