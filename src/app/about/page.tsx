@@ -83,7 +83,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Our Story */}
       <section className="section-spacing" style={{ paddingTop: "40px" }}>
         <div
           style={{
@@ -101,7 +101,6 @@ export default function AboutPage() {
               style={{
                 position: "relative",
                 borderRadius: "8px",
-                marginBottom: "24px",
               }}
             >
               <Image
@@ -109,25 +108,6 @@ export default function AboutPage() {
                 alt="Wylie and Dawna singing at microphones"
                 width={600}
                 height={960}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  borderRadius: "8px",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                position: "relative",
-                borderRadius: "8px",
-              }}
-            >
-              <Image
-                src="/images/IMG_1046.jpeg"
-                alt="Wylie and Dawna holding ministry literature"
-                width={600}
-                height={1034}
                 style={{
                   width: "100%",
                   height: "auto",
@@ -149,7 +129,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Called to Worship Together
+              Our Story
             </h2>
             <p
               style={{
@@ -159,13 +139,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Wylie and Dawna Stevens are a husband-and-wife singing duo known
-              for their heartfelt Christian music that beautifully intertwines
-              traditional hymns, scripture songs, and praise and worship. With a
-              shared passion for faith and mission, the couple is dedicated to
-              spreading the uplifting message of God&apos;s awesome love, Jesus
-              Christ&apos;s soon return, and encouraging the church to remain
-              steadfast and faithful.
+              Wylie&apos;s journey in music began 48 years ago, as a tender four-year-old singing next to his father in a bluegrass band made up of friends who played together every Friday night. At age fourteen, he committed to serving as a music minister, first in the church he grew up in, and later in several other churches in northeast Texas and southern Arkansas. In his desire to share the gospel through song, he became the lead singer of the gospel group Southern Grace Quartet in 2001, and they toured the four-state area of Texas, Arkansas, Oklahoma, and Louisiana.
             </p>
             <p
               style={{
@@ -175,15 +149,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Wylie&apos;s journey in music began 48 years ago, as a tender
-              four-year-old singing next to his father in a bluegrass band made
-              up of friends who played together every Friday night. At age
-              sixteen, he committed to serving as a music minister, first at the
-              church he grew up in and later at several other churches in
-              northeast Texas and southern Arkansas. In his desire to share the
-              gospel through song, he became lead singer of the gospel quartet
-              Southern Grace in 2001, which toured the four-state area of Texas,
-              Arkansas, Oklahoma, and Louisiana.
+              Dawna&apos;s early singing experience was little more than a &ldquo;hairbrush microphone&rdquo; singing with popular songs as a young girl and later in church choirs. After several years of Wylie trying to convince her to sing with him, Dawna finally joined him eight years ago, and together they formed the dynamic duo, &ldquo;Last Song&rdquo;, blending their voices with guitar to create a powerful music ministry. Singing has become such an integral part of her life now that she can&apos;t imagine not singing! Sharing Christ in song as a couple is one of the greatest joys.
             </p>
             <p
               style={{
@@ -193,15 +159,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Although Dawna&apos;s singing experience was little more than a
-              &ldquo;hairbrush microphone&rdquo; singing with popular songs as a
-              young girl and church choirs, after several years of Wylie trying
-              to convince her to sing with him, she finally joined him eight
-              years ago, and together they formed the dynamic duo,
-              &ldquo;Last Song&rdquo;, blending their voices with guitar to
-              create a powerful music ministry. Through soulful harmonies and
-              heartfelt lyrics, they remind listeners to watch and pray and to
-              be ready for Christ&apos;s glorious return.
+              Through diligent study of the scriptures, mainly the prophecies of Daniel and Revelation, Wylie and Dawna were led to embrace the truths they discovered, which led them to the Seventh-day Adventist church in 2010. Wylie currently serves as an Elder, and Dawna as Music Leader, at the Needles, CA, Seventh-day Adventist church, just across the AZ border.
             </p>
             <p
               style={{
@@ -211,18 +169,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              Last Song serves their community by singing monthly at The Gardens
-              Rehab and Care Center in Kingman, AZ, sharing light and love with
-              the residents. In addition to their music, Wylie and Dawna are
-              committed to spreading the good news, sharing the gospel through
-              literature and friendship evangelism. In their ministry
-              &ldquo;Wherever You Go&rdquo;, they hand out books, magazines,
-              &amp; DVDs as they go about daily errands and when traveling,
-              seeking the lost and downtrodden to tell them the good news of
-              Jesus, encouraging and praying with them. They also lead individual
-              and group Bible studies, in person and via Zoom, because, as Hosea
-              warns, &ldquo;my people are destroyed for lack of
-              knowledge.&rdquo; Hosea 4:6
+              Through soulful harmonies and heartfelt lyrics, they tell the story of the great exchange made by Jesus on the cross&mdash;our sin for His love&mdash;encouraging listeners to watch, pray, and serve so they are ready for Christ&apos;s glorious return.
             </p>
             <p
               style={{
@@ -232,9 +179,7 @@ export default function AboutPage() {
                 marginBottom: "24px",
               }}
             >
-              With hearts full of faith and voices lifted in praise, Last Song
-              invites you to join them in celebrating the timeless truths of the
-              gospel, ever reminding the faithful that the best is yet to come.
+              With hearts full of faith and voices lifted in praise, Last Song invites you to join them in celebrating the timeless truths of the gospel.
             </p>
 
             <div
@@ -269,6 +214,84 @@ export default function AboutPage() {
                 Ephesians 5:19 NKJV
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Mission */}
+      <section className="section-spacing" style={{ background: "var(--color-bg-warm)" }}>
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 24px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "2.2rem",
+                fontWeight: 400,
+                color: "var(--color-cream)",
+                lineHeight: 1.3,
+                marginBottom: "24px",
+              }}
+            >
+              Our Mission
+            </h2>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "20px",
+              }}
+            >
+              Last Song serves their community once a month at The Gardens Care Center in Kingman, AZ, sharing light and love through singing, prayer, and Bible studies with the residents there. In addition to their music, Wylie and Dawna are committed to sharing the gospel through literature and friendship evangelism.
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "20px",
+              }}
+            >
+              In their ministry &ldquo;Wherever You Go&rdquo;, they hand out books, magazines, &amp; DVDs as they go about daily errands and when traveling, seeking the lost and downtrodden to tell them the good news of Jesus, encouraging and praying with them. They also lead several individual and group Bible studies, both in-home and via Zoom, because, as Hosea warns, &ldquo;my people perish for lack of knowledge.&rdquo; Hos 4:6
+            </p>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "8px",
+            }}
+          >
+            <Image
+              src="/images/IMG_1046.jpeg"
+              alt="Wylie and Dawna holding ministry literature"
+              width={600}
+              height={1034}
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                borderRadius: "8px",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                border: "1px solid rgba(212, 160, 65, 0.15)",
+                borderRadius: "8px",
+                pointerEvents: "none",
+              }}
+            />
           </div>
         </div>
       </section>
