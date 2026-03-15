@@ -221,7 +221,7 @@ export default function Home() {
             }}
           >
             If your church or ministry is looking for Christ-centered music that uplifts, encourages, and points hearts toward Jesus please feel free to reach out through our{" "}
-            <Link href="/schedule" style={{ color: "var(--color-amber)", textDecoration: "underline" }}>Contact</Link>{" "}
+            <Link href="/contact" style={{ color: "var(--color-amber)", textDecoration: "underline" }}>Contact</Link>{" "}
             page for more information about scheduling or upcoming opportunities to minister together.
           </p>
           <p

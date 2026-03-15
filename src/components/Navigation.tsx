@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/ministry", label: "Ministry" },
   { href: "/schedule", label: "Schedule" },
   { href: "/listen", label: "Listen" },
+  { href: "/contact", label: "Contact" },
   { href: "/support", label: "Support" },
 ];
 
