@@ -144,7 +144,7 @@ export default function Home() {
                 marginBottom: "32px",
               }}
             >
-              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music is able to uplift, strengthen, and encourage the body of Christ. More than a performance, each opportunity to share music is viewed as ministry&mdash;serving the Lord, blessing His people, and sharing the message of the Gospel through song.
+              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music is able to uplift, strengthen, and encourage the body of Christ. More than a performance, each opportunity to share music is viewed as ministry&mdash;serving the Lord, blessing His people, and sharing the message of the Gospel through song, ever reminding the faithful the best is yet to come.
             </p>
             <Link href="/about" className="btn-outline">
               Learn More
