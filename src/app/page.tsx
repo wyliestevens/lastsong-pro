@@ -214,66 +214,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ministering in Churches */}
-      <section
-        className="section-spacing"
-        style={{
-          background: "var(--color-bg-warm)",
-        }}
-      >
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              fontWeight: 400,
-              color: "var(--color-cream)",
-              lineHeight: 1.2,
-              marginBottom: "32px",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Ministering in Churches and Christian Events
-          </h2>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.9,
-              marginBottom: "20px",
-            }}
-          >
-            Last Song enjoys sharing music in churches, outreach events, camp meetings and other Christian gatherings. Our desire is simply to serve the Lord by encouraging believers through songs rooted in the truths of Scripture.
-          </p>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.9,
-              marginBottom: "20px",
-            }}
-          >
-            If your church or ministry is looking for Christ-centered music that uplifts, encourages, and points hearts toward Jesus please feel free to reach out through our{" "}
-            <Link href="/contact" style={{ color: "var(--color-amber)", textDecoration: "underline" }}>Contact</Link>{" "}
-            page for more information about scheduling or upcoming opportunities to minister together.
-          </p>
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "1.3rem",
-              fontStyle: "italic",
-              color: "var(--color-cream)",
-              lineHeight: 1.6,
-              textAlign: "center",
-              marginTop: "32px",
-            }}
-          >
-            &ldquo;We would be honored to visit your church and share a time of worship and encouragement through music.&rdquo;
-          </p>
-        </div>
-      </section>
-
       {/* CTA */}
       <section
         className="section-spacing"
