@@ -92,6 +92,39 @@ export default function Home() {
 
       </section>
 
+      {/* Ministry Scripture */}
+      <section
+        style={{
+          background: "var(--color-bg-warm)",
+          padding: "60px 24px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "1.4rem",
+              fontStyle: "italic",
+              color: "var(--color-cream)",
+              lineHeight: 1.7,
+              marginBottom: "16px",
+            }}
+          >
+            &ldquo;Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.&rdquo;
+          </p>
+          <p
+            style={{
+              color: "var(--color-amber)",
+              fontSize: "0.95rem",
+              fontWeight: 500,
+            }}
+          >
+            Colossians 3:16 NKJV
+          </p>
+        </div>
+      </section>
+
       {/* Called to Worship Together */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div
