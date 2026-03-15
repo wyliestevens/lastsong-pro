@@ -283,31 +283,21 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "0 24px" }}>
-          <h2
+          <Link
+            href="/support"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 4vw, 2.8rem)",
               fontWeight: 400,
               color: "var(--color-cream)",
               lineHeight: 1.3,
-              marginBottom: "24px",
+              textDecoration: "none",
+              borderBottom: "1px solid rgba(212, 160, 65, 0.4)",
+              paddingBottom: "4px",
+              transition: "border-color 0.3s ease",
             }}
           >
             Partner With Our Ministry
-          </h2>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              marginBottom: "32px",
-            }}
-          >
-            Your generous support helps us continue sharing the Gospel through
-            music. Every gift makes a difference.
-          </p>
-          <Link href="/support" className="btn-primary">
-            Support Us
           </Link>
         </div>
       </section>
