@@ -155,9 +155,9 @@ export default function SupportPage() {
                 >
                   <h4
                     style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: "0.95rem",
-                      fontWeight: 600,
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 500,
                       color: "var(--color-amber)",
                       marginBottom: "8px",
                     }}
