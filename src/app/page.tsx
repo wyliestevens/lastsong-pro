@@ -188,7 +188,7 @@ export default function Home() {
           background: "var(--color-bg-warm)",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -198,6 +198,7 @@ export default function Home() {
               lineHeight: 1.2,
               marginBottom: "32px",
               textAlign: "center",
+              whiteSpace: "nowrap",
             }}
           >
             Ministering in Churches and Christian Events
