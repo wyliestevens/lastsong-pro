@@ -139,6 +139,18 @@ export default function Home() {
           }}
         >
           <div>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "2.2rem",
+                fontWeight: 400,
+                color: "var(--color-cream)",
+                lineHeight: 1.3,
+                marginBottom: "24px",
+              }}
+            >
+              Our Story
+            </h2>
             <p
               style={{
                 color: "var(--color-cream-muted)",
@@ -147,7 +159,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              <span style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--color-cream)" }}>Last Song</span> is the husband-and-wife duet of Wylie and Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Their music reflects a deep love for God&apos;s Word and a desire to encourage believers through songs rich in truth, hope, and worship.
+              Wylie&apos;s journey in music began 48 years ago, as a tender four-year-old singing next to his father in a bluegrass band made up of friends who played together every Friday night. At age fourteen he committed to serving as a music minister, first in the church he grew up in, and later in several other churches in northeast Texas and southern Arkansas. In his desire to share the gospel through song, he became lead singer in the gospel group, Southern Grace Quartet, in 2001, where they toured the four-state area of Texas, Arkansas, Oklahoma, and Louisiana.
             </p>
             <p
               style={{
@@ -157,7 +169,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              At the heart of Last Song&apos;s ministry is a passion to proclaim the amazing love of God and the saving grace found in Jesus Christ. Through music and testimony, Wylie and Dawna remind listeners of the hope we have in Christ, the promises of Scripture, and the mission the church is called to in this exciting time in history.
+              Although Dawna&apos;s early singing experience was little more than a &ldquo;hairbrush microphone&rdquo; singing with popular songs as a young girl and later in church choirs, singing is such an integral part of her life now that she can&apos;t imagine not singing! After several years of Wylie trying to convince her to sing with him, she finally joined him eight years ago, and together they formed the dynamic duo, &ldquo;Last Song&rdquo;, blending their voices with guitar to create a powerful music ministry. Sharing Christ in song as a couple is one of the greatest joys in their lives.
             </p>
             <p
               style={{
@@ -167,21 +179,28 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              The name Last Song reflects the realization that we, the church, are truly singing our &ldquo;last songs&rdquo; as we finish the work in anticipation of the soon return of our Lord. Wylie and Dawna seek to use their time and talents to encourage others to join in sharing the Gospel and to hold fast to their faith. Each song&mdash;whether a familiar hymn, scripture set to music, or heartfelt praise and worship&mdash;is chosen with the purpose of pointing hearts back to God.
+              Through diligent study of the scriptures, mainly the prophesies of Daniel and Revelation, Wylie and Dawna were led to embrace the truths they discovered, which led them to the Seventh Day Adventist church in 2010. Wylie currently serves as an Elder and Dawna as Music Leader in the Needles, CA Seventh Day Adventist church, just across the AZ border.
             </p>
             <p
               style={{
                 color: "var(--color-cream-muted)",
                 fontSize: "1rem",
                 lineHeight: 1.9,
-                marginBottom: "32px",
+                marginBottom: "20px",
               }}
             >
-              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music is able to uplift, strengthen, and encourage the body of Christ. More than a performance, each opportunity to share music is viewed as ministry&mdash;serving the Lord, blessing His people, and sharing the message of the Gospel through song, ever reminding the faithful the best is yet to come.
+              Through soulful harmonies and heartfelt lyrics, they tell the story of the great exchange made by Jesus on the cross&mdash;our sin for His love, encourage listeners to watch, pray, and serve to be ready for Christ&apos;s glorious return.
             </p>
-            <Link href="/about" className="btn-outline">
-              Learn More
-            </Link>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "20px",
+              }}
+            >
+              With hearts full of faith and voices lifted in praise, Last Song invites you to join them in celebrating the timeless truths of the gospel.
+            </p>
           </div>
           <div
             style={{
