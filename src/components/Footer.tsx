@@ -59,7 +59,6 @@ export default function Footer() {
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
               { href: "/about", label: "About Us" },
-              { href: "/ministry", label: "Ministry" },
               { href: "/schedule", label: "Schedule" },
               { href: "/listen", label: "Listen" },
               { href: "/contact", label: "Contact" },
