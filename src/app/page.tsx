@@ -277,10 +277,10 @@ export default function Home() {
             }}
           >
             <Image
-              src="/images/wherever_you_go.jpeg"
-              alt="Wylie and Dawna Stevens sharing literature and ministry materials"
+              src="/images/IMG_1046.jpeg"
+              alt="Wylie and Dawna holding ministry literature"
               width={600}
-              height={800}
+              height={1034}
               style={{
                 width: "100%",
                 height: "auto",
