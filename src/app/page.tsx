@@ -241,54 +241,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Music Preview */}
-      <section
-        className="section-spacing"
-        style={{
-          background: "var(--color-bg-warm)",
-        }}
-      >
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
-          <div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: 400,
-                color: "var(--color-cream)",
-                lineHeight: 1.2,
-                marginBottom: "24px",
-              }}
-            >
-              Songs of Faith and Hope
-            </h2>
-            <p
-              style={{
-                color: "var(--color-cream-muted)",
-                fontSize: "1rem",
-                lineHeight: 1.8,
-                marginBottom: "40px",
-              }}
-            >
-              Listen to recordings from our worship sessions and ministry events.
-              Each song is offered as praise and testimony to God&apos;s faithfulness.
-            </p>
-            <Link href="/listen" className="btn-primary">
-              Listen Now
-            </Link>
-          </div>
-          <div style={{ borderRadius: "8px" }}>
-            <Image
-              src="/images/IMG_1750.jpeg"
-              alt="Wylie and Dawna Stevens in ministry"
-              width={600}
-              height={800}
-              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Photo Gallery Strip */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
