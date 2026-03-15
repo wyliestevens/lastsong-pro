@@ -241,66 +241,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Photo Gallery Strip */}
-      <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "16px",
-            }}
-          >
-            {[
-              { src: "/images/1000000052.jpeg", alt: "Wylie and Dawna Stevens leading worship with guitar at a church service", w: 1431, h: 2592 },
-              { src: "/images/IMG_1477.jpeg", alt: "Special Music at Elk City, Oklahoma Church", label: "Special Music at Elk City, Oklahoma Church", w: 2115, h: 2461 },
-              { src: "/images/5M5A7532.jpeg", alt: "Wylie and Dawna Stevens singing together during a worship service", w: 2595, h: 3390 },
-            ].map((photo, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "relative",
-                  borderRadius: "6px",
-                }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.w}
-                  height={photo.h}
-                  style={{ width: "100%", height: "auto", display: "block", borderRadius: "6px" }}
-                />
-                {photo.label && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: "12px 16px",
-                      background: "linear-gradient(to top, rgba(15,13,10,0.85), transparent)",
-                      textAlign: "center",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: "0.85rem",
-                        fontWeight: 600,
-                        color: "var(--color-amber)",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      {photo.label}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section
         className="section-spacing"
