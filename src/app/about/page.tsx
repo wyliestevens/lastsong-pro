@@ -93,7 +93,7 @@ export default function AboutPage() {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "60px",
-            alignItems: "start",
+            alignItems: "center",
           }}
         >
           <div>
