@@ -159,7 +159,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Wylie&apos;s journey in music began 48 years ago, as a tender four-year-old singing next to his father in a bluegrass band made up of friends who played together every Friday night. At age fourteen he committed to serving as a music minister, first in the church he grew up in, and later in several other churches in northeast Texas and southern Arkansas. In his desire to share the gospel through song, he became lead singer in the gospel group, Southern Grace Quartet, in 2001, where they toured the four-state area of Texas, Arkansas, Oklahoma, and Louisiana.
+              Wylie&apos;s journey in music began 48 years ago, as a tender four-year-old singing next to his father in a bluegrass band made up of friends who played together every Friday night. At age fourteen, he committed to serving as a music minister, first in the church he grew up in, and later in several other churches in northeast Texas and southern Arkansas. In his desire to share the gospel through song, he became the lead singer of the gospel group Southern Grace Quartet in 2001, and they toured the four-state area of Texas, Arkansas, Oklahoma, and Louisiana.
             </p>
             <p
               style={{
@@ -179,7 +179,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Through diligent study of the scriptures, mainly the prophesies of Daniel and Revelation, Wylie and Dawna were led to embrace the truths they discovered, which led them to the Seventh Day Adventist church in 2010. Wylie currently serves as an Elder and Dawna as Music Leader in the Needles, CA Seventh Day Adventist church, just across the AZ border.
+              Through diligent study of the scriptures, mainly the prophecies of Daniel and Revelation, Wylie and Dawna were led to embrace the truths they discovered, which led them to the Seventh-day Adventist church in 2010. Wylie currently serves as an Elder, and Dawna as Music Leader, at the Needles, CA, Seventh-day Adventist church, just across the AZ border.
             </p>
             <p
               style={{
@@ -189,7 +189,7 @@ export default function Home() {
                 marginBottom: "20px",
               }}
             >
-              Through soulful harmonies and heartfelt lyrics, they tell the story of the great exchange made by Jesus on the cross&mdash;our sin for His love, encourage listeners to watch, pray, and serve to be ready for Christ&apos;s glorious return.
+              Through soulful harmonies and heartfelt lyrics, they tell the story of the great exchange made by Jesus on the cross&mdash;our sin for His love&mdash;encouraging listeners to watch, pray, and serve so they are ready for Christ&apos;s glorious return.
             </p>
             <p
               style={{
