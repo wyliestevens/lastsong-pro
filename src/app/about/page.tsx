@@ -12,8 +12,11 @@ export default function AboutPage() {
       <section
         style={{
           position: "relative",
-          paddingTop: "160px",
-          paddingBottom: "80px",
+          height: "85vh",
+          minHeight: "500px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           textAlign: "center",
           overflow: "hidden",
         }}

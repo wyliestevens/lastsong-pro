@@ -233,6 +233,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Our Mission */}
+      <section className="section-spacing" style={{ background: "var(--color-bg-warm)" }}>
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 24px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "2.2rem",
+                fontWeight: 400,
+                color: "var(--color-cream)",
+                lineHeight: 1.3,
+                marginBottom: "24px",
+              }}
+            >
+              Our Mission
+            </h2>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "20px",
+              }}
+            >
+              Last Song serves in their community once a month at The Gardens Care Center, in Kingman, AZ, sharing light and love through singing, prayer, and bible studies with the residents there. In addition to their music, Wylie and Dawna are committed to sharing the gospel through literature and friendship evangelism. In their ministry &ldquo;Wherever You Go&rdquo;, they hand out books, magazines, &amp; DVDs as they go about daily errands and when traveling, seeking the lost and downtrodden to tell them the good news of Jesus, encouraging and praying with them. They also lead several individual and group bible studies, in-home and via Zoom, because as Hosea warns, &ldquo;my people perish for lack of knowledge.&rdquo; Hos 4:6
+            </p>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "8px",
+            }}
+          >
+            <Image
+              src="/images/wherever_you_go.jpeg"
+              alt="Wylie and Dawna Stevens sharing literature and ministry materials"
+              width={600}
+              height={800}
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                borderRadius: "8px",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                border: "1px solid rgba(212, 160, 65, 0.15)",
+                borderRadius: "8px",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section
         className="section-spacing"
