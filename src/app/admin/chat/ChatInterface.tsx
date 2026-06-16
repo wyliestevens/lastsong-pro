@@ -15,7 +15,13 @@ type Attachment = {
   name: string;
 };
 
-const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
+// Pre-compression input cap. macOS retina screenshots routinely hit 5–10 MB,
+// so we accept up to 25 MB and downscale before sending.
+const MAX_INPUT_BYTES = 25 * 1024 * 1024;
+// Post-compression target. Vercel function bodies are ~4.5 MB; base64 adds
+// ~33%, so we aim for ~1.2 MB raw which becomes ~1.6 MB encoded — well under.
+const TARGET_OUTPUT_BYTES = 1.2 * 1024 * 1024;
+const MAX_DIMENSION = 1800;
 const ALLOWED_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 const EXT_MAP: Record<string, string> = {
   png: "image/png",
@@ -24,6 +30,53 @@ const EXT_MAP: Record<string, string> = {
   webp: "image/webp",
   gif: "image/gif",
 };
+
+// Downscale + re-encode to JPEG so even multi-MB retina screenshots fit under
+// the Vercel function body limit. Returns the compressed blob and its mime type.
+async function compressImage(file: File): Promise<{ blob: Blob; mediaType: string }> {
+  // GIFs may be animated — keep as-is.
+  if (file.type === "image/gif") return { blob: file, mediaType: "image/gif" };
+
+  const dataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const im = new Image();
+    im.onload = () => resolve(im);
+    im.onerror = () => reject(new Error("Image decode failed"));
+    im.src = dataUrl;
+  });
+
+  const { naturalWidth: w0, naturalHeight: h0 } = img;
+  const scale = Math.min(1, MAX_DIMENSION / Math.max(w0, h0));
+  const w = Math.max(1, Math.round(w0 * scale));
+  const h = Math.max(1, Math.round(h0 * scale));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas 2D context unavailable");
+  ctx.drawImage(img, 0, 0, w, h);
+
+  // Step quality down until we hit the target size.
+  const qualities = [0.85, 0.75, 0.65, 0.55, 0.45];
+  let chosen: Blob | null = null;
+  for (const q of qualities) {
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob((b) => resolve(b), "image/jpeg", q)
+    );
+    if (!blob) continue;
+    chosen = blob;
+    if (blob.size <= TARGET_OUTPUT_BYTES) break;
+  }
+  if (!chosen) throw new Error("Image compression failed");
+  return { blob: chosen, mediaType: "image/jpeg" };
+}
 
 function renderText(content: any): string {
   if (typeof content === "string") return content;
@@ -41,8 +94,8 @@ function renderImages(content: any): string[] {
     .map((b) => `data:${b.source.media_type};base64,${b.source.data}`);
 }
 
-async function fileToBase64(file: File): Promise<{ mediaType: string; base64: string }> {
-  const buf = await file.arrayBuffer();
+async function blobToBase64(blob: Blob): Promise<string> {
+  const buf = await blob.arrayBuffer();
   const bytes = new Uint8Array(buf);
   let bin = "";
   const chunkSize = 0x8000;
@@ -52,12 +105,7 @@ async function fileToBase64(file: File): Promise<{ mediaType: string; base64: st
       Array.from(bytes.subarray(i, i + chunkSize)) as any
     );
   }
-  let mediaType = file.type;
-  if (!ALLOWED_TYPES.has(mediaType)) {
-    const ext = (file.name.split(".").pop() || "").toLowerCase();
-    if (EXT_MAP[ext]) mediaType = EXT_MAP[ext];
-  }
-  return { mediaType, base64: btoa(bin) };
+  return btoa(bin);
 }
 
 // Robust file extraction from a DragEvent or ClipboardEvent. Walks every
@@ -127,19 +175,30 @@ export default function ChatInterface() {
         skipped.push(`${file.name || "file"} (${file.type || "no type"})`);
         continue;
       }
-      if (file.size > MAX_IMAGE_BYTES) {
-        skipped.push(`${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB, max 3 MB)`);
+      if (file.size > MAX_INPUT_BYTES) {
+        skipped.push(`${file.name} (${(file.size / 1024 / 1024).toFixed(1)} MB > 25 MB)`);
         continue;
       }
-      const { base64 } = await fileToBase64(file);
-      next.push({
-        id: `${file.name}-${file.size}-${Date.now()}-${Math.random()}`,
-        mediaType,
-        base64,
-        previewUrl: `data:${mediaType};base64,${base64}`,
-        name: file.name || "screenshot",
-      });
-      added++;
+      try {
+        const { blob: compressed, mediaType: outType } = await compressImage(
+          // Re-tag the file with corrected mediaType so compressImage's branch
+          // on file.type for GIFs vs. raster works correctly.
+          new File([file], file.name || "screenshot", { type: mediaType })
+        );
+        const base64 = await blobToBase64(compressed);
+        next.push({
+          id: `${file.name}-${file.size}-${Date.now()}-${Math.random()}`,
+          mediaType: outType,
+          base64,
+          previewUrl: `data:${outType};base64,${base64}`,
+          name: file.name || "screenshot",
+        });
+        added++;
+      } catch (e) {
+        skipped.push(
+          `${file.name} (compression failed: ${e instanceof Error ? e.message : "unknown"})`
+        );
+      }
     }
     setAttachments(next);
     setDebug(
