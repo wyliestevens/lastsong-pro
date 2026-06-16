@@ -10,15 +10,20 @@ type Msg = { role: "user" | "assistant"; content: string | Block[] | any };
 type Attachment = {
   id: string;
   mediaType: string;
-  base64: string; // raw base64, no data: prefix
-  previewUrl: string; // data: URL for <img src>
+  base64: string;
+  previewUrl: string;
   name: string;
 };
 
-// Cap before base64 encoding. Vercel function bodies are ~4.5 MB; base64 expands ~33%,
-// so 3 MB raw → ~4 MB encoded + JSON overhead fits comfortably.
 const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
 const ALLOWED_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
+const EXT_MAP: Record<string, string> = {
+  png: "image/png",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  webp: "image/webp",
+  gif: "image/gif",
+};
 
 function renderText(content: any): string {
   if (typeof content === "string") return content;
@@ -47,7 +52,42 @@ async function fileToBase64(file: File): Promise<{ mediaType: string; base64: st
       Array.from(bytes.subarray(i, i + chunkSize)) as any
     );
   }
-  return { mediaType: file.type, base64: btoa(bin) };
+  let mediaType = file.type;
+  if (!ALLOWED_TYPES.has(mediaType)) {
+    const ext = (file.name.split(".").pop() || "").toLowerCase();
+    if (EXT_MAP[ext]) mediaType = EXT_MAP[ext];
+  }
+  return { mediaType, base64: btoa(bin) };
+}
+
+// Robust file extraction from a DragEvent or ClipboardEvent. Walks every
+// channel macOS browsers use: dataTransfer.files, dataTransfer.items (getAsFile),
+// and (for clipboards) clipboardData.items.
+async function extractFiles(
+  source: { files?: FileList | null; items?: DataTransferItemList | null }
+): Promise<File[]> {
+  const out: File[] = [];
+  const seen = new Set<string>();
+  function pushIfNew(f: File | null | undefined) {
+    if (!f) return;
+    const key = `${f.name}:${f.size}:${f.type}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(f);
+  }
+  if (source.files) {
+    for (let i = 0; i < source.files.length; i++) pushIfNew(source.files[i]);
+  }
+  if (source.items) {
+    for (let i = 0; i < source.items.length; i++) {
+      const item = source.items[i];
+      if (!item) continue;
+      if (item.kind === "file") {
+        pushIfNew(item.getAsFile());
+      }
+    }
+  }
+  return out;
 }
 
 export default function ChatInterface() {
@@ -56,41 +96,39 @@ export default function ChatInterface() {
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [debug, setDebug] = useState<string>("");
   const [dragOver, setDragOver] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const attachmentsRef = useRef<Attachment[]>([]);
+  attachmentsRef.current = attachments;
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, busy]);
 
-  async function addFiles(files: FileList | File[]) {
+  async function addFiles(files: File[]) {
     setErr("");
-    const next: Attachment[] = [...attachments];
+    if (files.length === 0) {
+      setDebug(`No files in event. ${new Date().toLocaleTimeString()}`);
+      setErr("Drop / paste fired but the browser handed us 0 files. Use the 📎 button to upload directly.");
+      return;
+    }
+    const next: Attachment[] = [...attachmentsRef.current];
     let added = 0;
-    for (const file of Array.from(files)) {
-      // Some drop sources (esp. macOS screencaptureui) report an empty MIME
-      // type. Trust the .png/.jpg/.webp/.gif extension as a fallback.
+    const skipped: string[] = [];
+    for (const file of files) {
       let mediaType = file.type;
       if (!ALLOWED_TYPES.has(mediaType)) {
         const ext = (file.name.split(".").pop() || "").toLowerCase();
-        const extMap: Record<string, string> = {
-          png: "image/png",
-          jpg: "image/jpeg",
-          jpeg: "image/jpeg",
-          webp: "image/webp",
-          gif: "image/gif",
-        };
-        if (extMap[ext]) mediaType = extMap[ext];
+        if (EXT_MAP[ext]) mediaType = EXT_MAP[ext];
       }
       if (!ALLOWED_TYPES.has(mediaType)) {
-        setErr(
-          `Could not attach ${file.name || "file"}: unsupported type "${file.type || "unknown"}". Use PNG, JPG, WebP, or GIF.`
-        );
+        skipped.push(`${file.name || "file"} (${file.type || "no type"})`);
         continue;
       }
       if (file.size > MAX_IMAGE_BYTES) {
-        setErr(`${file.name} is too large (max 3 MB)`);
+        skipped.push(`${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB, max 3 MB)`);
         continue;
       }
       const { base64 } = await fileToBase64(file);
@@ -104,8 +142,12 @@ export default function ChatInterface() {
       added++;
     }
     setAttachments(next);
-    if (added > 0) {
-      console.log(`[chat] attached ${added} image(s); total queued: ${next.length}`);
+    setDebug(
+      `${new Date().toLocaleTimeString()}: received ${files.length} file(s), added ${added}` +
+        (skipped.length ? `, skipped ${skipped.join("; ")}` : "")
+    );
+    if (added === 0 && skipped.length > 0) {
+      setErr(`Could not attach: ${skipped.join("; ")}`);
     }
   }
 
@@ -113,73 +155,68 @@ export default function ChatInterface() {
     setAttachments((cur) => cur.filter((a) => a.id !== id));
   }
 
-  async function onPaste(e: React.ClipboardEvent<HTMLTextAreaElement>) {
-    const files: File[] = [];
-    for (const item of Array.from(e.clipboardData.items)) {
-      if (item.kind === "file") {
-        const f = item.getAsFile();
-        if (f) files.push(f);
-      }
-    }
-    if (files.length) {
-      e.preventDefault();
-      console.log(`[chat] paste detected ${files.length} file(s)`);
-      await addFiles(files);
-    }
-  }
-
-  async function onDrop(e: React.DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOver(false);
-    // Be permissive: accept anything in dataTransfer.files; addFiles validates.
-    const files = Array.from(e.dataTransfer.files || []);
-    console.log(`[chat] drop detected ${files.length} file(s)`);
-    if (files.length === 0) {
-      setErr(
-        "Drop landed but no files were attached. Try dragging the screenshot directly from the floating preview thumbnail, the Desktop, or a Finder window."
-      );
-      return;
-    }
-    await addFiles(files);
-  }
-
-  // Catch drops anywhere in the window so the user can drop on the page edges
-  // and the screenshot still attaches. Without this, drops outside the chat
-  // container do the browser default (often opens the image in a new tab).
+  // Window-level drag/drop/paste handlers — catches the event regardless of
+  // which child element is under the cursor. This is the most reliable path
+  // for macOS Chrome/Safari, where drops on inner React elements can be lost.
   useEffect(() => {
     function preventDefault(e: DragEvent) {
-      // Only intercept drag operations carrying files.
+      // Always preventDefault on dragover. Without it, the drop event is
+      // never fired by the browser. Filtering by type can MISS valid drops.
+      e.preventDefault();
       if (e.dataTransfer && Array.from(e.dataTransfer.types).includes("Files")) {
-        e.preventDefault();
+        setDragOver(true);
       }
     }
-    async function docDrop(e: DragEvent) {
-      if (!e.dataTransfer) return;
-      if (!Array.from(e.dataTransfer.types).includes("Files")) return;
+    function onDragLeave(e: DragEvent) {
+      // dragleave fires when crossing into a child. Only clear if we left the window.
+      if (!e.relatedTarget) setDragOver(false);
+    }
+    async function onDrop(e: DragEvent) {
       e.preventDefault();
-      const files = Array.from(e.dataTransfer.files || []);
-      console.log(`[chat] doc drop ${files.length} file(s)`);
-      if (files.length) await addFiles(files);
+      setDragOver(false);
+      if (!e.dataTransfer) {
+        setDebug("Drop event had no dataTransfer.");
+        return;
+      }
+      const types = Array.from(e.dataTransfer.types);
+      const files = await extractFiles({
+        files: e.dataTransfer.files,
+        items: e.dataTransfer.items,
+      });
+      setDebug(
+        `Drop: types=[${types.join(",")}] files=${files.length} ${new Date().toLocaleTimeString()}`
+      );
+      await addFiles(files);
+    }
+    async function onPaste(e: ClipboardEvent) {
+      if (!e.clipboardData) return;
+      const files = await extractFiles({
+        files: e.clipboardData.files,
+        items: e.clipboardData.items,
+      });
+      setDebug(`Paste: files=${files.length} ${new Date().toLocaleTimeString()}`);
+      if (files.length > 0) {
+        e.preventDefault();
+        await addFiles(files);
+      }
     }
     window.addEventListener("dragover", preventDefault);
-    window.addEventListener("drop", docDrop);
+    window.addEventListener("dragleave", onDragLeave);
+    window.addEventListener("drop", onDrop);
+    window.addEventListener("paste", onPaste);
     return () => {
       window.removeEventListener("dragover", preventDefault);
-      window.removeEventListener("drop", docDrop);
+      window.removeEventListener("dragleave", onDragLeave);
+      window.removeEventListener("drop", onDrop);
+      window.removeEventListener("paste", onPaste);
     };
-    // addFiles closes over `attachments` via state, so re-bind when it changes
-    // so we don't lose previously-attached files.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attachments]);
+  }, []);
 
   async function send() {
     const text = input.trim();
     if ((!text && attachments.length === 0) || busy) return;
     setErr("");
 
-    // Build user message content. If only text, send a plain string (smaller).
-    // If any images, send a Block[] mixing image blocks + text.
     let userContent: string | Block[];
     if (attachments.length === 0) {
       userContent = text;
@@ -226,20 +263,21 @@ export default function ChatInterface() {
     }
   }
 
+  async function onFilePicked(e: React.ChangeEvent<HTMLInputElement>) {
+    const fl = e.target.files;
+    if (!fl) return;
+    const files = await extractFiles({ files: fl });
+    setDebug(`File picker: ${files.length} file(s) ${new Date().toLocaleTimeString()}`);
+    await addFiles(files);
+    e.target.value = "";
+  }
+
   return (
     <div
-      onDragOver={(e) => {
-        e.preventDefault();
-        if (Array.from(e.dataTransfer.types).includes("Files")) setDragOver(true);
-      }}
-      onDragLeave={(e) => {
-        if (e.currentTarget === e.target) setDragOver(false);
-      }}
-      onDrop={onDrop}
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "calc(100vh - 280px)",
+        height: "calc(100vh - 320px)",
         minHeight: "500px",
         background: "var(--color-bg-card)",
         border: dragOver ? "2px dashed var(--color-amber)" : "1px solid var(--color-divider)",
@@ -253,21 +291,66 @@ export default function ChatInterface() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(212, 160, 65, 0.08)",
+            background: "rgba(212, 160, 65, 0.12)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "var(--color-amber)",
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "1.4rem",
+            fontSize: "1.6rem",
             fontStyle: "italic",
             pointerEvents: "none",
             zIndex: 5,
           }}
         >
-          Drop screenshot to attach
+          Drop screenshot anywhere to attach
         </div>
       )}
+
+      {/* Primary attach button — always visible at top of chat */}
+      <div
+        style={{
+          borderBottom: "1px solid var(--color-divider)",
+          padding: "12px 16px",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={busy}
+          style={{
+            padding: "10px 16px",
+            background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+            color: "var(--color-bg-deep)",
+            border: "none",
+            borderRadius: "6px",
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: "0.8rem",
+            fontWeight: 700,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
+            cursor: busy ? "wait" : "pointer",
+          }}
+        >
+          📎 Attach Screenshot
+        </button>
+        <span style={{ color: "var(--color-cream-muted)", fontSize: "0.75rem" }}>
+          or drag a screenshot anywhere on this page, or paste with ⌘V
+        </span>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif,image/*"
+          multiple
+          style={{ display: "none" }}
+          onChange={onFilePicked}
+        />
+      </div>
+
       <div
         ref={scrollRef}
         style={{
@@ -281,7 +364,7 @@ export default function ChatInterface() {
       >
         {messages.length === 0 && (
           <p style={{ color: "var(--color-cream-muted)", textAlign: "center", marginTop: "60px" }}>
-            Type a message or drop / paste a screenshot to start.
+            Type a message below or attach a screenshot to start.
           </p>
         )}
         {messages.map((m, i) => {
@@ -336,6 +419,22 @@ export default function ChatInterface() {
           </p>
         )}
       </div>
+
+      {debug && (
+        <div
+          style={{
+            padding: "6px 16px",
+            borderTop: "1px solid var(--color-divider)",
+            background: "rgba(15, 13, 10, 0.4)",
+            color: "var(--color-cream-muted)",
+            fontSize: "0.7rem",
+            fontFamily: "'SF Mono', Monaco, monospace",
+          }}
+        >
+          {debug}
+        </div>
+      )}
+
       {err && (
         <div
           style={{
@@ -359,7 +458,7 @@ export default function ChatInterface() {
             gap: "8px",
             flexWrap: "wrap",
             alignItems: "center",
-            background: "rgba(212, 160, 65, 0.08)",
+            background: "rgba(212, 160, 65, 0.12)",
           }}
         >
           <div
@@ -373,7 +472,7 @@ export default function ChatInterface() {
               marginRight: "4px",
             }}
           >
-            📎 {attachments.length} image{attachments.length === 1 ? "" : "s"} attached
+            ✓ {attachments.length} image{attachments.length === 1 ? "" : "s"} attached
           </div>
           {attachments.map((a) => (
             <div
@@ -429,41 +528,12 @@ export default function ChatInterface() {
           alignItems: "stretch",
         }}
       >
-        <button
-          type="button"
-          onClick={() => fileInputRef.current?.click()}
-          disabled={busy}
-          title="Attach image"
-          style={{
-            padding: "0 14px",
-            background: "transparent",
-            border: "1px solid var(--color-divider)",
-            borderRadius: "8px",
-            color: "var(--color-cream-muted)",
-            cursor: busy ? "not-allowed" : "pointer",
-            fontSize: "1.2rem",
-          }}
-        >
-          📎
-        </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/png,image/jpeg,image/webp,image/gif"
-          multiple
-          style={{ display: "none" }}
-          onChange={(e) => {
-            if (e.target.files) addFiles(e.target.files);
-            e.target.value = "";
-          }}
-        />
         <textarea
           rows={2}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
-          onPaste={onPaste}
-          placeholder="Tell Claude what to change… (drop or paste a screenshot to attach)"
+          placeholder="Tell Claude what to change…"
           disabled={busy}
           style={{
             flex: 1,
