@@ -7,10 +7,11 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/schedule", label: "Schedule" },
+  { href: "/mission", label: "Mission" },
   { href: "/listen", label: "Listen" },
-  { href: "/contact", label: "Contact" },
+  { href: "/schedule", label: "Schedule" },
   { href: "/support", label: "Support" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navigation() {

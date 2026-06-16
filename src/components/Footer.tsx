@@ -33,12 +33,15 @@ export default function Footer() {
           </h3>
           <p
             style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "0.9rem",
-              lineHeight: 1.7,
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--color-cream)",
+              fontSize: "1rem",
+              fontStyle: "italic",
+              lineHeight: 1.5,
+              marginBottom: "12px",
             }}
           >
-            Sharing faith through music and worship, one song at a time.
+            Singing with Eternity in View
           </p>
         </div>
 
@@ -59,8 +62,9 @@ export default function Footer() {
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
               { href: "/about", label: "About Us" },
-              { href: "/schedule", label: "Schedule" },
+              { href: "/mission", label: "Mission" },
               { href: "/listen", label: "Listen" },
+              { href: "/schedule", label: "Schedule" },
               { href: "/contact", label: "Contact" },
               { href: "/support", label: "Support" },
             ].map((link) => (
@@ -111,7 +115,7 @@ export default function Footer() {
                 lineHeight: 1.7,
               }}
             >
-              Email: dbstevens04@hotmail.com
+              Email: admin@lastsong.pro
             </p>
             <p
               style={{
@@ -144,6 +148,29 @@ export default function Footer() {
         >
           &copy; {new Date().getFullYear()} Last Song Ministry. All rights
           reserved.
+        </p>
+        <p
+          style={{
+            color: "var(--color-warm-gray)",
+            fontSize: "0.75rem",
+            letterSpacing: "0.5px",
+            marginTop: "8px",
+          }}
+        >
+          Built and powered by{" "}
+          <a
+            href="https://www.aipeakbiz.com"
+            target="_blank"
+            rel="noopener"
+            style={{
+              color: "var(--color-amber)",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}
+          >
+            AI Peak Biz
+          </a>
+          .
         </p>
       </div>
     </footer>

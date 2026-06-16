@@ -2,19 +2,341 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 
-export default function SupportPage() {
-  const [customAmount, setCustomAmount] = useState("");
+function OneTimeDonation() {
+  const [amount, setAmount] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleDonate = () => {
-    const amount = customAmount || "0";
-    window.location.href = `mailto:dbstevens04@hotmail.com?subject=Donation%20-%20$${amount}&body=I%20would%20like%20to%20make%20a%20donation%20of%20$${amount}%20to%20Last%20Song%20Ministry.%20Please%20send%20me%20instructions%20for%20completing%20my%20gift.`;
+  const handleDonate = async () => {
+    const amountNum = parseFloat(amount);
+    if (!amountNum || amountNum < 1) {
+      setMessage("Please enter an amount of at least $1.00");
+      return;
+    }
+    setProcessing(true);
+    setMessage("");
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: amountNum, mode: "payment" }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        setMessage(data.error);
+        setProcessing(false);
+        return;
+      }
+      window.location.href = data.url;
+    } catch {
+      setMessage("Something went wrong. Please try again.");
+      setProcessing(false);
+    }
   };
 
   return (
     <div>
+      <div style={{ position: "relative", marginBottom: "12px" }}>
+        <span
+          style={{
+            position: "absolute",
+            left: "16px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "var(--color-amber)",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "1.3rem",
+            fontWeight: 500,
+          }}
+        >
+          $
+        </span>
+        <input
+          type="number"
+          min="1"
+          step="0.01"
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px 12px 10px 28px",
+            background: "rgba(212, 160, 65, 0.08)",
+            border: "1px solid rgba(212, 160, 65, 0.25)",
+            borderRadius: "8px",
+            color: "var(--color-cream)",
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: "0.85rem",
+            outline: "none",
+            textAlign: "center",
+            boxSizing: "border-box",
+          }}
+        />
+      </div>
+      <button
+        onClick={handleDonate}
+        disabled={processing}
+        style={{
+          width: "100%",
+          padding: "10px",
+          background: processing
+            ? "rgba(212, 160, 65, 0.5)"
+            : "linear-gradient(135deg, var(--color-amber), #c4922e)",
+          color: "var(--color-bg-deep)",
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: "0.7rem",
+          fontWeight: 700,
+          letterSpacing: "1px",
+          textTransform: "uppercase",
+          border: "none",
+          borderRadius: "4px",
+          cursor: processing ? "wait" : "pointer",
+        }}
+      >
+        {processing ? "Redirecting..." : "Donate Now"}
+      </button>
+      {message && (
+        <p
+          style={{
+            marginTop: "10px",
+            fontSize: "0.8rem",
+            color: "#e87c7c",
+            textAlign: "center",
+          }}
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function PartnerTierButton({
+  amount,
+  label,
+}: {
+  amount: number;
+  label: string;
+}) {
+  const [processing, setProcessing] = useState(false);
+
+  const handleSubscribe = async () => {
+    setProcessing(true);
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount, mode: "subscription" }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch {
+      setProcessing(false);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleSubscribe}
+      disabled={processing}
+      style={{
+        padding: "8px 18px",
+        background: processing
+          ? "rgba(212, 160, 65, 0.5)"
+          : "linear-gradient(135deg, var(--color-amber), #c4922e)",
+        color: "var(--color-bg-deep)",
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: "0.65rem",
+        fontWeight: 700,
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+        border: "none",
+        borderRadius: "4px",
+        cursor: processing ? "wait" : "pointer",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {processing ? "..." : label}
+    </button>
+  );
+}
+
+function CustomMonthlyDonation() {
+  const [amount, setAmount] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async () => {
+    const amountNum = parseFloat(amount);
+    if (!amountNum || amountNum < 1) {
+      setMessage("Please enter an amount of at least $1.00");
+      return;
+    }
+    setProcessing(true);
+    setMessage("");
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: amountNum, mode: "subscription" }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        setMessage(data.error);
+        setProcessing(false);
+        return;
+      }
+      window.location.href = data.url;
+    } catch {
+      setMessage("Something went wrong. Please try again.");
+      setProcessing(false);
+    }
+  };
+
+  return (
+    <div
+      style={{
+        padding: "20px 24px",
+        background: "var(--color-bg-card)",
+        borderRadius: "8px",
+        borderLeft: "3px solid var(--color-amber)",
+      }}
+    >
+      <p
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "1.1rem",
+          fontWeight: 500,
+          color: "var(--color-cream)",
+          marginBottom: "12px",
+          textAlign: "center",
+        }}
+      >
+        Choose Your Own Monthly Amount
+      </p>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <div style={{ position: "relative", flex: 1 }}>
+          <span
+            style={{
+              position: "absolute",
+              left: "12px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "var(--color-amber)",
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "1.1rem",
+              fontWeight: 500,
+            }}
+          >
+            $
+          </span>
+          <input
+            type="number"
+            min="1"
+            step="0.01"
+            placeholder="Amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "8px 10px 8px 24px",
+              background: "rgba(212, 160, 65, 0.08)",
+              border: "1px solid rgba(212, 160, 65, 0.25)",
+              borderRadius: "6px",
+              color: "var(--color-cream)",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.85rem",
+              outline: "none",
+              textAlign: "center",
+              boxSizing: "border-box",
+            }}
+          />
+        </div>
+        <button
+          onClick={handleSubscribe}
+          disabled={processing}
+          style={{
+            padding: "8px 18px",
+            background: processing
+              ? "rgba(212, 160, 65, 0.5)"
+              : "linear-gradient(135deg, var(--color-amber), #c4922e)",
+            color: "var(--color-bg-deep)",
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: "0.65rem",
+            fontWeight: 700,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
+            border: "none",
+            borderRadius: "4px",
+            cursor: processing ? "wait" : "pointer",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {processing ? "..." : "Partner Monthly"}
+        </button>
+      </div>
+      {message && (
+        <p
+          style={{
+            marginTop: "8px",
+            fontSize: "0.8rem",
+            color: "#e87c7c",
+            textAlign: "center",
+          }}
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function PaymentCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        background: "var(--color-bg-card)",
+        borderRadius: "8px",
+        padding: "16px 12px",
+        border: "1px solid rgba(212, 160, 65, 0.2)",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "8px",
+      }}
+    >
+      <h3
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "1rem",
+          fontWeight: 500,
+          color: "var(--color-cream)",
+        }}
+      >
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+export default function SupportPage() {
+  return (
+    <div>
       {/* Hero with Background Image */}
       <section
+        className="hero-section"
         style={{
           position: "relative",
           height: "85vh",
@@ -22,7 +344,6 @@ export default function SupportPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          textAlign: "center",
           overflow: "hidden",
         }}
       >
@@ -38,485 +359,576 @@ export default function SupportPage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(15,13,10,0.15) 0%, rgba(15,13,10,0.35) 50%, rgba(15,13,10,0.85) 100%)",
+              "linear-gradient(to bottom, rgba(15,13,10,0.15) 0%, rgba(15,13,10,0.3) 50%, rgba(15,13,10,0.85) 100%)",
           }}
         />
         <div
+          className="hero-text-mobile"
           style={{
-            position: "relative",
+            position: "absolute",
+            top: "15%",
+            right: "15%",
             zIndex: 2,
-            maxWidth: "800px",
-            margin: "0 auto",
-            padding: "0 24px",
+            textAlign: "center",
+            padding: "0",
+            maxWidth: "600px",
           }}
         >
-          <p
-            style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "16px",
-              textShadow: "0 2px 8px rgba(0,0,0,0.6)",
-            }}
-          >
-            Give
-          </p>
           <h1
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 300,
-              color: "var(--color-cream)",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
+              fontWeight: 700,
               lineHeight: 1.2,
-              marginBottom: "24px",
-              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+              color: "#ffffff",
+              marginBottom: "8px",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
             Support Our Ministry
           </h1>
-          <div
-            style={{
-              width: "60px",
-              height: "1px",
-              background: "var(--color-amber)",
-              margin: "0 auto 24px",
-            }}
-          />
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1.05rem",
-              lineHeight: 1.8,
-              maxWidth: "600px",
-              margin: "0 auto",
-            }}
-          >
-            Your generosity helps us continue sharing the Gospel through music.
-            Every gift, no matter the size, fuels our ministry and reaches more
-            hearts.
-          </p>
-        </div>
-      </section>
-
-      {/* Donation Section */}
-      <section className="section-spacing" style={{ paddingTop: "40px" }}>
-        <div
-          style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            padding: "0 24px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "start",
-          }}
-        >
-          {/* Left - Info */}
-          <div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "2rem",
-                fontWeight: 400,
-                color: "var(--color-cream)",
-                lineHeight: 1.3,
-                marginBottom: "24px",
-              }}
-            >
-              How Your Gift Helps
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              {[
-                {
-                  title: "Travel Expenses",
-                  desc: "Fuel, lodging, and meals as we travel to churches and events across the region.",
-                },
-                {
-                  title: "Equipment & Music",
-                  desc: "Maintaining instruments, sound equipment, and recording resources.",
-                },
-                {
-                  title: "Ministry Outreach",
-                  desc: "Reaching more churches and communities with worship and the Gospel message.",
-                },
-                {
-                  title: "Recording Projects",
-                  desc: "Producing worship recordings to share our music with a wider audience.",
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: "20px 24px",
-                    background: "var(--color-bg-card)",
-                    borderRadius: "8px",
-                    borderLeft: "3px solid var(--color-amber)",
-                  }}
-                >
-                  <h4
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "1.2rem",
-                      fontWeight: 500,
-                      color: "var(--color-amber)",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {item.title}
-                  </h4>
-                  <p
-                    style={{
-                      color: "var(--color-cream-muted)",
-                      fontSize: "0.9rem",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div
-              style={{
-                marginTop: "32px",
-                padding: "24px",
-                borderTop: "1px solid var(--color-divider)",
-                borderBottom: "1px solid var(--color-divider)",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.2rem",
-                  fontStyle: "italic",
-                  color: "var(--color-cream)",
-                  lineHeight: 1.6,
-                  marginBottom: "12px",
-                }}
-              >
-                &ldquo;Each one must give as he has decided in his heart, not
-                reluctantly or under compulsion, for God loves a cheerful
-                giver.&rdquo;
-              </p>
-              <p
-                style={{
-                  color: "var(--color-amber)",
-                  fontSize: "0.9rem",
-                  fontWeight: 500,
-                }}
-              >
-                2 Corinthians 9:7 NKJV
-              </p>
-            </div>
-          </div>
-
-          {/* Right - Donate Card */}
-          <div>
-            <div
-              style={{
-                background: "var(--color-bg-card)",
-                borderRadius: "12px",
-                padding: "40px",
-                border: "1px solid rgba(212, 160, 65, 0.2)",
-                textAlign: "center",
-                position: "sticky",
-                top: "120px",
-              }}
-            >
-              <div
-                style={{
-                  width: "64px",
-                  height: "64px",
-                  borderRadius: "50%",
-                  background: "rgba(212, 160, 65, 0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 24px",
-                  border: "1px solid rgba(212, 160, 65, 0.2)",
-                }}
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--color-amber)"
-                  strokeWidth="1.5"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              </div>
-
-              <h3
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.8rem",
-                  fontWeight: 500,
-                  color: "var(--color-cream)",
-                  marginBottom: "12px",
-                }}
-              >
-                Make a Donation
-              </h3>
-              <p
-                style={{
-                  color: "var(--color-cream-muted)",
-                  fontSize: "0.95rem",
-                  lineHeight: 1.7,
-                  marginBottom: "32px",
-                }}
-              >
-                Your donation supports our mission to share the
-                love of Christ through worship music.
-              </p>
-
-              {/* Custom Amount Input */}
-              <div
-                style={{
-                  position: "relative",
-                  marginBottom: "24px",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "20px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    color: "var(--color-amber)",
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 500,
-                  }}
-                >
-                  $
-                </span>
-                <input
-                  type="number"
-                  min="1"
-                  placeholder="Enter amount"
-                  value={customAmount}
-                  onChange={(e) => setCustomAmount(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "18px 20px 18px 40px",
-                    background: "rgba(212, 160, 65, 0.08)",
-                    border: "1px solid rgba(212, 160, 65, 0.25)",
-                    borderRadius: "8px",
-                    color: "var(--color-cream)",
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 500,
-                    outline: "none",
-                    textAlign: "center",
-                    boxSizing: "border-box",
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = "var(--color-amber)";
-                    e.currentTarget.style.background = "rgba(212, 160, 65, 0.12)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(212, 160, 65, 0.25)";
-                    e.currentTarget.style.background = "rgba(212, 160, 65, 0.08)";
-                  }}
-                />
-              </div>
-
-              <button
-                onClick={handleDonate}
-                className="btn-primary"
-                style={{ width: "100%", justifyContent: "center", border: "none", cursor: "pointer" }}
-              >
-                Donate Now
-              </button>
-
-              <p
-                style={{
-                  color: "var(--color-warm-gray)",
-                  fontSize: "0.8rem",
-                  marginTop: "20px",
-                  lineHeight: 1.6,
-                }}
-              >
-                Contact us directly to arrange your donation via check, Zelle,
-                or other methods.
-              </p>
-            </div>
-
-            {/* Photo */}
-            <div
-              style={{
-                marginTop: "24px",
-                borderRadius: "8px",
-                position: "relative",
-              }}
-            >
-              <Image
-                src="/images/support-photo.jpeg"
-                alt="Wylie and Dawna leading worship"
-                width={500}
-                height={375}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  borderRadius: "8px",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Current Ministry Need */}
-      <section
-        className="section-spacing"
-        style={{
-          background: "var(--color-bg-warm)",
-        }}
-      >
-        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
           <p
             style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.8rem",
+              fontSize: "clamp(1rem, 2.2vw, 1.4rem)",
               fontWeight: 600,
-              letterSpacing: "3px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "16px",
+              color: "#ffffff",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
-            Current Need
+            Partner with us
           </p>
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-              fontWeight: 400,
-              color: "var(--color-cream)",
-              lineHeight: 1.3,
-              marginBottom: "24px",
-            }}
-          >
-            Help Us Stay on the Road
-          </h2>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              marginBottom: "16px",
-              maxWidth: "650px",
-              margin: "0 auto 16px",
-            }}
-          >
-            As our ministry grows and we travel to more churches and events
-            across the region, we need a camper shell for our truck to safely
-            transport our instruments, sound equipment, and ministry materials.
-            This will allow us to be better stewards of the resources God has
-            provided and serve more effectively wherever He calls us.
-          </p>
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "2rem",
-              fontWeight: 500,
-              color: "var(--color-amber)",
-              marginBottom: "8px",
-              marginTop: "32px",
-            }}
-          >
-            $7,000
-          </p>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "0.9rem",
-              marginBottom: "32px",
-            }}
-          >
-            Estimated cost for camper shell
-          </p>
-          <p
-            style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              maxWidth: "600px",
-              margin: "0 auto 32px",
-            }}
-          >
-            If God places it on your heart to give toward this specific need,
-            please mention &ldquo;camper shell&rdquo; when you reach out. Every
-            dollar brings us closer to this goal, and we are grateful for your
-            partnership in this ministry.
-          </p>
-          <a
-            href="mailto:dbstevens04@hotmail.com?subject=Donation%20-%20Camper%20Shell%20Project"
-            className="btn-primary"
-          >
-            Give Toward This Project
-          </a>
         </div>
       </section>
 
-      {/* Photo Section */}
-      <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", alignItems: "start" }}>
-          <div style={{ borderRadius: "8px" }}>
-            <Image
-              src="/images/5M5A7503.jpeg"
-              alt="Wylie and Dawna Stevens together"
-              width={600}
-              height={800}
-              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
-            />
-          </div>
-          <div style={{ borderRadius: "8px" }}>
-            <Image
-              src="/images/IMG_1750.jpeg"
-              alt="Wylie and Dawna in ministry"
-              width={600}
-              height={800}
-              style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Why We Are Not a 501(c)(3) */}
+      {/* Scripture */}
       <section
-        className="section-spacing"
         style={{
           background: "var(--color-bg-warm)",
+          padding: "16px 24px 12px",
+          textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "750px", margin: "0 auto", padding: "0 24px" }}>
-          <h3
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+          <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.5rem, 3vw, 2rem)",
-              fontWeight: 400,
+              fontSize: "1.4rem",
+              fontStyle: "italic",
               color: "var(--color-cream)",
-              lineHeight: 1.3,
-              marginBottom: "24px",
-              textAlign: "center",
+              lineHeight: 1.7,
+              marginBottom: "16px",
             }}
           >
-            Why We Have Chosen Not to Be a 501(c)(3)
-          </h3>
+            &ldquo;Whoever brings blessings will be enriched, and one who waters will himself be watered.&rdquo;
+          </p>
+          <p
+            style={{
+              color: "var(--color-amber)",
+              fontSize: "0.95rem",
+              fontWeight: 500,
+            }}
+          >
+            Proverbs 11:25
+          </p>
+        </div>
+      </section>
+
+      {/* Gratitude Quote */}
+      <section
+        style={{
+          padding: "12px 24px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <p
             style={{
               color: "var(--color-cream-muted)",
               fontSize: "1rem",
               lineHeight: 1.9,
-              marginBottom: "20px",
+            }}
+          >
+            &ldquo;We are so grateful for all who support our music ministry and the zeal God has placed in our hearts to share the gospel. Your generosity through prayer, encouragement, and financial partnership allows us to press on in Jesus&apos; name to advance the Kingdom of Heaven!&rdquo;
+          </p>
+        </div>
+      </section>
+
+      {/* How Your Gift Helps */}
+      <section style={{ padding: "12px 0 80px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
+          <div
+            className="grid-2-col mobile-gap-sm"
+            style={{
+              gap: "60px",
+              alignItems: "start",
+            }}
+          >
+            {/* Left side: photos in a 2-column grid (rows of 2) */}
+            <div className="grid-2-col" style={{ gap: "12px" }}>
+              {[
+                { src: "/images/needles_church.jpeg", alt: "Wylie and Dawna leading worship at Needles SDA Church", w: 400, h: 503, caption: "Needles, CA SDA Church" },
+                { src: "/images/support_new_3.jpeg", alt: "Wylie and Dawna leading worship at Espanola Valley SDA Church", w: 400, h: 503, caption: "Espanola Valley SDA Church, NM" },
+                { src: "/images/support_new_2.jpeg", alt: "Fellowship with the congregation at Springdale SDA Church", w: 400, h: 503, caption: "Springdale, AR SDA Church" },
+                { src: "/images/support_new_4.jpeg", alt: "Wylie and Dawna with the congregation at Elk City SDA Church", w: 400, h: 503, caption: "Elk City, OK SDA Church" },
+                { src: "/images/support_new_5.jpeg", alt: "Worship service at Searcy SDA Church", w: 400, h: 503, caption: "Searcy, AR SDA Church" },
+                { src: "/images/gardens_care.jpeg", alt: "Wylie and Dawna leading worship at Gardens Care Center", w: 400, h: 503, caption: "Gardens Care Center, Kingman, AZ" },
+                { src: "/images/castle_valley.jpeg", alt: "Fellowship at Castle Valley Academy", w: 400, h: 503, caption: "Castle Valley Academy, UT" },
+              ].map((photo, i) => (
+                <div key={i} style={{ textAlign: "center" }}>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.w}
+                    height={photo.h}
+                    style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px", border: "1px solid rgba(212, 160, 65, 0.15)" }}
+                  />
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.75rem", fontStyle: "italic", color: "var(--color-cream-muted)", marginTop: "6px" }}>{photo.caption}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right side: heading + info cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "2rem",
+                  fontWeight: 400,
+                  color: "var(--color-cream)",
+                  lineHeight: 1.3,
+                  marginBottom: "12px",
+                  textAlign: "center",
+                }}
+              >
+                How Your Gift Helps
+              </h2>
+              {[
+                { title: "Travel Expenses", desc: "Fuel, lodging, and meals as we travel to churches and events." },
+                { title: "Equipment & Music", desc: "Maintaining instruments, sound equipment, and recording resources." },
+                { title: "Ministry Outreach", desc: "Reaching more churches and communities with worship and the Gospel message." },
+                { title: "Recording Projects", desc: "Producing worship recordings to share our music with a wider audience." },
+                { title: "Camper Shell", desc: "To outfit truck for secure transport of audio equipment. Cost: $3400" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: "20px",
+                    background: "var(--color-bg-card)",
+                    borderRadius: "8px",
+                    borderLeft: "3px solid var(--color-amber)",
+                  }}
+                >
+                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontWeight: 500, color: "var(--color-amber)", marginBottom: "6px" }}>{item.title}</h4>
+                  <p style={{ color: "var(--color-cream-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>{item.desc}</p>
+                </div>
+              ))}
+
+              {/* Special Thanks */}
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "1.6rem",
+                    fontWeight: 500,
+                    color: "var(--color-amber)",
+                    lineHeight: 1.3,
+                    marginBottom: "16px",
+                    textAlign: "center",
+                  }}
+                >
+                  Special Thanks
+                </h3>
+                <p
+                  style={{
+                    color: "var(--color-cream-muted)",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.8,
+                    marginBottom: "16px",
+                  }}
+                >
+                  With deepest gratitude, we recognize those whose extraordinary support has quietly and powerfully shaped this ministry.
+                </p>
+                <p
+                  style={{
+                    color: "var(--color-cream-muted)",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.8,
+                    marginBottom: "0",
+                  }}
+                >
+                  <span style={{ color: "var(--color-cream)", fontWeight: 600 }}>Valued Friends</span> &mdash; Old and new, who see the vision God has given us, who have encouraged us by attending our events, inviting us to sing, worshipping and singing alongside us, eagerly awaiting the advancement of our ministry, and faithfully praying for us, you are a blessing!
+                </p>
+                <p
+                  style={{
+                    color: "var(--color-cream-muted)",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.8,
+                    marginBottom: "0",
+                    marginTop: "16px",
+                  }}
+                >
+                  <span style={{ color: "var(--color-cream)", fontWeight: 600 }}>Needles SDA Church</span> &mdash; Your constant love, prayerful support, valued input in song choices, and the arena to strengthen and refine our music skills bless us beyond measure! It&apos;s an honor to serve alongside you as music leader and elder.
+                </p>
+                <p
+                  style={{
+                    color: "var(--color-cream-muted)",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.8,
+                    marginBottom: "0",
+                    marginTop: "16px",
+                  }}
+                >
+                  <span style={{ color: "var(--color-cream)", fontWeight: 600 }}>Allen Howard</span> &mdash; The Candle Studio, Needles, CA. Producer and sound engineer of our music project, &ldquo;In The Beginning.&rdquo; Your belief in us and our God-given mission has never wavered. Your friendship, guidance, well-honed ear, audio skills and the &lsquo;patience of the saints&rsquo; has brought our first music project to life.
+                </p>
+
+                {/* Studio photos */}
+                <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
+                  <div style={{ textAlign: "center" }}>
+                    <Image
+                      src="/images/studio_all_of_us.jpeg"
+                      alt="Wylie, Dawna, and Allen Howard at The Candle Studio"
+                      width={3348}
+                      height={2442}
+                      style={{
+                        width: "75%",
+                        height: "auto",
+                        display: "block",
+                        margin: "0 auto",
+                        borderRadius: "8px",
+                        border: "1px solid rgba(212, 160, 65, 0.15)",
+                      }}
+                    />
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.75rem", fontStyle: "italic", color: "var(--color-cream-muted)", marginTop: "6px" }}>
+                      Wylie, Dawna, Allen, The Candle Studio
+                    </p>
+                  </div>
+
+                  <div className="grid-3-col" style={{ gap: "10px" }}>
+                    {[
+                      { src: "/images/studio_allen.jpeg", alt: "Allen Howard, Sound Engineer at The Candle Studio", w: 1900, h: 2288, caption: "Allen Howard, Sound Engineer" },
+                      { src: "/images/studio_dawna.jpeg", alt: "Dawna, Vocals at The Candle Studio", w: 1850, h: 3024, caption: "Dawna, Vocals" },
+                      { src: "/images/studio_wylie.jpeg", alt: "Wylie, Guitar and Vocals at The Candle Studio", w: 3024, h: 4032, caption: "Wylie, Guitar/Vocals" },
+                    ].map((photo, i) => (
+                      <div key={i} style={{ textAlign: "center" }}>
+                        <div
+                          style={{
+                            width: "100%",
+                            aspectRatio: "3 / 4",
+                            position: "relative",
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                            border: "1px solid rgba(212, 160, 65, 0.15)",
+                            background: "var(--color-bg-warm)",
+                          }}
+                        >
+                          <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            fill
+                            style={{ objectFit: "cover", objectPosition: "center top" }}
+                          />
+                        </div>
+                        <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.72rem", fontStyle: "italic", color: "var(--color-cream-muted)", marginTop: "6px" }}>
+                          {photo.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Give Online + Become a Partner */}
+      <section className="section-spacing" style={{ background: "var(--color-bg-warm)" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
+          <div
+            className="grid-2-col mobile-gap-sm"
+            style={{
+              gap: "60px",
+              alignItems: "start",
+            }}
+          >
+            {/* Left: Give Online */}
+            <div>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.6rem",
+                  fontWeight: 400,
+                  color: "var(--color-cream)",
+                  marginBottom: "24px",
+                  textAlign: "center",
+                }}
+              >
+                Give Online
+              </h2>
+              {/* Credit / Debit Card - full width */}
+              <div style={{ marginBottom: "20px" }}>
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "1.3rem",
+                    fontWeight: 500,
+                    color: "var(--color-amber)",
+                    textAlign: "center",
+                    margin: "0 0 10px",
+                    letterSpacing: "0.5px",
+                  }}
+                >
+                  One-Time Gift
+                </h3>
+                <PaymentCard title="Credit / Debit Card">
+                  <OneTimeDonation />
+                </PaymentCard>
+              </div>
+
+              <div
+                className="grid-2-col-payment"
+                style={{
+                  gap: "20px",
+                }}
+              >
+                {/* PayPal */}
+                <PaymentCard title="PayPal">
+                  <div style={{ background: "#fff", padding: "8px", borderRadius: "6px" }}>
+                    <QRCodeSVG
+                      value="https://www.paypal.com/donate/?hosted_button_id=YRKKLNKAQX3JL"
+                      size={130}
+                    />
+                  </div>
+                  <p style={{ color: "var(--color-cream-muted)", fontSize: "0.7rem" }}>
+                    PayPal Donations
+                  </p>
+                  <a
+                    href="https://www.paypal.com/donate/?hosted_button_id=YRKKLNKAQX3JL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      padding: "8px 16px",
+                      background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+                      color: "var(--color-bg-deep)",
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Donate via PayPal
+                  </a>
+                </PaymentCard>
+
+                {/* Venmo */}
+                <PaymentCard title="Venmo">
+                  <div style={{ background: "#fff", padding: "8px", borderRadius: "6px" }}>
+                    <QRCodeSVG
+                      value="https://venmo.com/u/Wylie-Stevens"
+                      size={130}
+                    />
+                  </div>
+                  <p style={{ color: "var(--color-cream-muted)", fontSize: "0.7rem" }}>
+                    @Wylie-Stevens
+                  </p>
+                  <a
+                    href="https://venmo.com/u/Wylie-Stevens"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      padding: "8px 16px",
+                      background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+                      color: "var(--color-bg-deep)",
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Send via Venmo
+                  </a>
+                </PaymentCard>
+
+                {/* Cash App */}
+                <PaymentCard title="Cash App">
+                  <div style={{ background: "#fff", padding: "8px", borderRadius: "6px" }}>
+                    <QRCodeSVG
+                      value="https://cash.app/$WylieStevens"
+                      size={130}
+                    />
+                  </div>
+                  <p style={{ color: "var(--color-cream-muted)", fontSize: "0.7rem" }}>
+                    $WylieStevens
+                  </p>
+                  <a
+                    href="https://cash.app/$WylieStevens"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      padding: "8px 16px",
+                      background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+                      color: "var(--color-bg-deep)",
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Send via Cash App
+                  </a>
+                </PaymentCard>
+
+                {/* Zelle */}
+                <PaymentCard title="Zelle">
+                  <p
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "var(--color-amber)",
+                    }}
+                  >
+                    903-556-3596
+                  </p>
+                  <p style={{ color: "var(--color-cream-muted)", fontSize: "0.7rem", lineHeight: 1.6 }}>
+                    Open your bank app and search Zelle to send to this number.
+                  </p>
+                  <div style={{ background: "#fff", padding: "8px", borderRadius: "6px" }}>
+                    <QRCodeSVG
+                      value="tel:9035563596"
+                      size={130}
+                    />
+                  </div>
+                </PaymentCard>
+              </div>
+            </div>
+
+            {/* Right: Become a Partner */}
+            <div>
+              <h3
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.6rem",
+                  fontWeight: 400,
+                  color: "var(--color-cream)",
+                  lineHeight: 1.3,
+                  marginBottom: "12px",
+                  textAlign: "center",
+                }}
+              >
+                Become a Partner
+              </h3>
+              <p
+                style={{
+                  color: "var(--color-cream-muted)",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.7,
+                  marginBottom: "24px",
+                  textAlign: "center",
+                }}
+              >
+                We can&apos;t do this alone, and we were never meant to. If you feel connected to this ministry and what it represents, we invite you to become a monthly partner. Your support helps us continue showing up, pouring out, and reaching others with consistency and care. You&apos;re not just giving, you&apos;re joining the mission.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {[
+                  { amount: 10, label: "$10", perMonth: "per month", tier: "Harvest Worker (Luke 10:2)" },
+                  { amount: 25, label: "$25", perMonth: "per month", tier: "Light Bearer (Matt. 5:14-16)" },
+                  { amount: 50, label: "$50", perMonth: "per month", tier: "Kingdom Ambassador (2 Cor. 5:20)" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="partner-tier"
+                    style={{
+                      padding: "20px 24px",
+                      background: "var(--color-bg-card)",
+                      borderRadius: "8px",
+                      borderLeft: "3px solid var(--color-amber)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div>
+                      <p
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "1.3rem",
+                          fontWeight: 600,
+                          color: "var(--color-amber)",
+                          marginBottom: "2px",
+                        }}
+                      >
+                        {item.label}{" "}
+                        <span style={{ fontSize: "0.8rem", fontWeight: 400, color: "var(--color-cream-muted)" }}>
+                          {item.perMonth}
+                        </span>
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "0.95rem",
+                          fontStyle: "italic",
+                          color: "var(--color-cream)",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {item.tier}
+                      </p>
+                    </div>
+                    <PartnerTierButton amount={item.amount} label="Partner Now" />
+                  </div>
+                ))}
+
+                {/* Custom Monthly Amount */}
+                <CustomMonthlyDonation />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 501(c)(3) Fine Print */}
+      <section
+        style={{
+          padding: "16px 24px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <h4
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "var(--color-warm-gray)",
+              marginBottom: "12px",
+            }}
+          >
+            501(c)(3) Statement
+          </h4>
+          <p
+            style={{
+              color: "var(--color-warm-gray)",
+              fontSize: "0.85rem",
+              lineHeight: 1.8,
+              marginBottom: "10px",
             }}
           >
             Last Song Ministry operates independently of 501(c)(3) tax-exempt
@@ -529,14 +941,14 @@ export default function SupportPage() {
           </p>
           <p
             style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.9,
-              marginBottom: "20px",
+              color: "var(--color-warm-gray)",
+              fontSize: "0.85rem",
+              lineHeight: 1.8,
+              marginBottom: "10px",
             }}
           >
             We believe our ministry is called and commissioned by God, and we
-            answer to His authority alone. After careful study and sustained
+            answer to His authority alone. After careful study and
             prayer, we have chosen not to place our ministry under the
             regulatory authority of any government entity. We serve under the
             government of God, not the government of man, and we want to ensure
@@ -545,10 +957,10 @@ export default function SupportPage() {
           </p>
           <p
             style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.9,
-              marginBottom: "20px",
+              color: "var(--color-warm-gray)",
+              fontSize: "0.85rem",
+              lineHeight: 1.8,
+              marginBottom: "10px",
             }}
           >
             We hold no judgment toward other ministries that have chosen
@@ -558,9 +970,9 @@ export default function SupportPage() {
           </p>
           <p
             style={{
-              color: "var(--color-cream-muted)",
-              fontSize: "1rem",
-              lineHeight: 1.9,
+              color: "var(--color-warm-gray)",
+              fontSize: "0.85rem",
+              lineHeight: 1.8,
             }}
           >
             Because of this, donations to Last Song Ministry are not
@@ -570,6 +982,7 @@ export default function SupportPage() {
           </p>
         </div>
       </section>
+
     </div>
   );
 }

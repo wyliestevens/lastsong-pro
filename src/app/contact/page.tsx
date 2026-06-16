@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -11,25 +12,51 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent("Contact from Last Song Website");
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nChurch/Organization: ${formData.church}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:dbstevens04@hotmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setError("");
+    setSending(true);
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          church: formData.church || "N/A",
+          message: formData.message,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+      setSubmitted(true);
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Failed to send. Please email admin@lastsong.pro directly.";
+      setError(msg);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
     <div>
       {/* Hero with Background Image */}
       <section
+        className="hero-section"
         style={{
           position: "relative",
           height: "85vh",
@@ -37,7 +64,6 @@ export default function ContactPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          textAlign: "center",
           overflow: "hidden",
         }}
       >
@@ -57,61 +83,54 @@ export default function ContactPage() {
           }}
         />
         <div
+          className="hero-text-mobile"
           style={{
-            position: "relative",
+            position: "absolute",
+            top: "15%",
+            right: "15%",
             zIndex: 2,
-            maxWidth: "800px",
-            margin: "0 auto",
-            padding: "0 24px",
+            textAlign: "center",
+            padding: "0",
+            maxWidth: "600px",
           }}
         >
-          <p
-            style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--color-amber)",
-              marginBottom: "16px",
-              textShadow: "0 2px 8px rgba(0,0,0,0.6)",
-            }}
-          >
-            Get in Touch
-          </p>
           <h1
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 300,
-              color: "var(--color-cream)",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
+              fontWeight: 700,
               lineHeight: 1.2,
-              marginBottom: "24px",
-              textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+              color: "#ffffff",
+              marginBottom: "8px",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
             Contact Us
           </h1>
-          <div
+          <p
             style={{
-              width: "60px",
-              height: "1px",
-              background: "var(--color-amber)",
-              margin: "0 auto",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "clamp(1rem, 2.2vw, 1.4rem)",
+              fontWeight: 600,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "#ffffff",
+              textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
-          />
+          >
+            Get in Touch
+          </p>
         </div>
       </section>
 
       {/* Contact Content */}
       <section className="section-spacing" style={{ paddingTop: "40px" }}>
         <div
+          className="grid-2-col mobile-gap-sm"
           style={{
             maxWidth: "1100px",
             margin: "0 auto",
             padding: "0 24px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
             gap: "60px",
             alignItems: "start",
           }}
@@ -174,7 +193,7 @@ export default function ContactPage() {
                 Email
               </p>
               <a
-                href="mailto:dbstevens04@hotmail.com?subject=Inquiry%20-%20Last%20Song%20Ministry"
+                href="mailto:admin@lastsong.pro?subject=Inquiry%20-%20Last%20Song%20Ministry"
                 style={{
                   color: "var(--color-cream)",
                   fontSize: "1.1rem",
@@ -184,23 +203,48 @@ export default function ContactPage() {
                   transition: "border-color 0.3s ease",
                 }}
               >
-                dbstevens04@hotmail.com
+                admin@lastsong.pro
               </a>
             </div>
 
             <div style={{ borderRadius: "8px" }}>
               <Image
-                src="/images/5M5A7470_new.jpeg"
+                src="/images/contact_photo.jpeg"
                 alt="Wylie and Dawna Stevens"
-                width={600}
-                height={800}
+                width={1140}
+                height={1600}
                 style={{
-                  width: "100%",
+                  width: "50%",
                   height: "auto",
                   display: "block",
                   borderRadius: "8px",
+                  margin: "0 auto",
                 }}
               />
+              <p
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.15rem",
+                  fontStyle: "italic",
+                  color: "var(--color-cream)",
+                  lineHeight: 1.6,
+                  marginTop: "20px",
+                  textAlign: "center",
+                }}
+              >
+                &ldquo;We would be honored to visit your church and share a time of worship and encouragement through music.&rdquo;
+              </p>
+              <p
+                style={{
+                  color: "var(--color-amber)",
+                  fontSize: "0.95rem",
+                  fontWeight: 500,
+                  textAlign: "center",
+                  marginTop: "8px",
+                }}
+              >
+                Wylie &amp; Dawna Stevens
+              </p>
             </div>
           </div>
 
@@ -232,7 +276,7 @@ export default function ContactPage() {
                 marginBottom: "32px",
               }}
             >
-              Fill out the form below and your email client will open with your message ready to send.
+              Fill out the form below and we will get back to you as soon as possible.
             </p>
 
             {submitted ? (
@@ -260,7 +304,7 @@ export default function ContactPage() {
                     marginBottom: "24px",
                   }}
                 >
-                  Your email client should have opened with your message. If it did not, please email us directly at dbstevens04@hotmail.com.
+                  Your message has been sent. We will be in touch soon. If you prefer, you can also email us directly at admin@lastsong.pro.
                 </p>
                 <button
                   onClick={() => {
@@ -440,12 +484,32 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {error && (
+                  <div
+                    style={{
+                      marginBottom: "16px",
+                      padding: "12px 16px",
+                      background: "rgba(200, 60, 60, 0.12)",
+                      border: "1px solid rgba(200, 60, 60, 0.4)",
+                      borderRadius: "6px",
+                      color: "#f1b4b4",
+                      fontSize: "0.9rem",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {error}
+                  </div>
+                )}
+
                 <button
                   type="submit"
+                  disabled={sending}
                   style={{
                     display: "inline-block",
                     padding: "16px 40px",
-                    background: "linear-gradient(135deg, var(--color-amber), #c4922e)",
+                    background: sending
+                      ? "rgba(212, 160, 65, 0.4)"
+                      : "linear-gradient(135deg, var(--color-amber), #c4922e)",
                     color: "var(--color-bg-deep)",
                     fontFamily: "'Quicksand', sans-serif",
                     fontSize: "0.95rem",
@@ -454,11 +518,11 @@ export default function ContactPage() {
                     textTransform: "uppercase",
                     border: "none",
                     borderRadius: "6px",
-                    cursor: "pointer",
+                    cursor: sending ? "not-allowed" : "pointer",
                     width: "100%",
                   }}
                 >
-                  Send Message
+                  {sending ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
@@ -466,36 +530,48 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Quote */}
+      {/* Partner CTA */}
       <section
         className="section-spacing"
         style={{
-          background: "var(--color-bg-warm)",
+          background: "var(--color-bg-deep)",
           textAlign: "center",
         }}
       >
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "0 24px" }}>
-          <p
+          <div style={{ marginBottom: "24px" }}>
+            <Image
+              src="/images/hands.jpeg"
+              alt="Hands clasped together in fellowship"
+              width={1600}
+              height={1017}
+              style={{
+                width: "100%",
+                maxWidth: "270px",
+                height: "auto",
+                display: "block",
+                margin: "0 auto",
+                borderRadius: "8px",
+                border: "1px solid rgba(212, 160, 65, 0.15)",
+              }}
+            />
+          </div>
+          <Link
+            href="/support"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "1.5rem",
-              fontStyle: "italic",
-              color: "var(--color-cream)",
-              lineHeight: 1.6,
-              marginBottom: "16px",
-            }}
-          >
-            &ldquo;We would be honored to visit your church and share a time of worship and encouragement through music.&rdquo;
-          </p>
-          <p
-            style={{
+              fontSize: "clamp(1.8rem, 3.6vw, 2.52rem)",
+              fontWeight: 400,
               color: "var(--color-amber)",
-              fontSize: "0.95rem",
-              fontWeight: 500,
+              lineHeight: 1.3,
+              textDecoration: "none",
+              borderBottom: "1px solid rgba(212, 160, 65, 0.4)",
+              paddingBottom: "4px",
+              transition: "border-color 0.3s ease",
             }}
           >
-            Wylie &amp; Dawna Stevens
-          </p>
+            Partner With Our Ministry
+          </Link>
         </div>
       </section>
     </div>

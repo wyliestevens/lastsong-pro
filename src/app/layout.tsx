@@ -70,10 +70,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/guitar_treeImage.jpeg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   alternates: {
-    canonical: "https://lastsong-pro-cvf7.vercel.app",
+    canonical: "https://lastsong.pro",
   },
 };
 
@@ -110,7 +115,7 @@ const jsonLd = {
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+1-903-556-3650",
-    email: "dbstevens04@hotmail.com",
+    email: "admin@lastsong.pro",
     contactType: "booking",
   },
   image: "https://lastsong-pro-cvf7.vercel.app/images/5M5A7470_new.jpeg",

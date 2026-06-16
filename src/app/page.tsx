@@ -6,6 +6,7 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section
+        className="hero-section"
         style={{
           position: "relative",
           height: "85vh",
@@ -32,6 +33,7 @@ export default function Home() {
           }}
         />
         <div
+          className="hero-text-mobile"
           style={{
             position: "absolute",
             top: "15%",
@@ -58,7 +60,7 @@ export default function Home() {
             Last Song
           </h1>
           <p
-            className="animate-fade-in-up delay-200"
+            className="animate-fade-in-up delay-200 hero-subtitle"
             style={{
               fontFamily: "'Quicksand', sans-serif",
               fontSize: "clamp(1rem, 2.2vw, 1.4rem)",
@@ -72,7 +74,7 @@ export default function Home() {
               textShadow: "0 2px 8px rgba(0,0,0,0.8), 0 0px 20px rgba(0,0,0,0.5)",
             }}
           >
-            Pointing Hearts to Christ Through Song
+            Singing with Eternity in View
           </p>
           <div
             className="animate-fade-in-up delay-500"
@@ -96,11 +98,11 @@ export default function Home() {
       <section
         style={{
           background: "var(--color-bg-warm)",
-          padding: "60px 24px",
+          padding: "16px 24px",
           textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -109,9 +111,10 @@ export default function Home() {
               color: "var(--color-cream)",
               lineHeight: 1.7,
               marginBottom: "16px",
+              textWrap: "balance",
             }}
           >
-            &ldquo;Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.&rdquo;
+            &ldquo;Sing to Him a new song; Play skillfully with a shout of joy.&rdquo;
           </p>
           <p
             style={{
@@ -120,66 +123,23 @@ export default function Home() {
               fontWeight: 500,
             }}
           >
-            Colossians 3:16 NKJV
+            Psalm 33:3
           </p>
         </div>
       </section>
 
-      {/* Called to Worship Together */}
+      {/* Our Story */}
       <section className="section-spacing" style={{ background: "var(--color-bg-deep)" }}>
         <div
+          className="grid-2-col mobile-gap-sm"
           style={{
             maxWidth: "1100px",
             margin: "0 auto",
             padding: "0 24px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
             gap: "60px",
             alignItems: "center",
           }}
         >
-          <div>
-            <p
-              style={{
-                color: "var(--color-cream-muted)",
-                fontSize: "1rem",
-                lineHeight: 1.9,
-                marginBottom: "20px",
-              }}
-            >
-              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.6rem", fontWeight: 700, color: "var(--color-cream)" }}>Last Song</span> is the husband-and-wife duet of Wylie and Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Their music reflects a deep love for God&apos;s Word and a desire to encourage believers through songs rich in truth, hope, and worship.
-            </p>
-            <p
-              style={{
-                color: "var(--color-cream-muted)",
-                fontSize: "1rem",
-                lineHeight: 1.9,
-                marginBottom: "20px",
-              }}
-            >
-              At the heart of Last Song&apos;s ministry is a passion to proclaim the amazing love of God and the saving grace found in Jesus Christ. Through music and testimony, Wylie and Dawna remind listeners of the hope we have in Christ, the promises of Scripture, and the mission the church is called to in this exciting time in history.
-            </p>
-            <p
-              style={{
-                color: "var(--color-cream-muted)",
-                fontSize: "1rem",
-                lineHeight: 1.9,
-                marginBottom: "20px",
-              }}
-            >
-              The name Last Song reflects the realization that we, the church, are truly singing our &ldquo;last songs&rdquo; as we finish the work in anticipation of the soon return of our Lord. Wylie and Dawna seek to use their time and talents to encourage others to join in sharing the Gospel and to hold fast to their faith. Each song&mdash;whether a familiar hymn, scripture set to music, or heartfelt praise and worship&mdash;is chosen with the purpose of pointing hearts back to God.
-            </p>
-            <p
-              style={{
-                color: "var(--color-cream-muted)",
-                fontSize: "1rem",
-                lineHeight: 1.9,
-                marginBottom: "20px",
-              }}
-            >
-              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music can uplift, strengthen, and encourage the body of Christ. More than a performance, each opportunity to share music is viewed as ministry&mdash;serving the Lord, blessing His people, and sharing the message of the Gospel through song.
-            </p>
-          </div>
           <div
             style={{
               position: "relative",
@@ -187,10 +147,10 @@ export default function Home() {
             }}
           >
             <Image
-              src="/images/5M5A7470_new.jpeg"
-              alt="Wylie and Dawna Stevens posing together with guitar"
-              width={600}
-              height={1080}
+              src="/images/full_body_guitar.jpeg"
+              alt="Wylie playing guitar"
+              width={840}
+              height={1600}
               style={{
                 width: "100%",
                 height: "auto",
@@ -208,34 +168,69 @@ export default function Home() {
               }}
             />
           </div>
-        </div>
-      </section>
-
-      {/* Our Mission */}
-      <section className="section-spacing" style={{ background: "var(--color-bg-warm)" }}>
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-            padding: "0 24px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "center",
-          }}
-        >
           <div>
-            <h2
+            <p
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "2.2rem",
-                fontWeight: 400,
-                color: "var(--color-cream)",
-                lineHeight: 1.3,
+                color: "var(--color-cream-muted)",
+                fontSize: "1.2rem",
+                lineHeight: 1.9,
                 marginBottom: "24px",
               }}
             >
-              Our Mission
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.9rem", fontWeight: 700, color: "var(--color-cream)" }}>Last Song</span> is the husband-and-wife duet of Wylie and Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Through song and testimony, they remind listeners of the hope we have in Christ, the promises of Scripture, and the mission the church is called to in this exciting time in history.
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1.2rem",
+                lineHeight: 1.9,
+                marginBottom: "24px",
+              }}
+            >
+              The name Last Song reflects the realization that we, the church, are truly singing our &lsquo;last songs&rsquo; as we finish the work in anticipation of the soon return of our Lord. Wylie and Dawna seek to use their time and talents to encourage others to join in sharing the Gospel and to hold fast to their faith. Each song is chosen with the purpose of pointing hearts to God.
+            </p>
+            <p
+              style={{
+                color: "var(--color-cream-muted)",
+                fontSize: "1.2rem",
+                lineHeight: 1.9,
+                marginBottom: "24px",
+              }}
+            >
+              Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music can uplift, strengthen, and encourage the body of Christ.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ministering in Churches */}
+      <section className="section-spacing" style={{ background: "var(--color-bg-warm)" }}>
+        <div
+          style={{
+            maxWidth: "800px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          <div
+            style={{
+              background: "var(--color-bg-card)",
+              borderRadius: "12px",
+              padding: "48px 40px",
+              border: "1px solid rgba(212, 160, 65, 0.2)",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "1.8rem",
+                fontWeight: 500,
+                color: "var(--color-cream)",
+                marginBottom: "20px",
+                textAlign: "center",
+              }}
+            >
+              Ministering in Churches and Christian Events
             </h2>
             <p
               style={{
@@ -243,38 +238,22 @@ export default function Home() {
                 fontSize: "1rem",
                 lineHeight: 1.9,
                 marginBottom: "20px",
+                textAlign: "center",
               }}
             >
-              Last Song serves in their community once a month at The Gardens Care Center, in Kingman, AZ, sharing light and love through singing, prayer, and bible studies with the residents there. In addition to their music, Wylie and Dawna are committed to sharing the gospel through literature and friendship evangelism. In their ministry &ldquo;Wherever You Go&rdquo;, they hand out books, magazines, &amp; DVDs as they go about daily errands and when traveling, seeking the lost and downtrodden to tell them the good news of Jesus, encouraging and praying with them. They also lead several individual and group bible studies, in-home and via Zoom, because as Hosea warns, &ldquo;my people perish for lack of knowledge.&rdquo; Hos 4:6
+              Last Song shares music in churches, outreach events, camp meetings and other Christian gatherings.
             </p>
-          </div>
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "8px",
-            }}
-          >
-            <Image
-              src="/images/IMG_1046.jpeg"
-              alt="Wylie and Dawna holding ministry literature"
-              width={600}
-              height={1034}
+            <p
               style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-                borderRadius: "8px",
+                color: "var(--color-cream-muted)",
+                fontSize: "1rem",
+                lineHeight: 1.9,
+                marginBottom: "0",
+                textAlign: "center",
               }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                border: "1px solid rgba(212, 160, 65, 0.15)",
-                borderRadius: "8px",
-                pointerEvents: "none",
-              }}
-            />
+            >
+              If your church or ministry is looking for Christ-centered music through songs rooted in the truths of Scripture, please feel free to reach out through our <Link href="/contact" style={{ color: "var(--color-amber)", textDecoration: "none", borderBottom: "1px solid rgba(212, 160, 65, 0.4)" }}>Contact page</Link> for more information about scheduling or upcoming opportunities to serve together.
+            </p>
           </div>
         </div>
       </section>
@@ -288,13 +267,30 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ marginBottom: "24px" }}>
+            <Image
+              src="/images/hands.jpeg"
+              alt="Hands clasped together in fellowship"
+              width={1600}
+              height={1017}
+              style={{
+                width: "100%",
+                maxWidth: "270px",
+                height: "auto",
+                display: "block",
+                margin: "0 auto",
+                borderRadius: "8px",
+                border: "1px solid rgba(212, 160, 65, 0.15)",
+              }}
+            />
+          </div>
           <Link
             href="/support"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2rem, 4vw, 2.8rem)",
+              fontSize: "clamp(1.8rem, 3.6vw, 2.52rem)",
               fontWeight: 400,
-              color: "var(--color-cream)",
+              color: "var(--color-amber)",
               lineHeight: 1.3,
               textDecoration: "none",
               borderBottom: "1px solid rgba(212, 160, 65, 0.4)",
