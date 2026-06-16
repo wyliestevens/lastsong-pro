@@ -67,16 +67,33 @@ export default function ChatInterface() {
   async function addFiles(files: FileList | File[]) {
     setErr("");
     const next: Attachment[] = [...attachments];
+    let added = 0;
     for (const file of Array.from(files)) {
-      if (!ALLOWED_TYPES.has(file.type)) {
-        setErr(`Unsupported file type: ${file.type || "unknown"} (png/jpg/webp/gif only)`);
+      // Some drop sources (esp. macOS screencaptureui) report an empty MIME
+      // type. Trust the .png/.jpg/.webp/.gif extension as a fallback.
+      let mediaType = file.type;
+      if (!ALLOWED_TYPES.has(mediaType)) {
+        const ext = (file.name.split(".").pop() || "").toLowerCase();
+        const extMap: Record<string, string> = {
+          png: "image/png",
+          jpg: "image/jpeg",
+          jpeg: "image/jpeg",
+          webp: "image/webp",
+          gif: "image/gif",
+        };
+        if (extMap[ext]) mediaType = extMap[ext];
+      }
+      if (!ALLOWED_TYPES.has(mediaType)) {
+        setErr(
+          `Could not attach ${file.name || "file"}: unsupported type "${file.type || "unknown"}". Use PNG, JPG, WebP, or GIF.`
+        );
         continue;
       }
       if (file.size > MAX_IMAGE_BYTES) {
-        setErr(`${file.name} is too large (max 5 MB)`);
+        setErr(`${file.name} is too large (max 3 MB)`);
         continue;
       }
-      const { mediaType, base64 } = await fileToBase64(file);
+      const { base64 } = await fileToBase64(file);
       next.push({
         id: `${file.name}-${file.size}-${Date.now()}-${Math.random()}`,
         mediaType,
@@ -84,8 +101,12 @@ export default function ChatInterface() {
         previewUrl: `data:${mediaType};base64,${base64}`,
         name: file.name || "screenshot",
       });
+      added++;
     }
     setAttachments(next);
+    if (added > 0) {
+      console.log(`[chat] attached ${added} image(s); total queued: ${next.length}`);
+    }
   }
 
   function removeAttachment(id: string) {
@@ -95,25 +116,62 @@ export default function ChatInterface() {
   async function onPaste(e: React.ClipboardEvent<HTMLTextAreaElement>) {
     const files: File[] = [];
     for (const item of Array.from(e.clipboardData.items)) {
-      if (item.kind === "file" && item.type.startsWith("image/")) {
+      if (item.kind === "file") {
         const f = item.getAsFile();
         if (f) files.push(f);
       }
     }
     if (files.length) {
       e.preventDefault();
+      console.log(`[chat] paste detected ${files.length} file(s)`);
       await addFiles(files);
     }
   }
 
   async function onDrop(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault();
+    e.stopPropagation();
     setDragOver(false);
-    const files = Array.from(e.dataTransfer.files || []).filter((f) =>
-      f.type.startsWith("image/")
-    );
-    if (files.length) await addFiles(files);
+    // Be permissive: accept anything in dataTransfer.files; addFiles validates.
+    const files = Array.from(e.dataTransfer.files || []);
+    console.log(`[chat] drop detected ${files.length} file(s)`);
+    if (files.length === 0) {
+      setErr(
+        "Drop landed but no files were attached. Try dragging the screenshot directly from the floating preview thumbnail, the Desktop, or a Finder window."
+      );
+      return;
+    }
+    await addFiles(files);
   }
+
+  // Catch drops anywhere in the window so the user can drop on the page edges
+  // and the screenshot still attaches. Without this, drops outside the chat
+  // container do the browser default (often opens the image in a new tab).
+  useEffect(() => {
+    function preventDefault(e: DragEvent) {
+      // Only intercept drag operations carrying files.
+      if (e.dataTransfer && Array.from(e.dataTransfer.types).includes("Files")) {
+        e.preventDefault();
+      }
+    }
+    async function docDrop(e: DragEvent) {
+      if (!e.dataTransfer) return;
+      if (!Array.from(e.dataTransfer.types).includes("Files")) return;
+      e.preventDefault();
+      const files = Array.from(e.dataTransfer.files || []);
+      console.log(`[chat] doc drop ${files.length} file(s)`);
+      if (files.length) await addFiles(files);
+    }
+    window.addEventListener("dragover", preventDefault);
+    window.addEventListener("drop", docDrop);
+    return () => {
+      window.removeEventListener("dragover", preventDefault);
+      window.removeEventListener("drop", docDrop);
+    };
+    // addFiles closes over `attachments` via state, so re-bind when it changes
+    // so we don't lose previously-attached files.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attachments]);
 
   async function send() {
     const text = input.trim();
@@ -300,9 +358,23 @@ export default function ChatInterface() {
             display: "flex",
             gap: "8px",
             flexWrap: "wrap",
-            background: "rgba(15, 13, 10, 0.4)",
+            alignItems: "center",
+            background: "rgba(212, 160, 65, 0.08)",
           }}
         >
+          <div
+            style={{
+              color: "var(--color-amber)",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+              marginRight: "4px",
+            }}
+          >
+            📎 {attachments.length} image{attachments.length === 1 ? "" : "s"} attached
+          </div>
           {attachments.map((a) => (
             <div
               key={a.id}
