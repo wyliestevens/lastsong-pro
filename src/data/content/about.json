@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "About Last Song",
+    "subtitle": "Our Story"
+  },
+  "scripture": {
+    "text": "Speaking to one another in psalms and hymns and spiritual songs, singing and making melody in your heart to the Lord.",
+    "reference": "Ephesians 5:19"
+  },
+  "bioPhoto": {
+    "src": "/images/IMG_5781_full.jpeg",
+    "alt": "Wylie and Dawna singing at microphones",
+    "w": 800,
+    "h": 1276
+  },
+  "story": {
+    "heading": "Our Story",
+    "paragraphs": [
+      "Wylie's journey in music began 48 years ago, as a tender four-year old singing next to his father in a bluegrass band made up of friends who played together every Friday night. At age fourteen, he committed to serving as a music minister, first in the church he grew up in, and later in several other churches in northeast Texas and southern Arkansas. In his desire to share the gospel through song, he became the lead singer of the gospel group, Southern Grace Quartet, in 2001, and they toured the four-state area of Texas, Arkansas, Oklahoma, and Louisiana.",
+      "Dawna's early singing experience was little more than a \"hairbrush microphone\" singing with popular songs as a young girl and later in church choirs. After several years of Wylie trying to convince her to sing with him, Dawna finally joined him eight years ago, and together they formed the dynamic duo, \"Last Song\", blending their voices with guitar to create a powerful music ministry. Singing has become such an integral part of her life now that she can't imagine not singing!",
+      "Through diligent study of the scriptures, mainly the prophecies of Daniel and Revelation, Wylie and Dawna embraced the truths they discovered, which led them to the Seventh Day Adventist church in 2010 ([Our Testimony](https://lastgen.net/articles/the-dvd-that-walked/)). Hungering to know Jesus, they made a vow to always follow the Lamb wherever He goes. Wylie currently serves as an Elder and Dawna as Music Leader at the Needles, CA Seventh-day Adventist church, just across the AZ border.",
+      "Wylie has had a 20-year career as a bachelor-level registered nurse and is a veteran of the US Air Force. He is transitioning out of healthcare into an entrepreneurial venture, [AI Peak Biz](https://www.aipeakbiz.com), where he provides AI systems to help businesses enter the new world of AI. Dawna is a licensed clinical social worker with a long career practicing individual, group, and family therapy. They have been married 23 years, have 3 adult children, and 6 grandchildren.",
+      "Sharing Christ in song as a couple is one of their greatest joys. Through soulful harmonies and heartfelt lyrics, they love to tell the story of the great exchange made by Jesus on the cross, our sin for His righteousness, encouraging listeners to watch, pray, and serve to be ready for Christ's glorious return."
+    ]
+  },
+  "photoReel": [
+    { "src": "/images/IMG_0986.jpeg", "alt": "Wylie and Dawna at the Grand Canyon", "w": 700, "h": 840 },
+    { "src": "/images/1000000248.jpeg", "alt": "Wylie playing guitar solo", "w": 700, "h": 840 },
+    { "src": "/images/beach_dog.jpeg", "alt": "Wylie and his dog looking out at the ocean", "w": 700, "h": 840 },
+    { "src": "/images/reel_baby_john_jay.jpeg", "alt": "Baby John and Jay", "w": 1267, "h": 1600, "fit": "contain" },
+    { "src": "/images/reel_new_1.jpeg", "alt": "Wylie and friend playing guitars together", "w": 700, "h": 840 },
+    { "src": "/images/reel_new_2.jpeg", "alt": "Dawna hiking in the forest", "w": 700, "h": 840 },
+    { "src": "/images/reel_kayak.jpeg", "alt": "Wylie kayak fishing on a mountain lake", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/reel_poolside_brocks.jpeg", "alt": "Poolside with the Brocks", "w": 1600, "h": 1120, "fit": "contain" },
+    { "src": "/images/reel_wylie_dawna_western.jpeg", "alt": "Wylie and Dawna in western hats", "w": 1115, "h": 1600, "fit": "contain" },
+    { "src": "/images/reel_az_camp_mtg.jpeg", "alt": "Wylie and Dawna at AZ Camp Meeting", "w": 1586, "h": 1600, "fit": "contain" },
+    { "src": "/images/reel_dave_sylvia.jpeg", "alt": "Dave and Sylvia", "w": 1600, "h": 846, "fit": "contain" },
+    { "src": "/images/reel_new_7.jpeg", "alt": "Prayer and fellowship at church", "w": 700, "h": 840 },
+    { "src": "/images/reel_new_8.jpeg", "alt": "Dawna and Wylie leading worship together", "w": 700, "h": 840 },
+    { "src": "/images/reel_new_9.jpeg", "alt": "Wylie and Dawna at the beach", "w": 700, "h": 840 },
+    { "src": "/images/reel_dawna_raquel.jpeg", "alt": "Dawna and Raquel", "w": 739, "h": 1600, "fit": "contain" },
+    { "src": "/images/reel_new_10.jpeg", "alt": "Wylie with his faithful companion", "w": 700, "h": 840 },
+    { "src": "/images/reel_new_11.jpeg", "alt": "Jaime Jorge concert event", "w": 700, "h": 840 }
+  ],
+  "cta": {
+    "image": "/images/hands.jpeg",
+    "text": "Partner With Our Ministry",
+    "href": "/support"
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "email": "wylie@aipeakbiz.com",
+    "name": "Wylie Stevens",
+    "passwordHash": "$2b$10$A.H/CEEvI9WPVFwR2EWyDe450/WppOxtW/sAZ8J./cCI7beeCMVkO",
+    "mustChangePassword": true,
+    "createdAt": "2026-06-16T00:00:00.000Z"
+  },
+  {
+    "email": "dbstevens04@hotmail.com",
+    "name": "Dawna Stevens",
+    "passwordHash": "$2b$10$A.H/CEEvI9WPVFwR2EWyDe450/WppOxtW/sAZ8J./cCI7beeCMVkO",
+    "mustChangePassword": true,
+    "createdAt": "2026-06-16T00:00:00.000Z"
+  }
+]

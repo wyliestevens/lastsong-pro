@@ -1,0 +1,35 @@
+{
+  "name": "Last Song",
+  "tagline": "Singing with Eternity in View",
+  "description": "Christian music ministry led by husband and wife worship duo Wylie and Dawna Stevens.",
+  "url": "https://lastsong.pro",
+  "phone": "(903) 556-3650",
+  "phoneDigits": "9035563650",
+  "email": "admin@lastsong.pro",
+  "address": {
+    "locality": "Kingman",
+    "region": "AZ",
+    "country": "US"
+  },
+  "credit": {
+    "label": "AI Peak Biz",
+    "url": "https://www.aipeakbiz.com"
+  },
+  "nav": [
+    { "href": "/", "label": "Home" },
+    { "href": "/about", "label": "About" },
+    { "href": "/mission", "label": "Mission" },
+    { "href": "/listen", "label": "Listen" },
+    { "href": "/schedule", "label": "Schedule" },
+    { "href": "/support", "label": "Support" },
+    { "href": "/contact", "label": "Contact" }
+  ],
+  "footerNav": [
+    { "href": "/about", "label": "About Us" },
+    { "href": "/mission", "label": "Mission" },
+    { "href": "/listen", "label": "Listen" },
+    { "href": "/schedule", "label": "Schedule" },
+    { "href": "/contact", "label": "Contact" },
+    { "href": "/support", "label": "Support" }
+  ]
+}

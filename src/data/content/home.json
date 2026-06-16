@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "Last Song",
+    "subtitle": "Singing with Eternity in View",
+    "primaryCtaText": "Listen Now",
+    "primaryCtaHref": "/listen"
+  },
+  "scripture": {
+    "text": "Sing to Him a new song; Play skillfully with a shout of joy.",
+    "reference": "Psalm 33:3"
+  },
+  "story": {
+    "photo": {
+      "src": "/images/full_body_guitar.jpeg",
+      "alt": "Wylie playing guitar",
+      "w": 840,
+      "h": 1600
+    },
+    "paragraphs": [
+      {
+        "leadIn": "Last Song",
+        "text": " is the husband-and-wife duet of Wylie and Dawna Stevens, sharing heartfelt Christian music that blends traditional hymns, scripture songs, and praise songs with simple accompaniment, including acoustic guitar. Through song and testimony, they remind listeners of the hope we have in Christ, the promises of Scripture, and the mission the church is called to in this exciting time in history."
+      },
+      {
+        "text": "The name Last Song reflects the realization that we, the church, are truly singing our 'last songs' as we finish the work in anticipation of the soon return of our Lord. Wylie and Dawna seek to use their time and talents to encourage others to join in sharing the Gospel and to hold fast to their faith. Each song is chosen with the purpose of pointing hearts to God."
+      },
+      {
+        "text": "Last Song has a special heart for ministering in churches, Christian gatherings, and outreach events where music can uplift, strengthen, and encourage the body of Christ."
+      }
+    ]
+  },
+  "ministering": {
+    "heading": "Ministering in Churches and Christian Events",
+    "paragraphs": [
+      "Last Song shares music in churches, outreach events, camp meetings and other Christian gatherings.",
+      "If your church or ministry is looking for Christ-centered music through songs rooted in the truths of Scripture, please feel free to reach out through our [Contact page](/contact) for more information about scheduling or upcoming opportunities to serve together."
+    ]
+  },
+  "cta": {
+    "image": "/images/hands.jpeg",
+    "text": "Partner With Our Ministry",
+    "href": "/support"
+  }
+}

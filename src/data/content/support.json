@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "Support Our Ministry",
+    "subtitle": "Partner with us"
+  },
+  "scripture": {
+    "text": "Whoever brings blessings will be enriched, and one who waters will himself be watered.",
+    "reference": "Proverbs 11:25"
+  },
+  "gratitude": "We are so grateful for all who support our music ministry and the zeal God has placed in our hearts to share the gospel. Your generosity through prayer, encouragement, and financial partnership allows us to press on in Jesus' name to advance the Kingdom of Heaven!",
+  "venuePhotos": [
+    { "src": "/images/needles_church.jpeg", "alt": "Wylie and Dawna leading worship at Needles SDA Church", "caption": "Needles, CA SDA Church", "w": 400, "h": 503 },
+    { "src": "/images/support_new_3.jpeg", "alt": "Wylie and Dawna leading worship at Espanola Valley SDA Church", "caption": "Espanola Valley SDA Church, NM", "w": 400, "h": 503 },
+    { "src": "/images/support_new_2.jpeg", "alt": "Fellowship with the congregation at Springdale SDA Church", "caption": "Springdale, AR SDA Church", "w": 400, "h": 503 },
+    { "src": "/images/support_new_4.jpeg", "alt": "Wylie and Dawna with the congregation at Elk City SDA Church", "caption": "Elk City, OK SDA Church", "w": 400, "h": 503 },
+    { "src": "/images/support_new_5.jpeg", "alt": "Worship service at Searcy SDA Church", "caption": "Searcy, AR SDA Church", "w": 400, "h": 503 },
+    { "src": "/images/gardens_care.jpeg", "alt": "Wylie and Dawna leading worship at Gardens Care Center", "caption": "Gardens Care Center, Kingman, AZ", "w": 400, "h": 503 },
+    { "src": "/images/castle_valley.jpeg", "alt": "Fellowship at Castle Valley Academy", "caption": "Castle Valley Academy, UT", "w": 400, "h": 503 }
+  ],
+  "howYourGiftHelps": {
+    "heading": "How Your Gift Helps",
+    "cards": [
+      { "title": "Travel Expenses", "desc": "Fuel, lodging, and meals as we travel to churches and events." },
+      { "title": "Equipment & Music", "desc": "Maintaining instruments, sound equipment, and recording resources." },
+      { "title": "Ministry Outreach", "desc": "Reaching more churches and communities with worship and the Gospel message." },
+      { "title": "Recording Projects", "desc": "Producing worship recordings to share our music with a wider audience." },
+      { "title": "Camper Shell", "desc": "To outfit truck for secure transport of audio equipment. Cost: $3400" }
+    ]
+  },
+  "specialThanks": {
+    "heading": "Special Thanks",
+    "intro": "With deepest gratitude, we recognize those whose extraordinary support has quietly and powerfully shaped this ministry.",
+    "entries": [
+      {
+        "name": "Valued Friends",
+        "body": "Old and new, who see the vision God has given us, who have encouraged us by attending our events, inviting us to sing, worshipping and singing alongside us, eagerly awaiting the advancement of our ministry, and faithfully praying for us, you are a blessing!"
+      },
+      {
+        "name": "Needles SDA Church",
+        "body": "Your constant love, prayerful support, valued input in song choices, and the arena to strengthen and refine our music skills bless us beyond measure! It's an honor to serve alongside you as music leader and elder."
+      },
+      {
+        "name": "Allen Howard",
+        "body": "The Candle Studio, Needles, CA. Producer and sound engineer of our music project, \"In The Beginning.\" Your belief in us and our God-given mission has never wavered. Your friendship, guidance, well-honed ear, audio skills and the 'patience of the saints' has brought our first music project to life."
+      }
+    ],
+    "studioWidePhoto": {
+      "src": "/images/studio_all_of_us.jpeg",
+      "alt": "Wylie, Dawna, and Allen Howard at The Candle Studio",
+      "caption": "Wylie, Dawna, Allen, The Candle Studio",
+      "w": 3348,
+      "h": 2442
+    },
+    "studioPhotos": [
+      { "src": "/images/studio_allen.jpeg", "alt": "Allen Howard, Sound Engineer at The Candle Studio", "caption": "Allen Howard, Sound Engineer", "w": 1900, "h": 2288 },
+      { "src": "/images/studio_dawna.jpeg", "alt": "Dawna, Vocals at The Candle Studio", "caption": "Dawna, Vocals", "w": 1850, "h": 3024 },
+      { "src": "/images/studio_wylie.jpeg", "alt": "Wylie, Guitar and Vocals at The Candle Studio", "caption": "Wylie, Guitar/Vocals", "w": 3024, "h": 4032 }
+    ]
+  },
+  "giveOnline": {
+    "heading": "Give Online",
+    "oneTimeHeading": "One-Time Gift",
+    "paypalUrl": "https://www.paypal.com/donate/?hosted_button_id=YRKKLNKAQX3JL",
+    "venmoUrl": "https://venmo.com/u/Wylie-Stevens",
+    "venmoHandle": "@Wylie-Stevens",
+    "cashAppUrl": "https://cash.app/$WylieStevens",
+    "cashAppHandle": "$WylieStevens",
+    "zellePhone": "903-556-3596"
+  },
+  "becomeAPartner": {
+    "heading": "Become a Partner",
+    "body": "We can't do this alone, and we were never meant to. If you feel connected to this ministry and what it represents, we invite you to become a monthly partner. Your support helps us continue showing up, pouring out, and reaching others with consistency and care. You're not just giving, you're joining the mission.",
+    "tiers": [
+      { "amount": 10, "label": "$10", "perMonth": "per month", "tier": "Harvest Worker (Luke 10:2)" },
+      { "amount": 25, "label": "$25", "perMonth": "per month", "tier": "Light Bearer (Matt. 5:14-16)" },
+      { "amount": 50, "label": "$50", "perMonth": "per month", "tier": "Kingdom Ambassador (2 Cor. 5:20)" }
+    ]
+  },
+  "fineprint": {
+    "heading": "501(c)(3) Statement",
+    "paragraphs": [
+      "Last Song Ministry operates independently of 501(c)(3) tax-exempt status. This is a deliberate and prayerful decision. When an organization incorporates as a 501(c)(3), it becomes a government-recognized entity subject to state and federal oversight, including restrictions on speech, activities, and organizational governance. In effect, the organization becomes accountable to the state as a condition of its tax-exempt standing.",
+      "We believe our ministry is called and commissioned by God, and we answer to His authority alone. After careful study and prayer, we have chosen not to place our ministry under the regulatory authority of any government entity. We serve under the government of God, not the government of man, and we want to ensure that nothing hinders our ability to follow His leading without compromise.",
+      "We hold no judgment toward other ministries that have chosen differently. Many faithful organizations operate effectively under 501(c)(3) status, and we respect their decision to do so. This is simply the path God has laid on our hearts for Last Song Ministry.",
+      "Because of this, donations to Last Song Ministry are not tax-deductible. We trust that those who give do so as an act of worship and obedience to God, and we are deeply grateful for every gift that helps us continue this work."
+    ]
+  }
+}

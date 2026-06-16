@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "Listen Now",
+    "subtitle": "Our Music"
+  },
+  "scripture": {
+    "text": "Sing to Him, sing psalms to Him; talk of His wondrous works!",
+    "reference": "1 Chronicles 16:9"
+  },
+  "tracksHeading": "Songs From Our Project, \"In the Beginning\"",
+  "tracksSubhead": "Coming Soon!",
+  "tracks": [
+    { "title": "Something About That Name", "artist": "Last Song", "src": "/audio/Something_about_that_Name_MASTER.m4a" },
+    { "title": "The Middle Man", "artist": "Last Song", "src": "/audio/The_Middle_Man_Wylie_Dawna_Master.m4a" },
+    { "title": "Goodness of God", "artist": "Last Song", "src": "/audio/Goodness_of_God_PUBLISH_3.m4a", "endTime": 94 },
+    { "title": "Via Dolorosa", "artist": "Last Song", "src": "/audio/Via_Dolorosa_Wylie_Dawna.m4a" },
+    { "title": "I Bowed on My Knees", "artist": "Last Song", "src": "/audio/I_Bowed_on_My_Knees_Wylie_MASTER_3.m4a" },
+    { "title": "All My Tears", "artist": "Last Song", "src": "/audio/All_My_Tears_Wylie_Dawna_PUBLISH_3.m4a", "endTime": 86 },
+    { "title": "In the Sanctuary", "artist": "Last Song", "src": "/audio/In_The_Sanctuary_Wylie_Dawna_MASTER.m4a", "endTime": 108 },
+    { "title": "Do You Know My Jesus?", "artist": "Last Song", "src": "/audio/Do_You_Know_My_Jesus_PUBLISH_2.m4a", "endTime": 64 }
+  ],
+  "videoHeading": "See Us in Worship",
+  "videos": [
+    {
+      "src": "/videos/heaven-came-down.mp4",
+      "poster": "/images/posters/heaven-came-down.jpg",
+      "aspect": "16/9",
+      "title": "Heaven Came Down",
+      "venue": "Central SDA Church, Oklahoma City, OK"
+    }
+  ],
+  "videoPair": {
+    "items": [
+      {
+        "src": "/videos/gardens-care-center-kingman.mp4",
+        "poster": "/images/posters/gardens-care-center-kingman.jpg",
+        "caption": "Burdens Are Lifted"
+      },
+      {
+        "src": "/videos/amazing-grace-gardens.mp4",
+        "poster": "/images/posters/amazing-grace-gardens.jpg",
+        "caption": "Amazing Grace"
+      }
+    ],
+    "venue": "The Gardens, Kingman, AZ"
+  },
+  "videosExtra": [
+    {
+      "src": "/videos/mary-did-you-know.mp4",
+      "poster": "/images/posters/mary-did-you-know.jpg",
+      "aspect": "16/9",
+      "title": "Mary Did You Know?",
+      "venue": ""
+    }
+  ],
+  "photoReel": [
+    { "src": "/images/listen_nature_01.jpeg", "alt": "Fall aspens with mountain backdrop", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/listen_nature_06.jpeg", "alt": "Elk standing in snowy woods", "w": 1950, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_royal_gorge.jpeg", "alt": "Royal Gorge suspension bridge over canyon", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/listen_nature_03.jpeg", "alt": "Turquoise ocean waves on beach", "w": 2600, "h": 1950, "fit": "contain" },
+    { "src": "/images/listen_nature_10.jpeg", "alt": "Yellow rose close-up", "w": 1950, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_chipmunk.jpeg", "alt": "Chipmunk on a rock", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/listen_nature_05.jpeg", "alt": "Alpine lake with sun sparkle", "w": 2600, "h": 1950, "fit": "contain" },
+    { "src": "/images/listen_nature_13.jpeg", "alt": "Two young fawns", "w": 1973, "h": 2432, "fit": "contain" },
+    { "src": "/images/listen_pink_wildflowers.jpeg", "alt": "Pink wildflowers between rocks", "w": 1463, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_nature_12.jpeg", "alt": "River winding through pine valley", "w": 1463, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_sunset.jpeg", "alt": "Pink sunset over mountains", "w": 2600, "h": 1950, "fit": "contain" },
+    { "src": "/images/listen_nature_09.jpeg", "alt": "Mountain goats on rocky slope", "w": 2600, "h": 1950, "fit": "contain" },
+    { "src": "/images/listen_orange_flower.jpeg", "alt": "Orange flower in bloom", "w": 3024, "h": 4032, "fit": "contain" },
+    { "src": "/images/listen_nature_11.jpeg", "alt": "Snow-capped mountain range", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/listen_fisherman.jpeg", "alt": "Fisherman in a mountain river", "w": 1463, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_nature_08.jpeg", "alt": "Red fox near aspen trees", "w": 1626, "h": 1514, "fit": "contain" },
+    { "src": "/images/listen_nature_02.jpeg", "alt": "Sunset ocean with surfers", "w": 2600, "h": 1463, "fit": "contain" },
+    { "src": "/images/listen_nature_07.jpeg", "alt": "Green aspen-lined trail", "w": 1950, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_nature_04.jpeg", "alt": "Mule deer buck", "w": 1463, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_mountain_lake.jpeg", "alt": "New Mexico mountain lake landscape", "w": 1727, "h": 1330, "fit": "contain" },
+    { "src": "/images/listen_white_flower.jpeg", "alt": "White plumeria flowers", "w": 3024, "h": 4032, "fit": "contain" },
+    { "src": "/images/listen_nature_14.jpeg", "alt": "Rocky mountain river rapids", "w": 1463, "h": 2600, "fit": "contain" },
+    { "src": "/images/listen_mark_cactus.jpeg", "alt": "Mark beside a tall cactus", "w": 841, "h": 1393, "fit": "contain" },
+    { "src": "/images/listen_rock_tunnel.jpeg", "alt": "Sunlit rock tunnel", "w": 1600, "h": 901, "fit": "contain" },
+    { "src": "/images/listen_ocean_wave.jpeg", "alt": "Crashing ocean wave", "w": 1600, "h": 1200, "fit": "contain" },
+    { "src": "/images/listen_aspen_forest.jpeg", "alt": "Aspen forest in fall colors", "w": 1200, "h": 1600, "fit": "contain" },
+    { "src": "/images/listen_bryce_canyon.jpeg", "alt": "Bryce Canyon, Utah", "w": 1600, "h": 1033, "fit": "contain" }
+  ],
+  "cta": {
+    "image": "/images/hands.jpeg",
+    "text": "Partner With Our Ministry",
+    "href": "/support"
+  }
+}

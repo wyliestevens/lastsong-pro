@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "Schedule",
+    "subtitle": "Where We'll Be",
+    "ctaText": "Invite Us to Your Church or Event",
+    "ctaHref": "mailto:admin@lastsong.pro?subject=Booking%20Inquiry%20-%20Last%20Song%20Ministry"
+  },
+  "scripture": {
+    "text": "Oh come, let us sing to the Lord! Let us shout joyfully to the Rock of our salvation.",
+    "reference": "Psalm 95:1"
+  },
+  "recurring": [
+    {
+      "title": "Worship at The Gardens",
+      "location": "The Gardens Care Center, Kingman, AZ",
+      "schedule": "1st Saturday of Every Month at 11:30 AM",
+      "description": "Join us the first Saturday of every month at 11:30 AM as we lead worship at The Gardens in Kingman, Arizona. Come be part of a beautiful time of praise and fellowship.",
+      "calendar": {
+        "kind": "firstSaturday",
+        "label": "Worship at The Gardens (1st Saturday)"
+      }
+    }
+  ],
+  "specialEvents": [
+    {
+      "title": "Arizona Sonshine",
+      "location": "Arizona",
+      "dateText": "June 11 – 12, 2026",
+      "description": "",
+      "year": 2026,
+      "ranges": [
+        { "startMonth": 5, "startDay": 11, "endMonth": 5, "endDay": 12 }
+      ]
+    },
+    {
+      "title": "ASI Musicians (Adventist Laymen's Services & Industries)",
+      "location": "Phoenix, AZ",
+      "dateText": "July 29 – August 1, 2026",
+      "description": "",
+      "year": 2026,
+      "ranges": [
+        { "startMonth": 6, "startDay": 29, "endMonth": 6, "endDay": 31 },
+        { "startMonth": 7, "startDay": 1, "endMonth": 7, "endDay": 1 }
+      ]
+    },
+    {
+      "title": "Western Slope Camp Meeting",
+      "location": "Montrose, CO",
+      "dateText": "August 12 – 16, 2026",
+      "description": "",
+      "year": 2026,
+      "ranges": [
+        { "startMonth": 7, "startDay": 12, "endMonth": 7, "endDay": 16 }
+      ]
+    },
+    {
+      "title": "NM Conference Evangelistic Series",
+      "location": "New Mexico",
+      "dateText": "September 11 – 22, 2026",
+      "description": "Join us for a powerful evangelistic series in New Mexico. More details coming soon.",
+      "year": 2026,
+      "ranges": [
+        { "startMonth": 8, "startDay": 11, "endMonth": 8, "endDay": 22 }
+      ]
+    }
+  ],
+  "inviteBox": {
+    "heading": "Invite Us to Your Church or Event",
+    "body": "We would love to bring our music ministry to your church, revival, retreat, or special event. Reach out to us and let's connect.",
+    "buttonText": "Contact Us to Schedule",
+    "buttonHref": "mailto:admin@lastsong.pro?subject=Booking%20Inquiry%20-%20Last%20Song%20Ministry"
+  },
+  "invitePhoto": {
+    "src": "/images/schedule_singing.jpeg",
+    "alt": "Wylie and Dawna singing to each other",
+    "w": 1990,
+    "h": 2600
+  }
+}

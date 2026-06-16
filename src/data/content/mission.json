@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "image": "/images/guitar_treeImage.jpeg",
+    "title": "Our Mission",
+    "subtitle": "Sharing the Gospel"
+  },
+  "scripture": {
+    "text": "Sing praises to the Lord, for He has done gloriously; let this be made known in all the Earth.",
+    "reference": "Isaiah 12:5"
+  },
+  "heading": "Our Mission",
+  "paragraphs": [
+    "In addition to their music, Wylie and Dawna are committed to sharing the gospel through friendship evangelism. They pray for opportunities to study the Word of God with others and currently have four active weekly Bible studies via Zoom and in-person. One of their greatest joys is to share the Bible truths that are making such an impact in their own lives.",
+    "Wylie uses social media to 'exhort and encourage the brethren' (1 Thess. 5:11) by posting his video series \"A Year of Knowing God\" — a 365-day devotional journey written for real people walking through real life; honest, scripture-grounded truth, delivered in a voice that meets you exactly where you are. ([YouTube](https://www.youtube.com/@practicalrighteousness9387), [Facebook](https://www.facebook.com/wylie.stevens.2025), [TikTok](https://www.tiktok.com/@aipeakbiz), [LinkedIn](https://www.linkedin.com/in/aipeakbiz/), [Instagram](https://www.instagram.com/wylie.stevens/))",
+    "Last Song also serves in their community once a month at The Gardens Care Center, in Kingman, AZ, sharing light and love through singing, prayer, and bible studies with the residents there.",
+    "In their ministry \"Wherever You Go\", they hand out books, magazines, and DVDs as they travel for music engagements and as they go about daily errands, seeking the lost and downtrodden to tell them the good news of Jesus, encouraging and praying with them.",
+    "Wylie is also a regular speaker at their home church in Needles, CA. One of his favorite sermons to give is entitled \"Standard Operating Equipment\" where he teaches and reminds that all in the family of God are called to fulfill the Great Commission to \"go and make disciples\" (Matthew 28:16-20). He and Dawna organize the assembly of literature bags filled with various Bible-based books, magazines, Glow tracks, and other materials, and invite church members in an altar call at the close of service to take the literature bags to keep in their vehicles and hand out as they go about their daily activities. He then leads a prayer of blessing over the congregants as they commit to giving out the materials to share Jesus with others.",
+    "Dawna is a licensed therapist and provides a free Christian counseling ministry to members of their church. She comes alongside them to facilitate healing from \"hurts, habits, and hang-ups\" using Biblical principles, our identity in Christ and His overcoming power, along with her professional training."
+  ],
+  "photos": {
+    "topRow": [
+      {
+        "src": "/images/IMG_1046.jpeg",
+        "alt": "Wylie and Dawna holding ministry literature",
+        "caption": "Literature Ministry",
+        "w": 800,
+        "h": 1157
+      },
+      {
+        "src": "/images/wylie_speaking.jpeg",
+        "alt": "Wylie preaching from the pulpit",
+        "caption": "Wylie Speaking",
+        "w": 951,
+        "h": 1375
+      }
+    ],
+    "wide": [
+      {
+        "src": "/images/bible_study.jpeg",
+        "alt": "Wylie and Dawna leading a Bible study",
+        "caption": "Bible Study",
+        "w": 1600,
+        "h": 764
+      },
+      {
+        "src": "/images/bible_study_gardens.jpeg",
+        "alt": "Bible study at The Gardens",
+        "caption": "Bible Study at the Gardens",
+        "w": 1600,
+        "h": 1145
+      }
+    ]
+  },
+  "cta": {
+    "image": "/images/hands.jpeg",
+    "text": "Partner With Our Ministry",
+    "href": "/support"
+  }
+}
