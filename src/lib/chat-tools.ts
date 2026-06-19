@@ -5,7 +5,32 @@ import {
   loadContent,
   saveContent,
 } from "./content";
-import { deleteFile, listUploads } from "./github";
+import { deleteFile, listUploads, readFile, writeFile } from "./github";
+
+// Files the chat agent must NOT touch. These hold credentials, session keys,
+// or build/config that a free-form edit could break in a way the user can't
+// easily recover from via the dashboard.
+const PROTECTED_PATHS = [
+  "src/data/admin-users.json",
+  "src/lib/auth.ts",
+  "src/app/api/admin/login/route.ts",
+  "src/app/api/admin/logout/route.ts",
+  "src/app/api/admin/change-password/route.ts",
+  "src/app/api/admin/me/route.ts",
+  "middleware.ts",
+  ".gitignore",
+  ".env",
+  ".env.local",
+  ".env.production",
+  "package.json",
+  "package-lock.json",
+  "tsconfig.json",
+  "next.config.ts",
+];
+
+function isProtected(path: string): boolean {
+  return PROTECTED_PATHS.some((p) => path === p || path.startsWith(`${p}/`));
+}
 
 export const toolSchemas = [
   {
@@ -91,6 +116,58 @@ export const toolSchemas = [
         title: { type: "string", description: "Event title (or unique substring of it)." },
       },
       required: ["title"],
+    },
+  },
+  {
+    name: "read_file",
+    description:
+      "Read any file in the repo (TypeScript, JSON, CSS, markdown, anything). Use this BEFORE edit_file so your patch lands in the right place. Returns the full file content. Pass the repo-relative path.",
+    input_schema: {
+      type: "object",
+      properties: {
+        path: {
+          type: "string",
+          description:
+            "Repo-relative path, e.g. 'src/app/page.tsx', 'src/components/Footer.tsx', 'src/app/globals.css'.",
+        },
+      },
+      required: ["path"],
+    },
+  },
+  {
+    name: "edit_file",
+    description:
+      "Edit a file by exact string replacement. Use this for code/styling changes that aren't in the JSON content files (e.g. font sizes, layout tweaks, component logic, CSS variables). The replacement is exact-match — the oldText must appear EXACTLY ONCE in the file. Include enough surrounding context to make the match unique. Always read_file first to get the exact current text. Commits to GitHub; site rebuilds in ~60s. Protected files (auth, session, env, build config) are refused.",
+    input_schema: {
+      type: "object",
+      properties: {
+        path: { type: "string", description: "Repo-relative path." },
+        oldText: {
+          type: "string",
+          description:
+            "Exact substring to replace. Must occur exactly once in the file. Include surrounding context (whole lines, indentation) to disambiguate.",
+        },
+        newText: { type: "string", description: "Replacement text." },
+        commitMessage: {
+          type: "string",
+          description: "Short summary for the git commit log.",
+        },
+      },
+      required: ["path", "oldText", "newText"],
+    },
+  },
+  {
+    name: "write_file",
+    description:
+      "Create a new file or completely overwrite an existing one. Prefer edit_file for surgical changes; use write_file only when creating new files or doing a full rewrite. Protected files are refused.",
+    input_schema: {
+      type: "object",
+      properties: {
+        path: { type: "string" },
+        content: { type: "string", description: "Full file content." },
+        commitMessage: { type: "string" },
+      },
+      required: ["path", "content"],
     },
   },
   {
@@ -187,6 +264,66 @@ export const toolExecutors: Record<string, (input: any, ctx: ToolCtx) => Promise
     return { ok: true, removed: events.length - next.length };
   },
 
+  async read_file(input) {
+    const path = String(input.path || "");
+    if (!path) return { error: "path required" };
+    const f = await readFile(path);
+    if (!f) return { error: "file not found", path };
+    return { path, content: f.content, sha: f.sha };
+  },
+
+  async edit_file(input) {
+    const path = String(input.path || "");
+    if (!path) return { error: "path required" };
+    if (isProtected(path)) {
+      return { error: `Refused: ${path} is protected (auth/session/config).` };
+    }
+    const oldText = String(input.oldText ?? "");
+    const newText = String(input.newText ?? "");
+    if (!oldText) return { error: "oldText required" };
+    const f = await readFile(path);
+    if (!f) return { error: "file not found", path };
+    const occurrences = f.content.split(oldText).length - 1;
+    if (occurrences === 0) {
+      return {
+        error: `oldText not found in ${path}. Use read_file to inspect exact contents.`,
+      };
+    }
+    if (occurrences > 1) {
+      return {
+        error: `oldText matches ${occurrences} times in ${path}. Include more surrounding context so the match is unique.`,
+      };
+    }
+    const next = f.content.replace(oldText, newText);
+    const msg = input.commitMessage
+      ? `chat: ${input.commitMessage}`
+      : `chat: edit ${path}`;
+    const b64 = Buffer.from(next, "utf8").toString("base64");
+    await writeFile({ path, contentBase64: b64, message: msg, sha: f.sha });
+    return { ok: true, path, bytesBefore: f.content.length, bytesAfter: next.length };
+  },
+
+  async write_file(input) {
+    const path = String(input.path || "");
+    if (!path) return { error: "path required" };
+    if (isProtected(path)) {
+      return { error: `Refused: ${path} is protected.` };
+    }
+    const content = String(input.content ?? "");
+    const existing = await readFile(path);
+    const msg = input.commitMessage
+      ? `chat: ${input.commitMessage}`
+      : `chat: write ${path}`;
+    const b64 = Buffer.from(content, "utf8").toString("base64");
+    await writeFile({
+      path,
+      contentBase64: b64,
+      message: msg,
+      sha: existing?.sha,
+    });
+    return { ok: true, path, bytes: content.length, created: !existing };
+  },
+
   async list_images() {
     const images = await listUploads();
     return images.map((i) => ({
@@ -226,9 +363,16 @@ export const CHAT_SYSTEM_PROMPT = `You are Wylie and Dawna Stevens' AI assistant
 
 ## What you can do
 
-You can read and edit every piece of editable content on the site through the available tools. The site is structured as JSON content files committed to GitHub; every save you make commits to the repo and triggers a Vercel rebuild (~60 seconds to live).
+You can edit ANYTHING in the repo — page copy, photos, calendar events, font sizes, colors, layout, component logic. There are two editing surfaces:
 
-The content files are: site, footer, home, about, mission, listen, schedule, support, contact. Call list_content_files() if you need a refresher on what each one controls.
+1. **Content JSON files** (site, footer, home, about, mission, listen, schedule, support, contact). Use get_content / update_content / add_special_event / remove_special_event for these. They hold copy + image paths.
+2. **Source code** (.tsx, .ts, .css, .json, .md, anywhere in the repo). Use read_file + edit_file (or write_file for whole-file rewrites). Use this for font sizes, colors, layout tweaks, component logic — anything that isn't in a content JSON.
+
+Every save commits to GitHub and triggers a Vercel rebuild (~60s to live).
+
+**Workflow for code edits:** ALWAYS read_file first to see the exact current text, then edit_file with enough surrounding context to make the oldText match uniquely. Protected files (auth, sessions, env, build config) are refused — surface that politely if it happens.
+
+**Workflow for content edits:** prefer the content tools over edit_file. They're safer and self-documenting.
 
 ## How to behave
 
