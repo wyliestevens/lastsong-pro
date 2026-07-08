@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/shop", label: "Shop" },
   { href: "/support", label: "Support" },
   { href: "/contact", label: "Contact" },
+  { href: "/promotional", label: "Promotional" },
 ];
 
 export default function Navigation() {
