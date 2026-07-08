@@ -8,6 +8,13 @@ export const metadata = {
 
 const materials = [
   {
+    title: "Bulletin Insert — 2-Up",
+    description:
+      "Two inserts per page, ready to cut. Ideal for church bulletins and handouts.",
+    file: "/LastSong_BulletinInsert_2up.pdf",
+    size: "2-up on letter",
+  },
+  {
     title: "Event Poster — 8.5 x 11",
     description:
       "Portrait poster with space for date, time, and location. Perfect for printing on standard letter-size paper.",
@@ -20,13 +27,6 @@ const materials = [
       "Large format poster with space for date, time, and location. Great for bulletin boards and community postings.",
     file: "/LastSong_Poster_11x17.pdf",
     size: '11" x 17"',
-  },
-  {
-    title: "Bulletin Insert — 2-Up",
-    description:
-      "Two inserts per page, ready to cut. Ideal for church bulletins and handouts.",
-    file: "/LastSong_BulletinInsert_2up.pdf",
-    size: "2-up on letter",
   },
 ];
 
