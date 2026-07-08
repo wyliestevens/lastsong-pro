@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/listen", label: "Listen" },
   { href: "/shop", label: "Shop" },
   { href: "/support", label: "Support" },
+  { href: "/promotional", label: "Promotional" },
 ];
 
 export default function Navigation() {
