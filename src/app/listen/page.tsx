@@ -495,19 +495,6 @@ export default function ListenPage() {
           >
             Songs From Our Project, &ldquo;In the Beginning&rdquo;
           </h2>
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(0.9rem, 1.8vw, 1.3rem)",
-              fontStyle: "italic",
-              fontWeight: 500,
-              color: "var(--color-amber)",
-              margin: "6px 0 0",
-              textAlign: "center",
-            }}
-          >
-            Coming Soon!
-          </p>
         </div>
         <div
           className="grid-2-col"

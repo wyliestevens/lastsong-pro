@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { streamingPlatforms } from "@/data/streaming";
 
 export default function ShopPage() {
   return (
@@ -131,63 +132,94 @@ export default function ShopPage() {
               margin: "0 auto 48px",
             }}
           >
-            Scan any QR code below to open our music on that platform.
+            Scan a QR code &mdash; or tap any platform &mdash; to open our
+            album, &ldquo;In the Beginning.&rdquo;
           </p>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "32px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "28px",
             }}
           >
-            {/* Placeholder cards — replace with actual QR code images */}
-            {[
-              { platform: "Spotify", icon: "🎵" },
-              { platform: "Apple Music", icon: "🎶" },
-              { platform: "YouTube Music", icon: "▶" },
-              { platform: "Amazon Music", icon: "🎧" },
-            ].map((item) => (
-              <div
-                key={item.platform}
+            {streamingPlatforms.map((p) => (
+              <a
+                key={p.slug}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   background: "var(--color-bg-card)",
                   borderRadius: "12px",
-                  padding: "32px 24px",
+                  padding: "28px 24px",
                   border: "1px solid rgba(212, 160, 65, 0.15)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "16px",
+                  gap: "18px",
+                  textDecoration: "none",
                 }}
               >
-                {/* QR code placeholder — replace src with actual QR images */}
                 <div
                   style={{
-                    width: "160px",
-                    height: "160px",
-                    background: "rgba(255,255,255,0.95)",
-                    borderRadius: "8px",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "3rem",
+                    gap: "10px",
+                    minHeight: "30px",
                   }}
                 >
-                  {item.icon}
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill={p.color}
+                    aria-hidden="true"
+                  >
+                    <path d={p.icon} />
+                  </svg>
+                  <span
+                    style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: "0.9rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.5px",
+                      color: "var(--color-cream)",
+                    }}
+                  >
+                    {p.name}
+                  </span>
                 </div>
-                <p
+                <div
+                  style={{
+                    width: "180px",
+                    maxWidth: "100%",
+                    background: "#ffffff",
+                    borderRadius: "8px",
+                    padding: "10px",
+                  }}
+                >
+                  <Image
+                    src={`/images/qr/${p.slug}.png`}
+                    alt={`${p.name} QR code for In the Beginning`}
+                    width={320}
+                    height={320}
+                    unoptimized
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                  />
+                </div>
+                <span
                   style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: "0.85rem",
+                    fontSize: "0.72rem",
                     fontWeight: 600,
                     letterSpacing: "1.5px",
                     textTransform: "uppercase",
-                    color: "var(--color-cream)",
+                    color: "var(--color-amber)",
                   }}
                 >
-                  {item.platform}
-                </p>
-              </div>
+                  Scan or Tap to Open
+                </span>
+              </a>
             ))}
           </div>
         </div>
